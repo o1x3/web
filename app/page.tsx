@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo, memo, useCallback, lazy, Suspense } from 'react'
+import { useState, useEffect, useMemo, memo, useCallback } from 'react'
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
@@ -81,7 +81,6 @@ export default function Home() {
 
   useEffect(() => {
     let rafId
-    let worker
     
     const calculateOptimalLayout = () => {
       const viewport = {
@@ -93,33 +92,7 @@ export default function Home() {
       const isMobileDevice = viewport.width < 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       setIsMobile(isMobileDevice)
       
-      // Use Web Worker for heavy calculations when available
-      if (typeof Worker !== 'undefined' && !worker) {
-        try {
-          worker = new Worker('/layout-worker.js')
-          worker.onmessage = (e) => {
-            const { type, layout } = e.data
-            if (type === 'mobile') {
-              setMobileLayout(layout)
-            } else {
-              setLayout(layout)
-            }
-            
-            if (!isInitialized) {
-              setIsInitialized(true)
-              document.body.classList.add('loaded')
-            }
-          }
-          
-          worker.postMessage({ viewport, isMobile: isMobileDevice })
-          return
-        } catch {
-          // Fallback to main thread if worker fails
-          worker = null
-        }
-      }
-      
-      // Fallback to main thread calculations
+      // Optimized calculations on main thread
       if (isMobileDevice) {
         calculateMobileLayout(viewport)
       } else {
@@ -220,7 +193,6 @@ export default function Home() {
       window.removeEventListener('resize', handleResize)
       if (resizeTimer) clearTimeout(resizeTimer)
       if (rafId) cancelAnimationFrame(rafId)
-      if (worker) worker.terminate()
     }
   }, [isInitialized])
 
@@ -259,14 +231,15 @@ export default function Home() {
   , [isMobile, layout.showAllProjects, projects, mobileLayout.projectsPerSection])
 
   // Mobile Layout Component
-  const MobileLayout = memo(() => (
-    <div 
-      className="h-screen overflow-y-auto font-mono"
-      style={{ 
-        padding: `${mobileLayout.padding}px`,
-        fontSize: `${mobileLayout.fontSize}px`
-      }}
-    >
+  const MobileLayout = memo(function MobileLayout() {
+    return (
+      <div 
+        className="h-screen overflow-y-auto font-mono"
+        style={{ 
+          padding: `${mobileLayout.padding}px`,
+          fontSize: `${mobileLayout.fontSize}px`
+        }}
+      >
       <div style={{ display: 'flex', flexDirection: 'column', gap: `${mobileLayout.sectionSpacing}px` }}>
         
         {/* Mobile Theme toggle */}
@@ -477,10 +450,11 @@ export default function Home() {
         <div style={{ height: `${mobileLayout.padding}px` }}></div>
       </div>
     </div>
-  ))
+    )
+  })
 
   // Desktop Layout Component (existing)
-  const DesktopLayout = memo(() => {
+  const DesktopLayout = memo(function DesktopLayout() {
     return (
       <div 
         className="max-w-7xl mx-auto h-full font-mono" 
