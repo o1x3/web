@@ -1,11 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo, memo, useCallback, lazy, Suspense } from 'react'
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
+  
+  // Memoize theme toggle to prevent re-renders
+  const toggleTheme = useCallback(() => setIsDark(prev => !prev), [])
   
   // Pre-calculate reasonable defaults based on common screen sizes
   const getInitialLayout = () => {
@@ -77,6 +80,9 @@ export default function Home() {
   const [mobileLayout, setMobileLayout] = useState(getInitialMobileLayout())
 
   useEffect(() => {
+    let rafId
+    let worker
+    
     const calculateOptimalLayout = () => {
       const viewport = {
         width: window.innerWidth,
@@ -87,11 +93,36 @@ export default function Home() {
       const isMobileDevice = viewport.width < 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       setIsMobile(isMobileDevice)
       
+      // Use Web Worker for heavy calculations when available
+      if (typeof Worker !== 'undefined' && !worker) {
+        try {
+          worker = new Worker('/layout-worker.js')
+          worker.onmessage = (e) => {
+            const { type, layout } = e.data
+            if (type === 'mobile') {
+              setMobileLayout(layout)
+            } else {
+              setLayout(layout)
+            }
+            
+            if (!isInitialized) {
+              setIsInitialized(true)
+              document.body.classList.add('loaded')
+            }
+          }
+          
+          worker.postMessage({ viewport, isMobile: isMobileDevice })
+          return
+        } catch {
+          // Fallback to main thread if worker fails
+          worker = null
+        }
+      }
+      
+      // Fallback to main thread calculations
       if (isMobileDevice) {
-        // Mobile-specific algorithm
         calculateMobileLayout(viewport)
       } else {
-        // Desktop algorithm (existing)
         calculateDesktopLayout(viewport)
       }
       
@@ -103,147 +134,98 @@ export default function Home() {
     }
     
     const calculateMobileLayout = (viewport) => {
-      const availableHeight = viewport.height - 60 // Account for mobile padding
-      
-      // Mobile sections with optimized heights
-      const mobileSections = [
-        { name: 'header', height: 100 },
-        { name: 'contact', height: 80 },
-        { name: 'experience', height: 140 },
-        { name: 'education', height: 80 },
-        { name: 'skills', height: 120 },
-        { name: 'projects', height: 200 },
-        { name: 'sidebar-mini', height: 120 }
-      ]
-      
-      const totalMobileHeight = mobileSections.reduce((sum, section) => sum + section.height, 0)
+      const availableHeight = viewport.height - 60
+      const totalMobileHeight = 840 // Pre-calculated sum
       const mobileScale = Math.max(0.7, Math.min(1.2, availableHeight / totalMobileHeight))
       
-      // Mobile-optimized settings
-      let fontSize = Math.max(10, Math.floor(12 * mobileScale))
-      let headerSize = Math.max(14, Math.floor(18 * mobileScale))
-      let sectionSpacing = Math.max(8, Math.floor(16 * mobileScale))
-      let itemSpacing = Math.max(3, Math.floor(6 * mobileScale))
-      let padding = Math.max(12, Math.floor(16 * mobileScale))
-      
-      // Adaptive mobile features
-      let showMiniSidebar = mobileScale > 0.8
-      let projectsPerSection = mobileScale > 0.9 ? 3 : 2
-      let stackSections = true
-      
-      // Aggressive space optimization for very small screens
-      if (mobileScale < 0.8) {
-        fontSize = 10
-        headerSize = 14
-        sectionSpacing = 8
-        itemSpacing = 3
-        projectsPerSection = 1
+      // Use lookup table for better performance
+      const settings = mobileScale < 0.8 ? {
+        fontSize: 10,
+        headerSize: 14,
+        sectionSpacing: 8,
+        itemSpacing: 3,
+        padding: 12,
+        showMiniSidebar: false,
+        projectsPerSection: 1
+      } : {
+        fontSize: Math.max(10, Math.floor(12 * mobileScale)),
+        headerSize: Math.max(14, Math.floor(18 * mobileScale)),
+        sectionSpacing: Math.max(8, Math.floor(16 * mobileScale)),
+        itemSpacing: Math.max(3, Math.floor(6 * mobileScale)),
+        padding: Math.max(12, Math.floor(16 * mobileScale)),
+        showMiniSidebar: mobileScale > 0.8,
+        projectsPerSection: mobileScale > 0.9 ? 3 : 2
       }
       
       setMobileLayout({
-        fontSize,
-        headerSize,
-        sectionSpacing,
-        itemSpacing,
-        padding,
-        stackSections,
-        showMiniSidebar,
-        projectsPerSection
+        ...settings,
+        stackSections: true
       })
     }
     
     const calculateDesktopLayout = (viewport) => {
-      // Content sections with estimated heights
-      const sections = [
-        { name: 'header', baseHeight: 80, scalable: false },
-        { name: 'contact', baseHeight: 80, scalable: false },
-        { name: 'experience', baseHeight: 160, scalable: true },
-        { name: 'education', baseHeight: 120, scalable: true },
-        { name: 'skills', baseHeight: 100, scalable: false },
-        { name: 'projects', baseHeight: 300, scalable: true, flexible: true }
-      ]
-      
-      // Calculate available height (minus padding and margins)
-      const availableHeight = viewport.height - 80 // Account for padding
+      const availableHeight = viewport.height - 80
       const availableWidth = viewport.width
+      const totalBaseHeight = 840 // Pre-calculated
       
-      // Base content height calculation
-      let totalBaseHeight = sections.reduce((sum, section) => sum + section.baseHeight, 0)
+      // Fast path calculations
+      let scale = Math.max(0.6, Math.min(1.3, availableHeight / totalBaseHeight))
+      let gridCols = availableWidth < 1024 ? 1 : Math.min(3, Math.floor(availableWidth / 300))
       
-      // Dynamic scaling algorithm
-      let scale = 1
-      let fontSize = 14
-      let spacing = 16
-      let gridCols = 2
-      let showAllProjects = true
-      let showSecondaryInfo = true
-      
-      if (totalBaseHeight > availableHeight) {
-        // Calculate scale factor needed to fit
-        scale = Math.max(0.6, availableHeight / totalBaseHeight)
-        
-        // Adjust parameters based on scale
-        fontSize = Math.max(10, Math.floor(14 * scale))
-        spacing = Math.max(8, Math.floor(16 * scale))
-        
-        // Adaptive content showing
-        if (scale < 0.8) {
-          showSecondaryInfo = false
-          totalBaseHeight *= 0.85 // Reduce height when hiding secondary info
+      // Lookup table for common scale factors
+      const scaleSettings = {
+        small: { // scale < 0.7
+          fontSize: 10, spacing: 8, showAllProjects: false, showSecondaryInfo: false, gridCols: 1
+        },
+        medium: { // scale < 0.8
+          fontSize: Math.floor(14 * scale), spacing: Math.floor(16 * scale), 
+          showAllProjects: true, showSecondaryInfo: false, gridCols
+        },
+        normal: { // scale >= 0.8
+          fontSize: Math.floor(14 * scale), spacing: Math.floor(16 * scale),
+          showAllProjects: true, showSecondaryInfo: true, gridCols
         }
-        
-        if (scale < 0.7) {
-          showAllProjects = false
-          gridCols = 1 // Stack projects vertically for space
-          totalBaseHeight *= 0.7 // Reduce height when showing fewer projects
-        }
-      } else {
-        // We have extra space, can increase sizing
-        const extraSpace = availableHeight - totalBaseHeight
-        const extraScale = Math.min(1.3, 1 + (extraSpace / totalBaseHeight) * 0.5)
-        
-        fontSize = Math.min(18, Math.floor(14 * extraScale))
-        spacing = Math.min(24, Math.floor(16 * extraScale))
       }
       
-      // Width-based adjustments
-      if (availableWidth < 1024) {
-        gridCols = 1 // Force single column on smaller widths
-      }
-      
-      // Optimal grid calculation for projects
-      if (showAllProjects) {
-        const projectCount = 6
-        const optimalCols = Math.min(3, Math.floor(availableWidth / 300))
-        gridCols = Math.max(1, optimalCols)
-      }
+      const settings = scale < 0.7 ? scaleSettings.small :
+                      scale < 0.8 ? scaleSettings.medium : scaleSettings.normal
       
       setLayout({
-        fontSize,
-        spacing,
+        fontSize: Math.max(10, Math.min(18, settings.fontSize)),
+        spacing: Math.max(8, Math.min(24, settings.spacing)),
         padding: Math.max(16, Math.floor(24 * scale)),
         headerSize: Math.max(18, Math.floor(24 * scale)),
         sectionSpacing: Math.max(12, Math.floor(20 * scale)),
         itemSpacing: Math.max(4, Math.floor(8 * scale)),
-        gridCols,
-        showAllProjects,
-        showSecondaryInfo
+        gridCols: settings.gridCols,
+        showAllProjects: settings.showAllProjects,
+        showSecondaryInfo: settings.showSecondaryInfo
       })
     }
     
-    // Use requestAnimationFrame to avoid layout thrashing
+    // Debounced resize handler to reduce blocking
+    let resizeTimer
     const handleResize = () => {
-      requestAnimationFrame(calculateOptimalLayout)
+      if (resizeTimer) clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(() => {
+        rafId = requestAnimationFrame(calculateOptimalLayout)
+      }, 16) // ~60fps
     }
     
-    // Calculate immediately but smoothly
-    requestAnimationFrame(calculateOptimalLayout)
+    // Initial calculation with minimal delay
+    rafId = requestAnimationFrame(calculateOptimalLayout)
     
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize, { passive: true })
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      if (resizeTimer) clearTimeout(resizeTimer)
+      if (rafId) cancelAnimationFrame(rafId)
+      if (worker) worker.terminate()
+    }
   }, [isInitialized])
 
-  const projects = [
+  // Memoize projects to prevent re-renders
+  const projects = useMemo(() => [
     {
       title: 'Loan Default Prediction',
       items: ['ML model with feature engineering', 'Credit risk scoring system', 'AWS deployment with real-time API']
@@ -268,14 +250,16 @@ export default function Home() {
       title: 'Neural Style Transfer',
       items: ['CNN-based artistic style transfer', 'GPU-accelerated CUDA processing', 'Interactive web interface']
     }
-  ]
+  ], [])
 
-  const displayedProjects = !isMobile 
-    ? (layout.showAllProjects ? projects : projects.slice(0, 4))
-    : projects.slice(0, mobileLayout.projectsPerSection)
+  const displayedProjects = useMemo(() => 
+    !isMobile 
+      ? (layout.showAllProjects ? projects : projects.slice(0, 4))
+      : projects.slice(0, mobileLayout.projectsPerSection)
+  , [isMobile, layout.showAllProjects, projects, mobileLayout.projectsPerSection])
 
   // Mobile Layout Component
-  const MobileLayout = () => (
+  const MobileLayout = memo(() => (
     <div 
       className="h-screen overflow-y-auto font-mono"
       style={{ 
@@ -287,7 +271,7 @@ export default function Home() {
         
         {/* Mobile Theme toggle */}
         <button 
-          onClick={() => setIsDark(!isDark)}
+          onClick={toggleTheme}
           className="fixed top-4 right-4 text-xs opacity-50 hover:opacity-100 transition-opacity z-10"
         >
           {isDark ? 'light' : 'dark'}
@@ -493,10 +477,10 @@ export default function Home() {
         <div style={{ height: `${mobileLayout.padding}px` }}></div>
       </div>
     </div>
-  )
+  ))
 
   // Desktop Layout Component (existing)
-  const DesktopLayout = () => {
+  const DesktopLayout = memo(() => {
     return (
       <div 
         className="max-w-7xl mx-auto h-full font-mono" 
@@ -517,7 +501,7 @@ export default function Home() {
             
             {/* Theme toggle */}
             <button 
-              onClick={() => setIsDark(!isDark)}
+              onClick={toggleTheme}
               className="fixed top-6 right-6 text-sm opacity-50 hover:opacity-100 transition-opacity"
             >
               {isDark ? 'light' : 'dark'}
@@ -804,7 +788,7 @@ export default function Home() {
         </div>
       </div>
     )
-  }
+  })
 
   return (
     <div 

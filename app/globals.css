@@ -23,9 +23,21 @@ body.loaded {
   visibility: visible;
 }
 
-/* Smooth transitions for all layout changes */
-* {
+/* Reduce CSS specificity and simplify transitions */
+.layout-transition {
   transition: font-size 0.1s ease-out, padding 0.1s ease-out, margin 0.1s ease-out;
+}
+
+/* Optimize rendering performance */
+body {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Critical path optimization */
+.font-mono {
+  font-display: swap;
 }
 
 @keyframes fadeInUp {

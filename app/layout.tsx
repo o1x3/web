@@ -7,6 +7,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-mono',
   display: 'swap',
   preload: true,
+  fallback: ['Monaco', 'Consolas', 'monospace'],
 })
 
 const spaceGrotesk = Space_Grotesk({
@@ -14,6 +15,7 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-display',
   display: 'swap',
   preload: true,
+  fallback: ['system-ui', 'sans-serif'],
 })
 
 export const metadata: Metadata = {
