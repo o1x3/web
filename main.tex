@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}       % set main text size
+\usepackage[letterpaper,                % set paper size to letterpaper. change to a4paper for resumes outside of North America
+top=0.5in,                          % specify top page margin
+bottom=0.5in,                       % specify bottom page margin
+left=0.5in,                         % specify left page margin
+right=0.5in]{geometry}              % specify right page margin
+                       
+%\usepackage{XCharter}               % set font. comment this line out if you want to use the default LaTeX font Computer Modern
+\usepackage[T1]{fontenc}            % output encoding
+\usepackage[utf8]{inputenc}         % input encoding
+\usepackage{enumitem}               % enable lists for bullet points: itemize and \item
+\usepackage[hidelinks]{hyperref}    % format hyperlinks
+\usepackage{titlesec}               % enable section title customization
+\raggedright                        % disable text justification
+\pagestyle{empty}                   % disable page numbering
+\usepackage{tfrupee}
+
+% ensure PDF output will be all-Unicode and machine-readable
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% format section headings: bolding, size, white space above and below
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
+
+% format bullet points: size, white space above and below, white space between bullets
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt} %%% Test various topsep values to fix vertical spacing errors
+
+% resume starts here
+\begin{document}
+
+% name
+\begin{center}
+\LARGE \textbf{Karthik Vinayan}
+\end{center}
+
+\vspace{5pt}
+
+% contact information
+\centerline{\href{mailto:karthikvinayan57@gmail.com}{karthikvinayan57@gmail.com} | (+91) 9207461949 | Hyderabad, IN | \href{https://linkedin.com/in/karthik-vinayan}{linkedin.com/in/karthik-vinayan}}
+
+\vspace{-10pt}
+
+% education section
+\section*{Education}
+\noindent
+\textbf{Vellore Institute of Technology} -- B.Tech Computer Science and Engineering \hfill \quad Sep 2021 -- Aug 2025 \\
+Specialization in Artificial Intelligence and Machine Learning -- Chennai, IN \\
+\noindent
+\textbf{St. Thomas Central School} -- AISSCE - PCM with Computer Science \hfill \quad Jun 2009 -- Mar 2021 \\
+Thiruvananthapuram, IN
+
+\vspace{-6.5pt}
+
+% experience section
+\section*{Experience}
+
+\textbf{Software Engineer - AI/ML,} Omni RPA Inc -- San Jose, California \hfill July 2023 -- Present \\
+\vspace{-9pt}
+\begin{itemize}
+  \item Developed and integrated custom agentic AI solutions leveraging LLM agents, combined with a Knowledge Graph built on NebulaGraph. This architecture improved chatbot accuracy and contextual understanding for Cloud Service Provider-related queries.
+  \item Designed and implemented a modular agentic workflows with domain-specific LLM agents for dynamic retrieval, contextual adaptation, and intelligent query handling. Work included building AI agents, writing custom solutions, and mapping structured and unstructured data into the Knowledge Graph.
+\end{itemize}
+
+
+\textbf{Research Intern,} Digital University of Kerala -- Thiruvananthapuram, IN \hfill Oct 2023 -- Dec 2023 \\
+\vspace{-9pt}
+\begin{itemize}
+  \item Engineered an innovative computer vision solution, employing a YOLOv8 model finely tuned on a proprietary dataset, showcasing real-time tomato ripeness detection in a production environment
+\end{itemize}
+
+
+% \textbf{Job Title,} \href{https://www.fstl1992.com/}{Company} -- City, ST \hfill XXXX -- XXXX \\
+% \vspace{-9pt}
+
+\vspace{-18.5pt}
+
+% projects section
+\section*{Projects and Experience}
+
+\textbf{Personal Loan Default Prediction Model} \\
+\vspace{-9pt}
+\begin{itemize}
+  \item Collaborated with a small business owner to develop a machine learning model that predicts personal loan defaults by engineering key features like debt-to-income ratio, credit utilization rate, and employment length, significantly improving model performance
+  \item Developed and deployed a credit risk scoring system that translates model predictions into actionable insights, enabling the client to make data-driven decisions on loan approvals and interest rates
+\end{itemize}
+\textbf{Python-Powered Data Engineering Consultant} \\
+\vspace{-9pt}
+\begin{itemize}
+  \item Developed custom web scraping pipelines to extract valuable data from various sources, including websites, APIs, and databases. Designed and implemented RESTful APIs using Flask to seamlessly integrate scraped data into client systems
+  \item Designed and implemented robust data pipelines for data cleaning, transformation, and validation, leveraging Pandas and other Python libraries
+  \item Built and deployed automated web servers to ensure continuous data updates and accessibility
+\end{itemize}
+\textbf{Advanced Driver Assistance System (ADAS) Development} \\
+\vspace{-9pt}
+\begin{itemize}
+  \item Led a team in the design and development of an ADAS prototype buggy leveraging Raspberry Pi implementing core ADAS features such as lane following assistance, automatic lane changing, and object detection using computer vision and machine learning techniques in Python
+  \item Successfully adapted the ADAS technology for a hospital setup, pending publication, demonstrating adaptability and innovative problem-solving
+\end{itemize}
+
+\vspace{-18.5pt}
+% skills section
+\section*{Skills}
+\textbf{Programming Languages:} Python (Pandas, NumPy, TensorFlow, Pytorch), C, C++, Java, SQL \\
+\textbf{AI/ML Technologies:} TensorFlow, PyTorch, Large Language Models (LLMs), Computer Vision, Machine Learning \\
+\textbf{Data \& Cloud:} BigQuery, AWS (Cloud Practitioner), Azure (AZ-104 Certified Administrator), GCP \\
+\textbf{Development Tools:} Git, Docker, RESTful APIs, Flask, RAG, GraphDBs \\
+\textbf{Languages:} English (Fluent), Malayalam (Native), Hindi (Conversational), Tamil (Conversational) \\
+\textbf{Clubs and Extra-Curricular:} IEEE Computer Society, Core organizer for Vibrance'23 and Technovit'23
+\end{document}
