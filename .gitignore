@@ -65,3 +65,6 @@ pids
 
 # Turbopack cache
 .turbo
+
+.claude/
+claude.MD
