@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useMemo, memo, useCallback } from 'react'
+import { createUniqueFavicon, startUniqueFaviconRotation } from './favicon-manager'
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
@@ -103,6 +104,7 @@ export default function Home() {
       if (!isInitialized) {
         setIsInitialized(true)
         document.body.classList.add('loaded')
+        startUniqueFaviconRotation() // Start unique favicon system
       }
     }
     

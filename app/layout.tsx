@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { JetBrains_Mono, Space_Grotesk } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 
 const jetbrainsMono = JetBrains_Mono({
@@ -19,7 +21,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Karthik Vinayan - AI Engineer',
+  title: 'agent enslaver',
   description: 'Portfolio of Karthik Vinayan, AI Engineer at Omni RPA',
 }
 
@@ -32,6 +34,8 @@ export default function RootLayout({
     <html lang="en" className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
       <body className="font-mono bg-primary text-white overflow-hidden">
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
