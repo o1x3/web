@@ -67,6 +67,7 @@ pids
 .turbo
 
 .claude/
-claude.M
+claude.md
+*claude*/
 
 public/
