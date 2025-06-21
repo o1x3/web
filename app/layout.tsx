@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-mono bg-primary text-white overflow-hidden">
+      <body className="font-mono overflow-hidden">
         {children}
         <Analytics />
         <SpeedInsights />

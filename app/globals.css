@@ -15,12 +15,8 @@ body {
   overflow: hidden;
 }
 
-/* Prevent layout shifts during initial load */
+/* Ensure body is always visible */
 body {
-  visibility: hidden;
-}
-
-body.loaded {
   visibility: visible;
 }
 
