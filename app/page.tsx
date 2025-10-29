@@ -85,15 +85,15 @@ const MobileLayout = memo(function MobileLayout({ isDark, toggleTheme }: { isDar
 // Desktop Layout Component
 const DesktopLayout = memo(function DesktopLayout({ isDark, toggleTheme }: { isDark: boolean; toggleTheme: () => void }) {
   return (
-    <div className="max-w-7xl mx-auto h-screen font-mono overflow-hidden" style={{
-      padding: 'clamp(0.75rem, 1.5vh, 1.5rem)',
+    <div className="h-screen w-screen font-mono overflow-hidden" style={{
+      padding: 'clamp(0.5rem, 1vh, 1rem)',
       fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)'
     }}>
       <div className="grid grid-cols-1 lg:grid-cols-5 h-full" style={{
-        gap: 'clamp(0.75rem, 1.5vh, 1.25rem)'
+        gap: 'clamp(0.5rem, 1vh, 1rem)'
       }}>
         {/* Left Column - Main content */}
-        <div className="lg:col-span-3 xl:col-span-3 overflow-hidden flex flex-col" style={{
+        <div className="lg:col-span-3 xl:col-span-3 overflow-y-auto flex flex-col" style={{
           gap: 'clamp(0.5rem, 1vh, 0.875rem)'
         }}>
           <ThemeToggle isDark={isDark} onToggle={toggleTheme} />

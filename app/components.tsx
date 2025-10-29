@@ -137,33 +137,34 @@ export function Experience({ className = '', style }: SectionProps) {
           return (
             <div
               key={exp.id}
-              className="cursor-pointer transition-all duration-300"
+              className="cursor-pointer transition-opacity duration-300"
               style={{
                 opacity: isExpanded ? 1 : 0.92,
-                transform: isExpanded ? 'scale(1.01)' : 'scale(1)',
               }}
               onClick={() => setExpandedId(isExpanded ? null : exp.id)}
             >
               <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)' }}>
                 <h3 className="font-semibold" style={{ fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)' }}>{exp.company}</h3>
-                <span className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{exp.period}</span>
+                <span className="opacity-50 whitespace-nowrap" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{exp.period}</span>
               </div>
               <p className="opacity-70" style={{
                 marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)',
                 fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
               }}>{exp.position} • {exp.location}</p>
 
-              {!isExpanded ? (
-                <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>
-                  {exp.summary}
-                </p>
-              ) : (
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)' }}>
-                  {exp.description.map((item, idx) => (
-                    <li key={idx} style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>• {item}</li>
-                  ))}
-                </ul>
-              )}
+              <div className={`expandable-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
+                {!isExpanded ? (
+                  <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word' }}>
+                    {exp.summary}
+                  </p>
+                ) : (
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)' }}>
+                    {exp.description.map((item, idx) => (
+                      <li key={idx} style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word' }}>• {item}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           )
         })}
@@ -278,16 +279,15 @@ export function Sidequests({ className = '', style }: SectionProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
 
   return (
-    <section className={`flex-1 overflow-hidden ${className}`} style={{ minHeight: 0, ...style }}>
+    <section className={`${className}`} style={style}>
       <h2 className="font-bold" style={{
         fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
         marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
       }}>Sidequests</h2>
       <div
-        className="grid grid-cols-1 h-full overflow-hidden"
+        className="grid grid-cols-1"
         style={{
           gap: 'clamp(0.375rem, 0.75vh, 0.625rem)',
-          alignContent: 'start'
         }}
       >
         {SIDEQUESTS.map((project) => {
@@ -295,10 +295,9 @@ export function Sidequests({ className = '', style }: SectionProps) {
           return (
             <div
               key={project.id}
-              className="cursor-pointer transition-all duration-300"
+              className="cursor-pointer transition-opacity duration-300"
               style={{
                 opacity: isExpanded ? 1 : 0.92,
-                transform: isExpanded ? 'scale(1.01)' : 'scale(1)',
               }}
               onClick={() => setExpandedId(isExpanded ? null : project.id)}
             >
@@ -307,23 +306,26 @@ export function Sidequests({ className = '', style }: SectionProps) {
                 fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)'
               }}>{project.title}</h3>
 
-              {!isExpanded ? (
-                <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>
-                  {project.summary}
-                </p>
-              ) : (
-                <ul style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)'
-                }}>
-                  {project.items.map((item, idx) => (
-                    <li key={idx} className="opacity-80" style={{
-                      fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
-                    }}>• {item}</li>
-                  ))}
-                </ul>
-              )}
+              <div className={`expandable-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
+                {!isExpanded ? (
+                  <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word' }}>
+                    {project.summary}
+                  </p>
+                ) : (
+                  <ul style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)'
+                  }}>
+                    {project.items.map((item, idx) => (
+                      <li key={idx} className="opacity-80" style={{
+                        fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)',
+                        wordBreak: 'break-word'
+                      }}>• {item}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           )
         })}
@@ -354,8 +356,8 @@ export const MobileSidequests = memo(function MobileSidequests() {
 // Desktop Sidebar
 export const DesktopSidebar = memo(function DesktopSidebar() {
   return (
-    <div className="hidden lg:block lg:col-span-2 xl:col-span-2 overflow-hidden">
-      <div className="sticky top-4 space-y-6">
+    <div className="hidden lg:block lg:col-span-2 xl:col-span-2 overflow-y-auto">
+      <div className="space-y-4" style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>
         {/* Quick contact */}
         <div>
           <h3 className="font-bold opacity-50 mb-3">CONTACT</h3>
@@ -380,13 +382,14 @@ export const DesktopSidebar = memo(function DesktopSidebar() {
           </div>
         </div>
 
-        {/* Skills overview */}
+        {/* Skills overview - simplified */}
         <div>
           <h3 className="font-bold opacity-50 mb-3">STACK</h3>
-          <div className="space-y-1">
-            {Object.values(SKILLS).map((skill) => (
-              <div key={skill.label}>{formatList(skill.items)}</div>
-            ))}
+          <div className="space-y-1 text-sm">
+            <div>Python • TensorFlow • PyTorch</div>
+            <div>LLMs • Knowledge Graphs</div>
+            <div>Docker • Kubernetes • CI/CD</div>
+            <div>AWS • Azure • GCP</div>
           </div>
         </div>
 

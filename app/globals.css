@@ -54,3 +54,17 @@ button, a {
 .transition-colors {
   will-change: opacity, background-color, color;
 }
+
+/* Smooth expand/collapse animations */
+.expandable-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.expandable-content.collapsed {
+  max-height: 2rem;
+}
+
+.expandable-content.expanded {
+  max-height: 50rem;
+}
