@@ -7,7 +7,6 @@ import {
   ThemeToggle,
   Header,
   MobileHeader,
-  Contact,
   MobileContact,
   Experience,
   MobileExperience,
@@ -15,8 +14,8 @@ import {
   MobileEducation,
   Skills,
   MobileSkills,
-  Projects,
-  MobileProjects,
+  Sidequests,
+  MobileSidequests,
   DesktopSidebar,
 } from './components'
 
@@ -30,7 +29,7 @@ const MobileLayout = memo(function MobileLayout({ isDark, toggleTheme }: { isDar
         <MobileExperience />
         <MobileEducation />
         <MobileSkills />
-        <MobileProjects />
+        <MobileSidequests />
         <MobileContact />
         <div className="h-6" />
       </div>
@@ -54,11 +53,10 @@ const DesktopLayout = memo(function DesktopLayout({ isDark, toggleTheme }: { isD
         }}>
           <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
           <Header />
-          <Contact />
           <Experience />
           <Education />
           <Skills />
-          <Projects />
+          <Sidequests />
         </div>
 
         {/* Right Column - Sidebar */}
