@@ -4,7 +4,7 @@
 const CANVAS_SIZE = 32
 const CENTER = 16
 const RADIUS = 15
-const FAVICON_ROTATION_INTERVAL = 20000 // 20 seconds
+const FAVICON_ROTATION_INTERVAL = 30000 // 30 seconds - optimized for performance
 
 // Track active interval for cleanup
 let activeInterval: NodeJS.Timeout | null = null
@@ -83,8 +83,8 @@ export function createUniqueFavicon(): void {
         break
     }
 
-    // Generate random circular elements
-    const elementCount = getRandomInt(6) + 2
+    // Generate random circular elements (optimized count)
+    const elementCount = getRandomInt(4) + 2
 
     for(let i = 0; i < elementCount; i++) {
       const elementType = getRandomInt(5)
@@ -173,11 +173,11 @@ export function createUniqueFavicon(): void {
     // Reset alpha
     ctx.globalAlpha = 1
 
-    // Add random circular noise overlay (sometimes)
-    if(getRandomInt(3) === 0) {
+    // Add random circular noise overlay (rarely, for performance)
+    if(getRandomInt(4) === 0) {
       ctx.globalCompositeOperation = 'overlay'
       ctx.globalAlpha = 0.4
-      for(let i = 0; i < 30; i++) {
+      for(let i = 0; i < 20; i++) {
         const angle = getRandomFloat() * Math.PI * 2
         const distance = getRandomFloat() * RADIUS
         const x = CENTER + Math.cos(angle) * distance
@@ -218,7 +218,17 @@ export function createUniqueFavicon(): void {
   }
 }
 
-// Change favicon every 20 seconds with completely unique generation
+// Optimized favicon generation using requestIdleCallback for better performance
+function generateFaviconInIdle(deadline?: IdleDeadline): void {
+  // Only generate if we have sufficient idle time (at least 10ms)
+  if (deadline && deadline.timeRemaining() < 10) {
+    requestIdleCallback(generateFaviconInIdle)
+    return
+  }
+  createUniqueFavicon()
+}
+
+// Change favicon every 30 seconds with idle-time generation for max performance
 export function startUniqueFaviconRotation(): () => void {
   if (typeof window === 'undefined') return () => {}
 
@@ -227,10 +237,20 @@ export function startUniqueFaviconRotation(): () => void {
     clearInterval(activeInterval)
   }
 
-  createUniqueFavicon() // Initial unique favicon
+  // Initial favicon generation during idle time
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(generateFaviconInIdle)
+  } else {
+    createUniqueFavicon()
+  }
 
   activeInterval = setInterval(() => {
-    createUniqueFavicon() // Generate completely new unique favicon
+    // Schedule during browser idle time for zero jank
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(generateFaviconInIdle)
+    } else {
+      createUniqueFavicon()
+    }
   }, FAVICON_ROTATION_INTERVAL)
 
   // Return cleanup function

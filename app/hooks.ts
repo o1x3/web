@@ -1,11 +1,11 @@
 // Custom React hooks
 
 import { useState, useEffect } from 'react'
-import { throttle } from './utils'
 import { BREAKPOINTS } from './data'
 
 /**
- * Hook to detect mobile viewport with throttled resize listener
+ * Hook to detect mobile viewport with optimized RAF-based resize listener
+ * Uses requestAnimationFrame for better performance and frame alignment
  */
 export function useIsMobile(): boolean {
   const [isMobile, setIsMobile] = useState(false)
@@ -21,12 +21,27 @@ export function useIsMobile(): boolean {
     // Initial check
     checkMobile()
 
-    // Throttled resize handler (max once per 150ms)
-    const throttledCheck = throttle(checkMobile, 150)
-    window.addEventListener('resize', throttledCheck, { passive: true })
+    // RAF-based resize handler for optimal performance
+    let rafId: number | null = null
+    let ticking = false
+
+    const handleResize = () => {
+      if (!ticking) {
+        ticking = true
+        rafId = requestAnimationFrame(() => {
+          checkMobile()
+          ticking = false
+        })
+      }
+    }
+
+    window.addEventListener('resize', handleResize, { passive: true })
 
     return () => {
-      window.removeEventListener('resize', throttledCheck)
+      window.removeEventListener('resize', handleResize)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
     }
   }, [])
 

@@ -6,6 +6,11 @@ const nextConfig = {
   },
   poweredByHeader: false,
   compress: true,
+  // Performance optimizations
+  swcMinify: true,
+  experimental: {
+    optimizePackageImports: ['react', 'react-dom'],
+  },
 }
 
 module.exports = nextConfig
