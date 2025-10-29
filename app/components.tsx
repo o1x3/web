@@ -1,6 +1,6 @@
 // Reusable components to eliminate duplication
 
-import { memo, CSSProperties } from 'react'
+import { memo, CSSProperties, useState } from 'react'
 import {
   PERSONAL_INFO,
   EXPERIENCE,
@@ -121,8 +121,10 @@ export const MobileContact = memo(function MobileContact() {
   )
 })
 
-// Experience Component
-export const Experience = memo(function Experience({ className = '', style }: SectionProps) {
+// Experience Component with expandable items
+export function Experience({ className = '', style }: SectionProps) {
+  const [expandedId, setExpandedId] = useState<string | null>(null)
+
   return (
     <section className={className} style={style}>
       <h2 className="font-bold" style={{
@@ -130,27 +132,45 @@ export const Experience = memo(function Experience({ className = '', style }: Se
         marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
       }}>Experience</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1vh, 0.75rem)' }}>
-        {EXPERIENCE.map((exp) => (
-          <div key={exp.id} className="hover:opacity-90 transition-opacity">
-            <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)' }}>
-              <h3 className="font-semibold" style={{ fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)' }}>{exp.company}</h3>
-              <span className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{exp.period}</span>
+        {EXPERIENCE.map((exp) => {
+          const isExpanded = expandedId === exp.id
+          return (
+            <div
+              key={exp.id}
+              className="cursor-pointer transition-all duration-300"
+              style={{
+                opacity: isExpanded ? 1 : 0.92,
+                transform: isExpanded ? 'scale(1.01)' : 'scale(1)',
+              }}
+              onClick={() => setExpandedId(isExpanded ? null : exp.id)}
+            >
+              <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)' }}>
+                <h3 className="font-semibold" style={{ fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)' }}>{exp.company}</h3>
+                <span className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{exp.period}</span>
+              </div>
+              <p className="opacity-70" style={{
+                marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)',
+                fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
+              }}>{exp.position} • {exp.location}</p>
+
+              {!isExpanded ? (
+                <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>
+                  {exp.summary}
+                </p>
+              ) : (
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)' }}>
+                  {exp.description.map((item, idx) => (
+                    <li key={idx} style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>• {item}</li>
+                  ))}
+                </ul>
+              )}
             </div>
-            <p className="opacity-70" style={{
-              marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)',
-              fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
-            }}>{exp.position} • {exp.location}</p>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)' }}>
-              {exp.description.map((item, idx) => (
-                <li key={idx} style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>• {item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
-})
+}
 
 // Mobile Experience (simplified)
 export const MobileExperience = memo(function MobileExperience() {
@@ -253,8 +273,10 @@ export const MobileSkills = memo(function MobileSkills() {
   )
 })
 
-// Sidequests Component
-export const Sidequests = memo(function Sidequests({ className = '', style }: SectionProps) {
+// Sidequests Component with expandable items
+export function Sidequests({ className = '', style }: SectionProps) {
+  const [expandedId, setExpandedId] = useState<string | null>(null)
+
   return (
     <section className={`flex-1 overflow-hidden ${className}`} style={{ minHeight: 0, ...style }}>
       <h2 className="font-bold" style={{
@@ -268,29 +290,47 @@ export const Sidequests = memo(function Sidequests({ className = '', style }: Se
           alignContent: 'start'
         }}
       >
-        {SIDEQUESTS.map((project) => (
-          <div key={project.id} className="hover:opacity-90 transition-opacity">
-            <h3 className="font-semibold" style={{
-              marginBottom: 'clamp(0.125rem, 0.25vh, 0.25rem)',
-              fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)'
-            }}>{project.title}</h3>
-            <ul style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)'
-            }}>
-              {project.items.map((item, idx) => (
-                <li key={idx} className="opacity-80" style={{
-                  fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
-                }}>• {item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {SIDEQUESTS.map((project) => {
+          const isExpanded = expandedId === project.id
+          return (
+            <div
+              key={project.id}
+              className="cursor-pointer transition-all duration-300"
+              style={{
+                opacity: isExpanded ? 1 : 0.92,
+                transform: isExpanded ? 'scale(1.01)' : 'scale(1)',
+              }}
+              onClick={() => setExpandedId(isExpanded ? null : project.id)}
+            >
+              <h3 className="font-semibold" style={{
+                marginBottom: 'clamp(0.125rem, 0.25vh, 0.25rem)',
+                fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)'
+              }}>{project.title}</h3>
+
+              {!isExpanded ? (
+                <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>
+                  {project.summary}
+                </p>
+              ) : (
+                <ul style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)'
+                }}>
+                  {project.items.map((item, idx) => (
+                    <li key={idx} className="opacity-80" style={{
+                      fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
+                    }}>• {item}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )
+        })}
       </div>
     </section>
   )
-})
+}
 
 // Mobile Sidequests (all items)
 export const MobileSidequests = memo(function MobileSidequests() {

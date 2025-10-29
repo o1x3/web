@@ -26,6 +26,7 @@ export const EXPERIENCE = [
     location: 'San Jose, CA',
     period: 'Jun 2024 - Present',
     periodShort: '2024-Present',
+    summary: 'Building agentic AI systems with LLMs and Knowledge Graphs for enterprise automation. Led full-stack development, DevOps, and system architecture.',
     description: [
       'Built agentic AI systems with LLMs and NebulaGraph-based Knowledge Graph for CSP-focused automation',
       'Developed large-scale Knowledge Graphs with custom ETL pipelines and optimized graph query performance',
@@ -42,6 +43,7 @@ export const EXPERIENCE = [
     location: 'Thiruvananthapuram, IN',
     period: 'Oct 2023 - Dec 2023',
     periodShort: '2023',
+    summary: 'Engineered YOLOv8 computer vision model for real-time tomato ripeness detection in production.',
     description: [
       'Engineered YOLOv8 model for real-time tomato ripeness detection in production environment',
     ],
@@ -99,6 +101,7 @@ export const SIDEQUESTS = [
   {
     id: 'data-eng',
     title: 'Python Data Engineering Consultant',
+    summary: 'Built web scraping pipelines, ETL systems, and Flask APIs for data automation',
     items: [
       'Custom web scraping pipelines + Flask REST APIs for client integration',
       'Pandas-based ETL pipelines for data cleaning and transformation',
@@ -108,6 +111,7 @@ export const SIDEQUESTS = [
   {
     id: 'adas',
     title: 'ADAS Prototype Development',
+    summary: 'Led team building Raspberry Pi ADAS buggy with computer vision',
     items: [
       'Led team building Raspberry Pi-based ADAS buggy with lane following and object detection',
       'Adapted technology for hospital environment (publication pending)',
@@ -116,6 +120,7 @@ export const SIDEQUESTS = [
   {
     id: 'ai-experiments',
     title: 'ML & AI Experiments',
+    summary: 'Diverse ML projects: loan prediction, style transfer, multi-agent chat',
     items: [
       'Loan default prediction with feature engineering + AWS deployment',
       'Neural style transfer with GPU-accelerated CUDA processing',
