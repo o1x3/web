@@ -6,7 +6,7 @@ import {
   EXPERIENCE,
   EDUCATION,
   SKILLS,
-  PROJECTS,
+  SIDEQUESTS,
   CERTIFICATIONS,
   RECENT_WORK
 } from './data'
@@ -253,22 +253,22 @@ export const MobileSkills = memo(function MobileSkills() {
   )
 })
 
-// Projects Component
-export const Projects = memo(function Projects({ className = '', style }: SectionProps) {
+// Sidequests Component
+export const Sidequests = memo(function Sidequests({ className = '', style }: SectionProps) {
   return (
     <section className={`flex-1 overflow-hidden ${className}`} style={{ minHeight: 0, ...style }}>
       <h2 className="font-bold" style={{
         fontSize: 'clamp(1rem, 2.5vh, 1.25rem)',
         marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
-      }}>Projects</h2>
+      }}>Sidequests</h2>
       <div
-        className="grid grid-cols-1 xl:grid-cols-2 h-full overflow-hidden"
+        className="grid grid-cols-1 h-full overflow-hidden"
         style={{
           gap: 'clamp(0.75rem, 1.5vh, 1rem)',
           alignContent: 'start'
         }}
       >
-        {PROJECTS.map((project) => (
+        {SIDEQUESTS.map((project) => (
           <div key={project.id} className="hover:opacity-90 transition-opacity">
             <h3 className="font-semibold" style={{
               marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)',
@@ -292,13 +292,13 @@ export const Projects = memo(function Projects({ className = '', style }: Sectio
   )
 })
 
-// Mobile Projects (top 3 only)
-export const MobileProjects = memo(function MobileProjects() {
+// Mobile Sidequests (all items)
+export const MobileSidequests = memo(function MobileSidequests() {
   return (
     <section>
-      <h2 className="font-bold text-base mb-3">Projects</h2>
+      <h2 className="font-bold text-base mb-3">Sidequests</h2>
       <div className="space-y-3">
-        {PROJECTS.slice(0, 3).map((project) => (
+        {SIDEQUESTS.map((project) => (
           <div key={project.id} className="bg-gray-900/20 rounded-lg p-3 hover:opacity-90 transition-opacity">
             <h3 className="font-semibold text-sm mb-1">{project.title}</h3>
             <ul className="text-xs space-y-1">
