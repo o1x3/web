@@ -7,7 +7,7 @@ export const BREAKPOINTS = {
 
 export const PERSONAL_INFO = {
   name: 'Karthik Vinayan',
-  title: 'Software Engineer - AI/ML',
+  title: 'Founding Software Engineer',
   currentCompany: 'Omni RPA Inc',
   email: 'karthikvinayan57@gmail.com',
   location: 'Hyderabad, IN',
@@ -15,21 +15,25 @@ export const PERSONAL_INFO = {
     url: 'https://linkedin.com/in/karthik-vinayan',
     display: 'linkedin.com/in/karthik-vinayan',
   },
+  website: 'o1x3.com',
 } as const
 
 export const EXPERIENCE = [
   {
     id: 'omni-rpa',
     company: 'Omni RPA Inc',
-    position: 'Software Engineer - AI/ML',
+    position: 'Founding Software Engineer',
     location: 'San Jose, CA',
-    period: 'Jul 2023 - Present',
-    periodShort: '2023-Present',
+    period: 'Jun 2024 - Present',
+    periodShort: '2024-Present',
     description: [
-      'Custom agentic AI solutions with LLM agents + Knowledge Graph',
-      'Modular workflows with domain-specific LLM agents',
+      'Built agentic AI systems with LLMs and NebulaGraph-based Knowledge Graph for CSP-focused automation',
+      'Developed large-scale Knowledge Graphs with custom ETL pipelines and optimized graph query performance',
+      'Designed RESTful APIs and MCP servers to coordinate multi-agent workflows and backend systems',
+      'Led DevOps: Docker containerization, Kubernetes deployments, CI/CD pipelines for testing and versioning',
+      'Architected end-to-end enterprise automation platforms with technical proposals and PoC demos',
     ],
-    descriptionShort: 'LLM agents with Knowledge Graph (NebulaGraph)',
+    descriptionShort: 'Agentic AI with LLMs, Knowledge Graphs, and enterprise automation',
   },
   {
     id: 'duk',
@@ -39,7 +43,7 @@ export const EXPERIENCE = [
     period: 'Oct 2023 - Dec 2023',
     periodShort: '2023',
     description: [
-      'YOLOv8 computer vision for real-time tomato ripeness detection',
+      'Engineered YOLOv8 model for real-time tomato ripeness detection in production environment',
     ],
     descriptionShort: 'YOLOv8 computer vision for tomato detection',
   },
@@ -50,44 +54,45 @@ export const EDUCATION = [
     id: 'vit',
     institution: 'Vellore Institute of Technology',
     institutionShort: 'VIT Chennai',
-    degree: 'B.Tech Computer Science - AI & Machine Learning',
-    degreeShort: 'B.Tech CS - AI & Machine Learning',
+    degree: 'B.Tech Computer Science and Engineering',
+    degreeShort: 'B.Tech CS - AI & ML',
+    specialization: 'Artificial Intelligence and Machine Learning',
     location: 'Chennai, IN',
-    period: '2021 - 2025',
+    period: 'Sep 2021 - Aug 2025',
   },
   {
     id: 'stcs',
     institution: 'St. Thomas Central School',
-    degree: 'AISSCE - PCM with CS',
+    institutionShort: 'STCS',
+    degree: 'AISSCE - PCM with Computer Science',
+    degreeShort: 'AISSCE - PCM with CS',
     location: 'Thiruvananthapuram, IN',
-    period: '2009 - 2021',
+    period: 'Jun 2009 - Mar 2021',
   },
 ] as const
 
 export const SKILLS = {
   programming: {
-    label: 'Programming',
-    items: ['Python', 'C++', 'Java', 'SQL'],
+    label: 'Languages',
+    items: ['Python (Pandas, NumPy, TensorFlow, PyTorch)', 'C', 'C++', 'Java', 'SQL'],
   },
   aiml: {
     label: 'AI/ML',
-    items: ['TensorFlow', 'PyTorch', 'LLMs', 'Computer Vision'],
+    items: ['TensorFlow', 'PyTorch', 'LLMs', 'Computer Vision', 'Machine Learning'],
   },
   cloud: {
-    label: 'Cloud',
-    items: ['AWS', 'Azure (AZ-104)', 'GCP', 'BigQuery'],
+    label: 'Data & Cloud',
+    items: ['BigQuery', 'AWS', 'Azure (AZ-104)', 'GCP'],
   },
   tools: {
-    label: 'Tools',
-    items: ['Docker', 'Git', 'Flask', 'GraphDBs'],
+    label: 'Dev Tools',
+    items: ['Git', 'Docker', 'RESTful APIs', 'Flask', 'RAG', 'GraphDBs'],
   },
 } as const
 
 export const CERTIFICATIONS = [
-  'Azure AZ-104',
-  'AWS Solutions Architect',
-  'TensorFlow Developer',
-  'Google Cloud Professional',
+  'Azure AZ-104 Administrator',
+  'AWS Cloud Practitioner',
 ] as const
 
 export const SIDEQUESTS = [
