@@ -20,29 +20,6 @@ body {
   visibility: visible;
 }
 
-/* Reduce CSS specificity and simplify transitions */
-.layout-transition {
-  transition: font-size 0.1s ease-out, padding 0.1s ease-out, margin 0.1s ease-out;
-}
-
-/* Enhanced transitions for better auto-fit behavior */
-.grid-transition {
-  transition: grid-template-columns 0.2s ease-out, gap 0.1s ease-out;
-}
-
-/* Prevent layout shifts during resize */
-.auto-fit-container {
-  contain: layout style;
-  transform: translateZ(0);
-}
-
-/* Smooth column transitions */
-.responsive-column {
-  transition: grid-column 0.2s ease-out;
-  min-width: 0;
-  /* Prevent overflow issues */
-}
-
 /* Optimize rendering performance */
 body {
   transform: translateZ(0);
@@ -53,40 +30,4 @@ body {
 /* Critical path optimization */
 .font-mono {
   font-display: swap;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulseSlow {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.8;
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.animate-pulse-slow {
-  animation: pulseSlow 3s ease-in-out infinite;
-}
-
-.animate-delay-200 {
-  animation-delay: 200ms;
 }
