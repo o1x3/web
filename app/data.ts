@@ -90,59 +90,31 @@ export const CERTIFICATIONS = [
   'Google Cloud Professional',
 ] as const
 
-export const PROJECTS = [
-  {
-    id: 'loan-default',
-    title: 'Loan Default Prediction',
-    items: [
-      'ML model with feature engineering',
-      'Credit risk scoring system',
-      'AWS deployment with real-time API',
-    ],
-  },
+export const SIDEQUESTS = [
   {
     id: 'data-eng',
-    title: 'Data Engineering Consultant',
+    title: 'Python Data Engineering Consultant',
     items: [
-      'Web scraping pipelines with Flask APIs',
-      'Data cleaning and transformation',
-      'Automated web servers',
+      'Custom web scraping pipelines + Flask REST APIs for client integration',
+      'Pandas-based ETL pipelines for data cleaning and transformation',
+      'Automated deployment with continuous data synchronization',
     ],
   },
   {
     id: 'adas',
-    title: 'ADAS Development',
+    title: 'ADAS Prototype Development',
     items: [
-      'Raspberry Pi lane following prototype',
-      'Hospital adaptation (pending publication)',
-      'Real-time CV processing at 30fps',
+      'Led team building Raspberry Pi-based ADAS buggy with lane following and object detection',
+      'Adapted technology for hospital environment (publication pending)',
     ],
   },
   {
-    id: 'ai-chat',
-    title: 'AI Chat Platform',
+    id: 'ai-experiments',
+    title: 'ML & AI Experiments',
     items: [
-      'Multi-agent conversation system',
-      'Vector database integration',
-      'WebSocket real-time communication',
-    ],
-  },
-  {
-    id: 'blockchain',
-    title: 'Blockchain Analytics',
-    items: [
-      'Smart contract interaction analysis',
-      'Transaction pattern detection',
-      'Real-time monitoring dashboard',
-    ],
-  },
-  {
-    id: 'neural-style',
-    title: 'Neural Style Transfer',
-    items: [
-      'CNN-based artistic style transfer',
-      'GPU-accelerated CUDA processing',
-      'Interactive web interface',
+      'Loan default prediction with feature engineering + AWS deployment',
+      'Neural style transfer with GPU-accelerated CUDA processing',
+      'Multi-agent chat platform with vector DB and real-time WebSockets',
     ],
   },
 ] as const
