@@ -129,9 +129,9 @@ export function Experience({ className = '', style }: SectionProps) {
     <section className={className} style={style}>
       <h2 className="font-bold" style={{
         fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
-        marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
+        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
       }}>Experience</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1vh, 0.75rem)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.625rem, 1.25vh, 0.875rem)' }}>
         {EXPERIENCE.map((exp) => {
           const isExpanded = expandedId === exp.id
           return (
@@ -148,19 +148,19 @@ export function Experience({ className = '', style }: SectionProps) {
                 <span className="opacity-50 whitespace-nowrap" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{exp.period}</span>
               </div>
               <p className="opacity-70" style={{
-                marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)',
+                marginBottom: 'clamp(0.25rem, 0.5vh, 0.375rem)',
                 fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
               }}>{exp.position} • {exp.location}</p>
 
               <div className={`expandable-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
                 {!isExpanded ? (
-                  <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word' }}>
+                  <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word', lineHeight: '1.4' }}>
                     {exp.summary}
                   </p>
                 ) : (
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)' }}>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.125rem, 0.25vh, 0.25rem)' }}>
                     {exp.description.map((item, idx) => (
-                      <li key={idx} style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word' }}>• {item}</li>
+                      <li key={idx} style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word', lineHeight: '1.4' }}>• {item}</li>
                     ))}
                   </ul>
                 )}
@@ -202,16 +202,16 @@ export const Education = memo(function Education({ className = '', style }: Sect
     <section className={className} style={style}>
       <h2 className="font-bold" style={{
         fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
-        marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
+        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
       }}>Education</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.375rem, 0.75vh, 0.625rem)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1vh, 0.75rem)' }}>
         {EDUCATION.map((edu) => (
           <div key={edu.id} className="hover:opacity-90 transition-opacity">
             <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.125rem, 0.25vh, 0.25rem)' }}>
               <h3 className="font-semibold" style={{ fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)' }}>{edu.institution}</h3>
               <span className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{edu.period}</span>
             </div>
-            <p className="opacity-70" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{edu.degree} • {edu.location}</p>
+            <p className="opacity-70" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', lineHeight: '1.4' }}>{edu.degree} • {edu.location}</p>
           </div>
         ))}
       </div>
@@ -244,11 +244,11 @@ export const Skills = memo(function Skills({ className = '', style }: SectionPro
         fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
         marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
       }}>Skills</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2" style={{
-        gap: 'clamp(0.25rem, 0.5vh, 0.5rem)'
+      <div className="flex flex-col" style={{
+        gap: 'clamp(0.25rem, 0.5vh, 0.375rem)'
       }}>
         {Object.values(SKILLS).map((skill) => (
-          <div key={skill.label} className="hover:opacity-90 transition-opacity" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>
+          <div key={skill.label} className="hover:opacity-90 transition-opacity" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', lineHeight: '1.4' }}>
             <span className="opacity-50">{skill.label}:</span> {formatList(skill.items, ', ')}
           </div>
         ))}
@@ -282,12 +282,12 @@ export function Sidequests({ className = '', style }: SectionProps) {
     <section className={`${className}`} style={style}>
       <h2 className="font-bold" style={{
         fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
-        marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
+        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
       }}>Sidequests</h2>
       <div
         className="grid grid-cols-1"
         style={{
-          gap: 'clamp(0.375rem, 0.75vh, 0.625rem)',
+          gap: 'clamp(0.625rem, 1.25vh, 0.875rem)',
         }}
       >
         {SIDEQUESTS.map((project) => {
@@ -302,25 +302,26 @@ export function Sidequests({ className = '', style }: SectionProps) {
               onClick={() => setExpandedId(isExpanded ? null : project.id)}
             >
               <h3 className="font-semibold" style={{
-                marginBottom: 'clamp(0.125rem, 0.25vh, 0.25rem)',
+                marginBottom: 'clamp(0.25rem, 0.5vh, 0.375rem)',
                 fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)'
               }}>{project.title}</h3>
 
               <div className={`expandable-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
                 {!isExpanded ? (
-                  <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word' }}>
+                  <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word', lineHeight: '1.4' }}>
                     {project.summary}
                   </p>
                 ) : (
                   <ul style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)'
+                    gap: 'clamp(0.125rem, 0.25vh, 0.25rem)'
                   }}>
                     {project.items.map((item, idx) => (
                       <li key={idx} className="opacity-80" style={{
                         fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)',
-                        wordBreak: 'break-word'
+                        wordBreak: 'break-word',
+                        lineHeight: '1.4'
                       }}>• {item}</li>
                     ))}
                   </ul>
@@ -356,11 +357,11 @@ export const MobileSidequests = memo(function MobileSidequests() {
 // Desktop Sidebar
 export const DesktopSidebar = memo(function DesktopSidebar() {
   return (
-    <div className="hidden lg:block lg:col-span-2 xl:col-span-2 overflow-y-auto">
-      <div className="space-y-4" style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>
+    <div className="hidden lg:block lg:col-span-2 xl:col-span-2 overflow-y-auto pb-4">
+      <div className="space-y-5" style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>
         {/* Quick contact */}
         <div>
-          <h3 className="font-bold opacity-50 mb-3">CONTACT</h3>
+          <h3 className="font-bold opacity-50 mb-2">CONTACT</h3>
           <div className="space-y-1">
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
@@ -384,7 +385,7 @@ export const DesktopSidebar = memo(function DesktopSidebar() {
 
         {/* Skills overview - simplified */}
         <div>
-          <h3 className="font-bold opacity-50 mb-3">STACK</h3>
+          <h3 className="font-bold opacity-50 mb-2">STACK</h3>
           <div className="space-y-1 text-sm">
             <div>Python • TensorFlow • PyTorch</div>
             <div>LLMs • Knowledge Graphs</div>
@@ -395,7 +396,7 @@ export const DesktopSidebar = memo(function DesktopSidebar() {
 
         {/* Current status */}
         <div>
-          <h3 className="font-bold opacity-50 mb-3">STATUS</h3>
+          <h3 className="font-bold opacity-50 mb-2">STATUS</h3>
           <div>
             <div className="mb-1">{PERSONAL_INFO.title}</div>
             <div className="opacity-60">@ {PERSONAL_INFO.currentCompany}</div>
@@ -405,7 +406,7 @@ export const DesktopSidebar = memo(function DesktopSidebar() {
 
         {/* Education quick */}
         <div>
-          <h3 className="font-bold opacity-50 mb-3">EDUCATION</h3>
+          <h3 className="font-bold opacity-50 mb-2">EDUCATION</h3>
           <div>
             <div className="mb-1">{EDUCATION[0].institutionShort}</div>
             <div className="opacity-60">{EDUCATION[0].degreeShort}</div>
@@ -415,7 +416,7 @@ export const DesktopSidebar = memo(function DesktopSidebar() {
 
         {/* Recent work */}
         <div>
-          <h3 className="font-bold opacity-50 mb-3">RECENT</h3>
+          <h3 className="font-bold opacity-50 mb-2">RECENT</h3>
           <div className="space-y-3">
             {RECENT_WORK.map((work) => (
               <div key={work.id}>
@@ -428,7 +429,7 @@ export const DesktopSidebar = memo(function DesktopSidebar() {
 
         {/* Certifications */}
         <div>
-          <h3 className="font-bold opacity-50 mb-3">CERTS</h3>
+          <h3 className="font-bold opacity-50 mb-2">CERTS</h3>
           <div className="space-y-1">
             {CERTIFICATIONS.map((cert) => (
               <div key={cert}>{cert}</div>

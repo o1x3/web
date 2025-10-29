@@ -67,8 +67,8 @@ const structuredData = {
 // Mobile Layout Component
 const MobileLayout = memo(function MobileLayout({ isDark, toggleTheme }: { isDark: boolean; toggleTheme: () => void }) {
   return (
-    <div className="h-screen overflow-y-auto font-mono p-4 text-sm">
-      <div className="flex flex-col space-y-6">
+    <div className="min-h-screen overflow-y-auto font-mono p-4 text-sm pb-8">
+      <div className="flex flex-col space-y-5">
         <ThemeToggle isDark={isDark} onToggle={toggleTheme} isMobile />
         <MobileHeader />
         <MobileExperience />
@@ -76,7 +76,6 @@ const MobileLayout = memo(function MobileLayout({ isDark, toggleTheme }: { isDar
         <MobileSkills />
         <MobileSidequests />
         <MobileContact />
-        <div className="h-6" />
       </div>
     </div>
   )
@@ -86,15 +85,15 @@ const MobileLayout = memo(function MobileLayout({ isDark, toggleTheme }: { isDar
 const DesktopLayout = memo(function DesktopLayout({ isDark, toggleTheme }: { isDark: boolean; toggleTheme: () => void }) {
   return (
     <div className="h-screen w-screen font-mono overflow-hidden" style={{
-      padding: 'clamp(0.5rem, 1vh, 1rem)',
+      padding: 'clamp(0.75rem, 1.5vh, 1.25rem)',
       fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)'
     }}>
       <div className="grid grid-cols-1 lg:grid-cols-5 h-full" style={{
-        gap: 'clamp(0.5rem, 1vh, 1rem)'
+        gap: 'clamp(0.75rem, 1.5vh, 1.25rem)'
       }}>
         {/* Left Column - Main content */}
-        <div className="lg:col-span-3 xl:col-span-3 overflow-y-auto flex flex-col" style={{
-          gap: 'clamp(0.5rem, 1vh, 0.875rem)'
+        <div className="lg:col-span-3 xl:col-span-3 overflow-y-auto flex flex-col pb-4" style={{
+          gap: 'clamp(0.75rem, 1.5vh, 1rem)'
         }}>
           <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
           <Header />
