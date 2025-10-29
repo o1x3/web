@@ -24,8 +24,8 @@ export const Header = memo(function Header({ className = '', style }: SectionPro
       <h1
         className="font-bold cursor-pointer hover:opacity-80 transition-opacity duration-500"
         style={{
-          fontSize: 'clamp(1.25rem, 3vh, 2rem)',
-          marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
+          fontSize: 'clamp(1.125rem, 2.5vh, 1.75rem)',
+          marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)'
         }}
         onClick={() => safeOpenLink(PERSONAL_INFO.linkedin.url)}
         role="button"
@@ -35,10 +35,10 @@ export const Header = memo(function Header({ className = '', style }: SectionPro
       >
         {PERSONAL_INFO.name}
       </h1>
-      <p className="opacity-70" style={{ marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)' }}>
+      <p className="opacity-70" style={{ marginBottom: 'clamp(0.125rem, 0.25vh, 0.375rem)', fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>
         {PERSONAL_INFO.title}
       </p>
-      <p className="opacity-50">Currently @ {PERSONAL_INFO.currentCompany}</p>
+      <p className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>Currently @ {PERSONAL_INFO.currentCompany}</p>
     </header>
   )
 })
@@ -126,23 +126,23 @@ export const Experience = memo(function Experience({ className = '', style }: Se
   return (
     <section className={className} style={style}>
       <h2 className="font-bold" style={{
-        fontSize: 'clamp(1rem, 2.5vh, 1.25rem)',
-        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
+        fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
+        marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
       }}>Experience</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vh, 1rem)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1vh, 0.75rem)' }}>
         {EXPERIENCE.map((exp) => (
           <div key={exp.id} className="hover:opacity-90 transition-opacity">
-            <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)' }}>
-              <h3 className="font-semibold" style={{ fontSize: 'clamp(0.875rem, 1.5vh, 1rem)' }}>{exp.company}</h3>
-              <span className="opacity-50" style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>{exp.period}</span>
+            <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)' }}>
+              <h3 className="font-semibold" style={{ fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)' }}>{exp.company}</h3>
+              <span className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{exp.period}</span>
             </div>
             <p className="opacity-70" style={{
-              marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)',
-              fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)'
+              marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)',
+              fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
             }}>{exp.position} • {exp.location}</p>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.125rem, 0.25vh, 0.25rem)' }}>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)' }}>
               {exp.description.map((item, idx) => (
-                <li key={idx} style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>• {item}</li>
+                <li key={idx} style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>• {item}</li>
               ))}
             </ul>
           </div>
@@ -180,17 +180,17 @@ export const Education = memo(function Education({ className = '', style }: Sect
   return (
     <section className={className} style={style}>
       <h2 className="font-bold" style={{
-        fontSize: 'clamp(1rem, 2.5vh, 1.25rem)',
-        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
+        fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
+        marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
       }}>Education</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vh, 1rem)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.375rem, 0.75vh, 0.625rem)' }}>
         {EDUCATION.map((edu) => (
           <div key={edu.id} className="hover:opacity-90 transition-opacity">
-            <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)' }}>
-              <h3 className="font-semibold" style={{ fontSize: 'clamp(0.875rem, 1.5vh, 1rem)' }}>{edu.institution}</h3>
-              <span className="opacity-50" style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>{edu.period}</span>
+            <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.125rem, 0.25vh, 0.25rem)' }}>
+              <h3 className="font-semibold" style={{ fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)' }}>{edu.institution}</h3>
+              <span className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{edu.period}</span>
             </div>
-            <p className="opacity-70" style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>{edu.degree} • {edu.location}</p>
+            <p className="opacity-70" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{edu.degree} • {edu.location}</p>
           </div>
         ))}
       </div>
@@ -220,14 +220,14 @@ export const Skills = memo(function Skills({ className = '', style }: SectionPro
   return (
     <section className={className} style={style}>
       <h2 className="font-bold" style={{
-        fontSize: 'clamp(1rem, 2.5vh, 1.25rem)',
-        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
+        fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
+        marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
       }}>Skills</h2>
       <div className="grid grid-cols-1 md:grid-cols-2" style={{
-        gap: 'clamp(0.5rem, 1vh, 0.75rem)'
+        gap: 'clamp(0.25rem, 0.5vh, 0.5rem)'
       }}>
         {Object.values(SKILLS).map((skill) => (
-          <div key={skill.label} className="hover:opacity-90 transition-opacity" style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>
+          <div key={skill.label} className="hover:opacity-90 transition-opacity" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>
             <span className="opacity-50">{skill.label}:</span> {formatList(skill.items, ', ')}
           </div>
         ))}
@@ -258,30 +258,30 @@ export const Sidequests = memo(function Sidequests({ className = '', style }: Se
   return (
     <section className={`flex-1 overflow-hidden ${className}`} style={{ minHeight: 0, ...style }}>
       <h2 className="font-bold" style={{
-        fontSize: 'clamp(1rem, 2.5vh, 1.25rem)',
-        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
+        fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
+        marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
       }}>Sidequests</h2>
       <div
         className="grid grid-cols-1 h-full overflow-hidden"
         style={{
-          gap: 'clamp(0.75rem, 1.5vh, 1rem)',
+          gap: 'clamp(0.375rem, 0.75vh, 0.625rem)',
           alignContent: 'start'
         }}
       >
         {SIDEQUESTS.map((project) => (
           <div key={project.id} className="hover:opacity-90 transition-opacity">
             <h3 className="font-semibold" style={{
-              marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)',
-              fontSize: 'clamp(0.875rem, 1.5vh, 1rem)'
+              marginBottom: 'clamp(0.125rem, 0.25vh, 0.25rem)',
+              fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)'
             }}>{project.title}</h3>
             <ul style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 'clamp(0.125rem, 0.25vh, 0.25rem)'
+              gap: 'clamp(0.0625rem, 0.125vh, 0.1875rem)'
             }}>
               {project.items.map((item, idx) => (
                 <li key={idx} className="opacity-80" style={{
-                  fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)'
+                  fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
                 }}>• {item}</li>
               ))}
             </ul>
