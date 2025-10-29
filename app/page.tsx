@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, memo } from 'react'
+import Script from 'next/script'
 import { startUniqueFaviconRotation } from './favicon-manager'
 import { useIsMobile } from './hooks'
 import {
@@ -18,6 +19,50 @@ import {
   MobileSidequests,
   DesktopSidebar,
 } from './components'
+
+// Structured data for SEO
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Karthik Vinayan',
+  jobTitle: 'Founding Software Engineer',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Omni RPA Inc',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'San Jose',
+      addressRegion: 'CA',
+      addressCountry: 'US',
+    },
+  },
+  alumniOf: {
+    '@type': 'EducationalOrganization',
+    name: 'Vellore Institute of Technology',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Chennai',
+      addressCountry: 'IN',
+    },
+  },
+  email: 'karthikvinayan57@gmail.com',
+  url: 'https://o1x3.com',
+  sameAs: [
+    'https://linkedin.com/in/karthik-vinayan',
+    'https://github.com/karthikvinayan',
+  ],
+  knowsAbout: [
+    'Artificial Intelligence',
+    'Machine Learning',
+    'Large Language Models',
+    'Knowledge Graphs',
+    'Python',
+    'TensorFlow',
+    'PyTorch',
+    'Computer Vision',
+    'Cloud Computing',
+  ],
+}
 
 // Mobile Layout Component
 const MobileLayout = memo(function MobileLayout({ isDark, toggleTheme }: { isDark: boolean; toggleTheme: () => void }) {
@@ -93,8 +138,16 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={`h-screen transition-colors duration-300 ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
-      {isMobile ? <MobileLayout isDark={isDark} toggleTheme={toggleTheme} /> : <DesktopLayout isDark={isDark} toggleTheme={toggleTheme} />}
-    </div>
+    <>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        strategy="afterInteractive"
+      />
+      <div className={`h-screen transition-colors duration-300 ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
+        {isMobile ? <MobileLayout isDark={isDark} toggleTheme={toggleTheme} /> : <DesktopLayout isDark={isDark} toggleTheme={toggleTheme} />}
+      </div>
+    </>
   )
 }

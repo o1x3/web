@@ -20,14 +20,37 @@ body {
   visibility: visible;
 }
 
-/* Optimize rendering performance */
+/* Optimize rendering performance with GPU acceleration */
 body {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+  will-change: scroll-position;
+  contain: layout style paint;
 }
 
 /* Critical path optimization */
 .font-mono {
   font-display: swap;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize section rendering with content-visibility */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Prevent layout shift for interactive elements */
+button, a {
+  will-change: opacity;
+  contain: layout;
+}
+
+/* Optimize transitions */
+.transition-opacity,
+.transition-colors {
+  will-change: opacity, background-color, color;
 }
