@@ -414,6 +414,12 @@ body {
   opacity: 1;
 }
 
+/* Constrain description text for readability while card fills width */
+.exp-content li,
+.project-card li {
+  max-width: 75ch;
+}
+
 .opacity-20-border {
   border-color: var(--color-border);
 }
