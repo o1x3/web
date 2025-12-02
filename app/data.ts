@@ -1,5 +1,5 @@
 // Portfolio Data Constants
-// Single source of truth for all portfolio content
+// Single source of truth for all portfolio content - sourced from main.tex
 
 export const BREAKPOINTS = {
   MOBILE: 768,
@@ -9,13 +9,17 @@ export const PERSONAL_INFO = {
   name: 'Karthik Vinayan',
   title: 'Founding Software Engineer',
   currentCompany: 'Omni RPA Inc',
+  companyLocation: 'San Jose, California',
   email: 'karthikvinayan57@gmail.com',
   location: 'Hyderabad, IN',
   linkedin: {
     url: 'https://linkedin.com/in/karthik-vinayan',
     display: 'linkedin.com/in/karthik-vinayan',
   },
-  website: 'o1x3.com',
+  website: {
+    url: 'https://o1x3.com',
+    display: 'o1x3.com',
+  },
 } as const
 
 export const EXPERIENCE = [
@@ -23,31 +27,27 @@ export const EXPERIENCE = [
     id: 'omni-rpa',
     company: 'Omni RPA Inc',
     position: 'Founding Software Engineer',
-    location: 'San Jose, CA',
-    period: 'Jun 2024 - Present',
-    periodShort: '2024-Present',
-    summary: 'Building agentic AI systems with LLMs and Knowledge Graphs for enterprise automation. Led full-stack development, DevOps, and system architecture.',
+    location: 'San Jose, California',
+    period: 'June 2024 – Present',
+    periodShort: '2024–Present',
     description: [
-      'Built agentic AI systems with LLMs and NebulaGraph-based Knowledge Graph for CSP-focused automation',
-      'Developed large-scale Knowledge Graphs with custom ETL pipelines and optimized graph query performance',
-      'Designed RESTful APIs and MCP servers to coordinate multi-agent workflows and backend systems',
-      'Led DevOps: Docker containerization, Kubernetes deployments, CI/CD pipelines for testing and versioning',
-      'Architected end-to-end enterprise automation platforms with technical proposals and PoC demos',
+      'Built and deployed agentic AI systems using LLMs and a NebulaGraph-based Knowledge Graph; enabled dynamic retrieval, reasoning, and contextual handling for CSP-focused automation use cases.',
+      'Developed and maintained large-scale Knowledge Graphs with custom ETL pipelines; mapped structured/unstructured data and optimized graph query performance for real-time applications.',
+      'Designed RESTful APIs and backend services around LLM agents and Knowledge Graphs; implemented MCP servers to coordinate multi-agent workflows and backend data systems.',
+      'Led DevOps efforts; containerized services with Docker, managed Kubernetes deployments, and set up CI/CD pipelines for testing, versioning, and environment rollouts.',
+      'Architected end-to-end system designs for enterprise automation platforms; collaborated with stakeholders to define requirements, created technical proposals and architecture diagrams, and delivered proof-of-concept demos to support client pitches and business development.',
     ],
-    descriptionShort: 'Agentic AI with LLMs, Knowledge Graphs, and enterprise automation',
   },
   {
     id: 'duk',
     company: 'Digital University of Kerala',
     position: 'Research Intern',
     location: 'Thiruvananthapuram, IN',
-    period: 'Oct 2023 - Dec 2023',
+    period: 'Oct 2023 – Dec 2023',
     periodShort: '2023',
-    summary: 'Engineered YOLOv8 computer vision model for real-time tomato ripeness detection in production.',
     description: [
-      'Engineered YOLOv8 model for real-time tomato ripeness detection in production environment',
+      'Engineered an innovative computer vision solution, employing a YOLOv8 model finely tuned on a proprietary dataset, showcasing real-time tomato ripeness detection in a production environment.',
     ],
-    descriptionShort: 'YOLOv8 computer vision for tomato detection',
   },
 ] as const
 
@@ -57,93 +57,76 @@ export const EDUCATION = [
     institution: 'Vellore Institute of Technology',
     institutionShort: 'VIT Chennai',
     degree: 'B.Tech Computer Science and Engineering',
-    degreeShort: 'B.Tech CS - AI & ML',
+    degreeShort: 'B.Tech CSE',
     specialization: 'Artificial Intelligence and Machine Learning',
     location: 'Chennai, IN',
-    period: 'Sep 2021 - Aug 2025',
+    period: 'Sep 2021 – Aug 2025',
   },
   {
     id: 'stcs',
     institution: 'St. Thomas Central School',
     institutionShort: 'STCS',
     degree: 'AISSCE - PCM with Computer Science',
-    degreeShort: 'AISSCE - PCM with CS',
+    degreeShort: 'AISSCE - PCM + CS',
     location: 'Thiruvananthapuram, IN',
-    period: 'Jun 2009 - Mar 2021',
+    period: 'Jun 2009 – Mar 2021',
+  },
+] as const
+
+export const PROJECTS = [
+  {
+    id: 'data-eng',
+    title: 'Python-Powered Data Engineering Consultant',
+    items: [
+      'Developed custom web scraping pipelines to extract valuable data from various sources, including websites, APIs, and databases. Designed and implemented RESTful APIs using Flask to seamlessly integrate scraped data into client systems.',
+      'Designed and implemented robust data pipelines for data cleaning, transformation, and validation, leveraging Pandas and other Python libraries.',
+      'Built and deployed automated web servers to ensure continuous data updates and accessibility.',
+    ],
+  },
+  {
+    id: 'adas',
+    title: 'Advanced Driver Assistance System (ADAS) Development',
+    items: [
+      'Led a team in the design and development of an ADAS prototype buggy leveraging Raspberry Pi implementing core ADAS features such as lane following assistance, automatic lane changing, and object detection using computer vision and machine learning techniques in Python.',
+      'Successfully adapted the ADAS technology for a hospital setup, pending publication, demonstrating adaptability and innovative problem-solving.',
+    ],
   },
 ] as const
 
 export const SKILLS = {
   programming: {
-    label: 'Languages',
-    items: ['Python (Pandas, NumPy, TensorFlow, PyTorch)', 'C', 'C++', 'Java', 'SQL'],
+    label: 'Programming Languages',
+    items: ['Python (Pandas, NumPy, TensorFlow, Pytorch)', 'C', 'C++', 'Java', 'SQL'],
   },
   aiml: {
-    label: 'AI/ML',
-    items: ['TensorFlow', 'PyTorch', 'LLMs', 'Computer Vision', 'Machine Learning'],
+    label: 'AI/ML Technologies',
+    items: ['TensorFlow', 'PyTorch', 'Large Language Models (LLMs)', 'Computer Vision', 'Machine Learning'],
   },
   cloud: {
     label: 'Data & Cloud',
-    items: ['BigQuery', 'AWS', 'Azure (AZ-104)', 'GCP'],
+    items: ['BigQuery', 'AWS (Cloud Practitioner)', 'Azure (AZ-104 Certified Administrator)', 'GCP'],
   },
   tools: {
-    label: 'Dev Tools',
+    label: 'Development Tools',
     items: ['Git', 'Docker', 'RESTful APIs', 'Flask', 'RAG', 'GraphDBs'],
+  },
+  languages: {
+    label: 'Languages',
+    items: ['English (Fluent)', 'Malayalam (Native)', 'Hindi (Conversational)', 'Tamil (Conversational)'],
+  },
+  extracurricular: {
+    label: 'Clubs & Extra-Curricular',
+    items: ['IEEE Computer Society', 'Core organizer for Vibrance\'23 and Technovit\'23'],
   },
 } as const
 
 export const CERTIFICATIONS = [
-  'Azure AZ-104 Administrator',
+  'Azure AZ-104 Certified Administrator',
   'AWS Cloud Practitioner',
 ] as const
 
-export const SIDEQUESTS = [
-  {
-    id: 'data-eng',
-    title: 'Python Data Engineering Consultant',
-    summary: 'Built web scraping pipelines, ETL systems, and Flask APIs for data automation',
-    items: [
-      'Custom web scraping pipelines + Flask REST APIs for client integration',
-      'Pandas-based ETL pipelines for data cleaning and transformation',
-      'Automated deployment with continuous data synchronization',
-    ],
-  },
-  {
-    id: 'adas',
-    title: 'ADAS Prototype Development',
-    summary: 'Led team building Raspberry Pi ADAS buggy with computer vision',
-    items: [
-      'Led team building Raspberry Pi-based ADAS buggy with lane following and object detection',
-      'Adapted technology for hospital environment (publication pending)',
-    ],
-  },
-  {
-    id: 'ai-experiments',
-    title: 'ML & AI Experiments',
-    summary: 'Diverse ML projects: loan prediction, style transfer, multi-agent chat',
-    items: [
-      'Loan default prediction with feature engineering + AWS deployment',
-      'Neural style transfer with GPU-accelerated CUDA processing',
-      'Multi-agent chat platform with vector DB and real-time WebSockets',
-    ],
-  },
-] as const
-
-export const QUICK_INFO = {
-  stack: 'Python • ML • Cloud',
-  experience: '1.5+ Years',
-  location: PERSONAL_INFO.location,
+export const TERMINAL_COMMANDS = {
+  whoami: 'karthik.vinayan',
+  pwd: '/home/karthik/career',
+  status: 'building_the_future',
 } as const
-
-export const RECENT_WORK = [
-  {
-    id: 'llm-agents',
-    title: 'LLM Agent Workflows',
-    description: 'NebulaGraph + contextual adaptation',
-  },
-  {
-    id: 'cv',
-    title: 'Computer Vision',
-    description: 'YOLOv8 tomato detection',
-  },
-] as const

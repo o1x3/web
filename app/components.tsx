@@ -1,461 +1,575 @@
-// Reusable components to eliminate duplication
+'use client'
 
-import { memo, CSSProperties, useState } from 'react'
+import { memo, useState, useEffect, useRef } from 'react'
 import {
   PERSONAL_INFO,
   EXPERIENCE,
   EDUCATION,
   SKILLS,
-  SIDEQUESTS,
+  PROJECTS,
   CERTIFICATIONS,
-  RECENT_WORK
 } from './data'
-import { safeOpenLink, formatList } from './utils'
 
-interface SectionProps {
-  className?: string
-  style?: CSSProperties
-}
+// ═══════════════════════════════════════════════════════════════════════════
+// THEME TOGGLE
+// ═══════════════════════════════════════════════════════════════════════════
 
-// Header Component
-export const Header = memo(function Header({ className = '', style }: SectionProps) {
-  return (
-    <header className={className} style={style}>
-      <h1
-        className="font-bold cursor-pointer hover:opacity-80 transition-opacity duration-500"
-        style={{
-          fontSize: 'clamp(1.125rem, 2.5vh, 1.75rem)',
-          marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)'
-        }}
-        onClick={() => safeOpenLink(PERSONAL_INFO.linkedin.url)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && safeOpenLink(PERSONAL_INFO.linkedin.url)}
-        aria-label={`Visit ${PERSONAL_INFO.name}'s LinkedIn profile`}
-      >
-        {PERSONAL_INFO.name}
-      </h1>
-      <p className="opacity-70" style={{ marginBottom: 'clamp(0.125rem, 0.25vh, 0.375rem)', fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>
-        {PERSONAL_INFO.title}
-      </p>
-      <p className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>Currently @ {PERSONAL_INFO.currentCompany}</p>
-    </header>
-  )
-})
-
-// Mobile Header (simplified centered version)
-export const MobileHeader = memo(function MobileHeader() {
-  return (
-    <header className="text-center">
-      <h1
-        className="font-bold text-lg cursor-pointer hover:opacity-80 transition-opacity duration-500 mb-2"
-        onClick={() => safeOpenLink(PERSONAL_INFO.linkedin.url)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && safeOpenLink(PERSONAL_INFO.linkedin.url)}
-        aria-label={`Visit ${PERSONAL_INFO.name}'s LinkedIn profile`}
-      >
-        {PERSONAL_INFO.name}
-      </h1>
-      <p className="opacity-70 mb-1">{PERSONAL_INFO.title}</p>
-      <p className="opacity-50">Currently @ {PERSONAL_INFO.currentCompany}</p>
-    </header>
-  )
-})
-
-// Contact Component
-export const Contact = memo(function Contact({ className = '', style }: SectionProps) {
-  return (
-    <section className={className} style={style}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.25rem, 0.5vh, 0.5rem)' }}>
-        <a
-          href={`mailto:${PERSONAL_INFO.email}`}
-          className="hover:opacity-80 transition-opacity cursor-pointer"
-          style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}
-          aria-label={`Email ${PERSONAL_INFO.name}`}
-        >
-          <span className="opacity-50">email:</span> {PERSONAL_INFO.email}
-        </a>
-        <div style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>
-          <span className="opacity-50">location:</span> {PERSONAL_INFO.location}
-        </div>
-        <a
-          href={PERSONAL_INFO.linkedin.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:opacity-80 transition-opacity cursor-pointer"
-          style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}
-          aria-label={`Visit ${PERSONAL_INFO.name}'s LinkedIn profile`}
-        >
-          <span className="opacity-50">linkedin:</span> {PERSONAL_INFO.linkedin.display}
-        </a>
-      </div>
-    </section>
-  )
-})
-
-// Mobile Contact (simplified text-xs version)
-export const MobileContact = memo(function MobileContact() {
-  return (
-    <section>
-      <h2 className="font-bold text-base mb-3">Contact</h2>
-      <div className="space-y-2 text-xs">
-        <a
-          href={`mailto:${PERSONAL_INFO.email}`}
-          className="block hover:opacity-80 transition-opacity cursor-pointer"
-          aria-label={`Email ${PERSONAL_INFO.name}`}
-        >
-          <span className="opacity-50">email:</span> {PERSONAL_INFO.email}
-        </a>
-        <a
-          href={PERSONAL_INFO.linkedin.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block hover:opacity-80 transition-opacity cursor-pointer"
-          aria-label={`Visit ${PERSONAL_INFO.name}'s LinkedIn profile`}
-        >
-          <span className="opacity-50">linkedin:</span> {PERSONAL_INFO.linkedin.display}
-        </a>
-      </div>
-    </section>
-  )
-})
-
-// Experience Component with expandable items
-export function Experience({ className = '', style }: SectionProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(null)
-
-  return (
-    <section className={className} style={style}>
-      <h2 className="font-bold" style={{
-        fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
-        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
-      }}>Experience</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.625rem, 1.25vh, 0.875rem)' }}>
-        {EXPERIENCE.map((exp) => {
-          const isExpanded = expandedId === exp.id
-          return (
-            <div
-              key={exp.id}
-              className="cursor-pointer transition-opacity duration-300"
-              style={{
-                opacity: isExpanded ? 1 : 0.92,
-              }}
-              onClick={() => setExpandedId(isExpanded ? null : exp.id)}
-            >
-              <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.125rem, 0.375vh, 0.375rem)' }}>
-                <h3 className="font-semibold" style={{ fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)' }}>{exp.company}</h3>
-                <span className="opacity-50 whitespace-nowrap" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{exp.period}</span>
-              </div>
-              <p className="opacity-70" style={{
-                marginBottom: 'clamp(0.25rem, 0.5vh, 0.375rem)',
-                fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)'
-              }}>{exp.position} • {exp.location}</p>
-
-              <div className={`expandable-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
-                {!isExpanded ? (
-                  <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word', lineHeight: '1.4' }}>
-                    {exp.summary}
-                  </p>
-                ) : (
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.125rem, 0.25vh, 0.25rem)' }}>
-                    {exp.description.map((item, idx) => (
-                      <li key={idx} style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word', lineHeight: '1.4' }}>• {item}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </section>
-  )
-}
-
-// Mobile Experience (simplified)
-export const MobileExperience = memo(function MobileExperience() {
-  return (
-    <section>
-      <h2 className="font-bold text-base mb-3">Experience</h2>
-      <div className="space-y-3">
-        {EXPERIENCE.map((exp) => (
-          <div key={exp.id} className="bg-gray-900/20 rounded-lg p-3 hover:opacity-90 transition-opacity">
-            <div className="flex justify-between items-start mb-1">
-              <h3 className="font-semibold text-sm">{exp.company}</h3>
-              <span className="opacity-50 text-xs">{exp.periodShort}</span>
-            </div>
-            <p className="opacity-70 text-xs mb-1">{exp.position}</p>
-            <ul className="text-xs">
-              <li>• {exp.descriptionShort}</li>
-            </ul>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-})
-
-// Education Component
-export const Education = memo(function Education({ className = '', style }: SectionProps) {
-  return (
-    <section className={className} style={style}>
-      <h2 className="font-bold" style={{
-        fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
-        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
-      }}>Education</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1vh, 0.75rem)' }}>
-        {EDUCATION.map((edu) => (
-          <div key={edu.id} className="hover:opacity-90 transition-opacity">
-            <div className="flex justify-between items-start" style={{ marginBottom: 'clamp(0.125rem, 0.25vh, 0.25rem)' }}>
-              <h3 className="font-semibold" style={{ fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)' }}>{edu.institution}</h3>
-              <span className="opacity-50" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)' }}>{edu.period}</span>
-            </div>
-            <p className="opacity-70" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', lineHeight: '1.4' }}>{edu.degree} • {edu.location}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-})
-
-// Mobile Education (simplified)
-export const MobileEducation = memo(function MobileEducation() {
-  const primaryEducation = EDUCATION[0]
-  return (
-    <section>
-      <h2 className="font-bold text-base mb-3">Education</h2>
-      <div className="bg-gray-900/20 rounded-lg p-3 hover:opacity-90 transition-opacity">
-        <div className="flex justify-between items-start mb-1">
-          <h3 className="font-semibold text-sm">{primaryEducation.institutionShort}</h3>
-          <span className="opacity-50 text-xs">{primaryEducation.period}</span>
-        </div>
-        <p className="opacity-70 text-xs">{primaryEducation.degreeShort}</p>
-      </div>
-    </section>
-  )
-})
-
-// Skills Component
-export const Skills = memo(function Skills({ className = '', style }: SectionProps) {
-  return (
-    <section className={className} style={style}>
-      <h2 className="font-bold" style={{
-        fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
-        marginBottom: 'clamp(0.375rem, 0.75vh, 0.625rem)'
-      }}>Skills</h2>
-      <div className="flex flex-col" style={{
-        gap: 'clamp(0.25rem, 0.5vh, 0.375rem)'
-      }}>
-        {Object.values(SKILLS).map((skill) => (
-          <div key={skill.label} className="hover:opacity-90 transition-opacity" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', lineHeight: '1.4' }}>
-            <span className="opacity-50">{skill.label}:</span> {formatList(skill.items, ', ')}
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-})
-
-// Mobile Skills (simplified)
-export const MobileSkills = memo(function MobileSkills() {
-  return (
-    <section>
-      <h2 className="font-bold text-base mb-3">Skills</h2>
-      <div className="grid grid-cols-2 gap-2 text-xs">
-        {Object.values(SKILLS).map((skill) => (
-          <div key={skill.label} className="bg-gray-900/20 rounded p-2">
-            <span className="opacity-50">{skill.label}:</span><br />
-            {formatList(skill.items, ', ')}
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-})
-
-// Sidequests Component with expandable items
-export function Sidequests({ className = '', style }: SectionProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(null)
-
-  return (
-    <section className={`${className}`} style={style}>
-      <h2 className="font-bold" style={{
-        fontSize: 'clamp(0.875rem, 2vh, 1.125rem)',
-        marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
-      }}>Sidequests</h2>
-      <div
-        className="grid grid-cols-1"
-        style={{
-          gap: 'clamp(0.625rem, 1.25vh, 0.875rem)',
-        }}
-      >
-        {SIDEQUESTS.map((project) => {
-          const isExpanded = expandedId === project.id
-          return (
-            <div
-              key={project.id}
-              className="cursor-pointer transition-opacity duration-300"
-              style={{
-                opacity: isExpanded ? 1 : 0.92,
-              }}
-              onClick={() => setExpandedId(isExpanded ? null : project.id)}
-            >
-              <h3 className="font-semibold" style={{
-                marginBottom: 'clamp(0.25rem, 0.5vh, 0.375rem)',
-                fontSize: 'clamp(0.8125rem, 1.375vh, 0.9375rem)'
-              }}>{project.title}</h3>
-
-              <div className={`expandable-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
-                {!isExpanded ? (
-                  <p className="opacity-80" style={{ fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)', wordBreak: 'break-word', lineHeight: '1.4' }}>
-                    {project.summary}
-                  </p>
-                ) : (
-                  <ul style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 'clamp(0.125rem, 0.25vh, 0.25rem)'
-                  }}>
-                    {project.items.map((item, idx) => (
-                      <li key={idx} className="opacity-80" style={{
-                        fontSize: 'clamp(0.6875rem, 1.125vh, 0.8125rem)',
-                        wordBreak: 'break-word',
-                        lineHeight: '1.4'
-                      }}>• {item}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </section>
-  )
-}
-
-// Mobile Sidequests (all items)
-export const MobileSidequests = memo(function MobileSidequests() {
-  return (
-    <section>
-      <h2 className="font-bold text-base mb-3">Sidequests</h2>
-      <div className="space-y-3">
-        {SIDEQUESTS.map((project) => (
-          <div key={project.id} className="bg-gray-900/20 rounded-lg p-3 hover:opacity-90 transition-opacity">
-            <h3 className="font-semibold text-sm mb-1">{project.title}</h3>
-            <ul className="text-xs space-y-1">
-              <li className="opacity-80">• {project.items[0]}</li>
-            </ul>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-})
-
-// Desktop Sidebar
-export const DesktopSidebar = memo(function DesktopSidebar() {
-  return (
-    <div className="hidden lg:block lg:col-span-2 xl:col-span-2 overflow-y-auto pb-4">
-      <div className="space-y-5" style={{ fontSize: 'clamp(0.75rem, 1.25vh, 0.875rem)' }}>
-        {/* Quick contact */}
-        <div>
-          <h3 className="font-bold opacity-50 mb-2">CONTACT</h3>
-          <div className="space-y-1">
-            <a
-              href={`mailto:${PERSONAL_INFO.email}`}
-              className="block hover:opacity-80 transition-opacity cursor-pointer"
-              aria-label={`Email ${PERSONAL_INFO.name}`}
-            >
-              {PERSONAL_INFO.email}
-            </a>
-            <div>{PERSONAL_INFO.location}</div>
-            <a
-              href={PERSONAL_INFO.linkedin.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block hover:opacity-80 transition-opacity cursor-pointer"
-              aria-label={`Visit ${PERSONAL_INFO.name}'s LinkedIn profile`}
-            >
-              {PERSONAL_INFO.linkedin.display}
-            </a>
-          </div>
-        </div>
-
-        {/* Skills overview - simplified */}
-        <div>
-          <h3 className="font-bold opacity-50 mb-2">STACK</h3>
-          <div className="space-y-1 text-sm">
-            <div>Python • TensorFlow • PyTorch</div>
-            <div>LLMs • Knowledge Graphs</div>
-            <div>Docker • Kubernetes • CI/CD</div>
-            <div>AWS • Azure • GCP</div>
-          </div>
-        </div>
-
-        {/* Current status */}
-        <div>
-          <h3 className="font-bold opacity-50 mb-2">STATUS</h3>
-          <div>
-            <div className="mb-1">{PERSONAL_INFO.title}</div>
-            <div className="opacity-60">@ {PERSONAL_INFO.currentCompany}</div>
-            <div className="opacity-40 mt-2">{EXPERIENCE[0].period}</div>
-          </div>
-        </div>
-
-        {/* Education quick */}
-        <div>
-          <h3 className="font-bold opacity-50 mb-2">EDUCATION</h3>
-          <div>
-            <div className="mb-1">{EDUCATION[0].institutionShort}</div>
-            <div className="opacity-60">{EDUCATION[0].degreeShort}</div>
-            <div className="opacity-40">{EDUCATION[0].period}</div>
-          </div>
-        </div>
-
-        {/* Recent work */}
-        <div>
-          <h3 className="font-bold opacity-50 mb-2">RECENT</h3>
-          <div className="space-y-3">
-            {RECENT_WORK.map((work) => (
-              <div key={work.id}>
-                <div className="mb-1">{work.title}</div>
-                <div className="opacity-60">{work.description}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div>
-          <h3 className="font-bold opacity-50 mb-2">CERTS</h3>
-          <div className="space-y-1">
-            {CERTIFICATIONS.map((cert) => (
-              <div key={cert}>{cert}</div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-})
-
-// Theme Toggle Button
 interface ThemeToggleProps {
   isDark: boolean
   onToggle: () => void
-  isMobile?: boolean
 }
 
-export const ThemeToggle = memo(function ThemeToggle({ isDark, onToggle, isMobile = false }: ThemeToggleProps) {
+export const ThemeToggle = memo(function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
   return (
     <button
       onClick={onToggle}
-      className={`fixed ${isMobile ? 'top-4 right-4 text-xs' : 'top-6 right-6 text-sm'} opacity-50 hover:opacity-100 transition-opacity z-10`}
+      className="fixed top-4 right-4 md:top-6 md:right-6 z-50 group"
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
-      {isDark ? 'light' : 'dark'}
+      <span className="terminal-bracket">[</span>
+      <span className="opacity-60 group-hover:opacity-100 transition-opacity">
+        {isDark ? 'light' : 'dark'}
+      </span>
+      <span className="terminal-bracket">]</span>
     </button>
+  )
+})
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TERMINAL HEADER - The hero section with typewriter effect
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const TerminalHeader = memo(function TerminalHeader() {
+  const [typedName, setTypedName] = useState('')
+  const [showCursor, setShowCursor] = useState(true)
+  const fullName = PERSONAL_INFO.name
+
+  useEffect(() => {
+    let i = 0
+    const typeInterval = setInterval(() => {
+      if (i < fullName.length) {
+        setTypedName(fullName.slice(0, i + 1))
+        i++
+      } else {
+        clearInterval(typeInterval)
+      }
+    }, 80)
+
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev)
+    }, 530)
+
+    return () => {
+      clearInterval(typeInterval)
+      clearInterval(cursorInterval)
+    }
+  }, [fullName])
+
+  return (
+    <header className="terminal-section mb-8 md:mb-12">
+      <div className="terminal-line mb-2">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">whoami</span>
+      </div>
+
+      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-4 glitch-text">
+        {typedName}
+        <span className={`cursor-blink ${showCursor ? 'opacity-100' : 'opacity-0'}`}>_</span>
+      </h1>
+
+      <div className="terminal-output space-y-1">
+        <div className="flex items-center gap-2">
+          <span className="terminal-label">role:</span>
+          <span className="text-accent">{PERSONAL_INFO.title}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="terminal-label">org:</span>
+          <span>{PERSONAL_INFO.currentCompany}</span>
+          <span className="opacity-40">{'// '}{PERSONAL_INFO.companyLocation}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="terminal-label">loc:</span>
+          <span className="opacity-70">{PERSONAL_INFO.location}</span>
+        </div>
+      </div>
+    </header>
+  )
+})
+
+// ═══════════════════════════════════════════════════════════════════════════
+// EXPERIENCE SECTION
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const ExperienceSection = memo(function ExperienceSection() {
+  const [expandedId, setExpandedId] = useState<string | null>('omni-rpa')
+
+  return (
+    <section className="terminal-section mb-8 md:mb-12">
+      <div className="section-header mb-6">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">cat</span>
+        <span className="terminal-arg">experience.log</span>
+      </div>
+
+      <div className="space-y-6">
+        {EXPERIENCE.map((exp, index) => {
+          const isExpanded = expandedId === exp.id
+          return (
+            <article
+              key={exp.id}
+              className="exp-card group"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div
+                className="exp-header cursor-pointer"
+                onClick={() => setExpandedId(isExpanded ? null : exp.id)}
+              >
+                <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
+                  <h3 className="text-lg md:text-xl font-bold">
+                    <span className="text-accent">{exp.position}</span>
+                  </h3>
+                  <span className="text-sm opacity-50 font-mono">{exp.period}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm opacity-70">
+                  <span className="font-semibold">{exp.company}</span>
+                  <span className="opacity-40">|</span>
+                  <span>{exp.location}</span>
+                  <span className="ml-auto text-xs opacity-40">
+                    [{isExpanded ? '-' : '+'}]
+                  </span>
+                </div>
+              </div>
+
+              <div className={`exp-content ${isExpanded ? 'expanded' : 'collapsed'}`}>
+                <ul className="space-y-3 mt-4 pl-4 border-l border-current opacity-20-border">
+                  {exp.description.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="text-sm leading-relaxed opacity-80 hover:opacity-100 transition-opacity"
+                      style={{ animationDelay: `${idx * 50}ms` }}
+                    >
+                      <span className="text-accent mr-2">&#x2192;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  )
+})
+
+// ═══════════════════════════════════════════════════════════════════════════
+// EDUCATION SECTION
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const EducationSection = memo(function EducationSection() {
+  return (
+    <section className="terminal-section mb-8 md:mb-12">
+      <div className="section-header mb-6">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">cat</span>
+        <span className="terminal-arg">education.md</span>
+      </div>
+
+      <div className="grid gap-4">
+        {EDUCATION.map((edu, index) => (
+          <article
+            key={edu.id}
+            className="edu-card"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
+            <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
+              <h3 className="font-bold text-base md:text-lg">{edu.institution}</h3>
+              <span className="text-sm opacity-50 font-mono">{edu.period}</span>
+            </div>
+            <p className="text-sm opacity-80 mb-1">{edu.degree}</p>
+            {'specialization' in edu && edu.specialization && (
+              <p className="text-xs opacity-50">
+                <span className="text-accent">spec:</span> {edu.specialization}
+              </p>
+            )}
+            <p className="text-xs opacity-40 mt-1">{edu.location}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+})
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PROJECTS SECTION
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const ProjectsSection = memo(function ProjectsSection() {
+  return (
+    <section className="terminal-section mb-8 md:mb-12">
+      <div className="section-header mb-6">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">ls -la</span>
+        <span className="terminal-arg">./projects/</span>
+      </div>
+
+      <div className="space-y-6">
+        {PROJECTS.map((project, index) => (
+          <article
+            key={project.id}
+            className="project-card"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
+            <h3 className="font-bold text-base md:text-lg mb-3 flex items-center gap-2">
+              <span className="text-accent opacity-60">./</span>
+              {project.title}
+            </h3>
+            <ul className="space-y-2 pl-4">
+              {project.items.map((item, idx) => (
+                <li
+                  key={idx}
+                  className="text-sm leading-relaxed opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  <span className="text-accent mr-2 opacity-60">&#x2022;</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+})
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SKILLS SECTION - Matrix/Grid style
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const SkillsSection = memo(function SkillsSection() {
+  return (
+    <section className="terminal-section mb-8 md:mb-12">
+      <div className="section-header mb-6">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">cat</span>
+        <span className="terminal-arg">skills.json</span>
+      </div>
+
+      <div className="skills-grid">
+        {Object.values(SKILLS).map((skillGroup, index) => (
+          <div
+            key={skillGroup.label}
+            className="skill-block"
+            style={{ animationDelay: `${index * 50}ms` }}
+          >
+            <h4 className="text-xs uppercase tracking-wider opacity-50 mb-2 font-bold">
+              {skillGroup.label}
+            </h4>
+            <div className="flex flex-wrap gap-1">
+              {skillGroup.items.map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="skill-tag"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Certifications */}
+      <div className="mt-6 pt-4 border-t border-current opacity-10-border">
+        <h4 className="text-xs uppercase tracking-wider opacity-50 mb-3 font-bold flex items-center gap-2">
+          <span className="text-accent">&#x2713;</span>
+          Certifications
+        </h4>
+        <div className="flex flex-wrap gap-2">
+          {CERTIFICATIONS.map((cert, idx) => (
+            <span key={idx} className="cert-badge">
+              {cert}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+})
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CONTACT SECTION - Footer with links
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const ContactSection = memo(function ContactSection() {
+  const [time, setTime] = useState('')
+
+  useEffect(() => {
+    const updateTime = () => {
+      setTime(new Date().toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }))
+    }
+    updateTime()
+    const interval = setInterval(updateTime, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <footer className="terminal-section mt-auto pt-8">
+      <div className="section-header mb-4">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">echo</span>
+        <span className="terminal-arg">$CONTACT</span>
+      </div>
+
+      <div className="contact-grid">
+        <a
+          href={`mailto:${PERSONAL_INFO.email}`}
+          className="contact-link group"
+        >
+          <span className="contact-label">email</span>
+          <span className="contact-value group-hover:text-accent transition-colors">
+            {PERSONAL_INFO.email}
+          </span>
+        </a>
+
+        <a
+          href={PERSONAL_INFO.linkedin.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contact-link group"
+        >
+          <span className="contact-label">linkedin</span>
+          <span className="contact-value group-hover:text-accent transition-colors">
+            {PERSONAL_INFO.linkedin.display}
+          </span>
+        </a>
+
+        <a
+          href={PERSONAL_INFO.website.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contact-link group"
+        >
+          <span className="contact-label">web</span>
+          <span className="contact-value group-hover:text-accent transition-colors">
+            {PERSONAL_INFO.website.display}
+          </span>
+        </a>
+      </div>
+
+      {/* Status bar */}
+      <div className="status-bar mt-8">
+        <div className="flex items-center gap-4 text-xs opacity-40">
+          <span className="flex items-center gap-1">
+            <span className="status-dot"></span>
+            online
+          </span>
+          <span>{time}</span>
+          <span className="ml-auto">{PERSONAL_INFO.location}</span>
+        </div>
+      </div>
+    </footer>
+  )
+})
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MOBILE COMPONENTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const MobileHeader = memo(function MobileHeader() {
+  return (
+    <header className="text-center mb-8">
+      <div className="terminal-line-mobile mb-3">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">whoami</span>
+      </div>
+
+      <h1 className="text-2xl font-bold tracking-tight mb-3 glitch-text">
+        {PERSONAL_INFO.name}
+      </h1>
+
+      <div className="space-y-1 text-sm">
+        <p className="text-accent font-semibold">{PERSONAL_INFO.title}</p>
+        <p className="opacity-70">{PERSONAL_INFO.currentCompany}</p>
+        <p className="opacity-50 text-xs">{PERSONAL_INFO.location}</p>
+      </div>
+    </header>
+  )
+})
+
+export const MobileExperience = memo(function MobileExperience() {
+  const [expandedId, setExpandedId] = useState<string | null>(null)
+
+  return (
+    <section className="mb-8">
+      <div className="section-header-mobile mb-4">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">cat</span>
+        <span className="terminal-arg">exp</span>
+      </div>
+
+      <div className="space-y-4">
+        {EXPERIENCE.map((exp) => {
+          const isExpanded = expandedId === exp.id
+          return (
+            <article
+              key={exp.id}
+              className="mobile-card"
+              onClick={() => setExpandedId(isExpanded ? null : exp.id)}
+            >
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="font-bold text-sm text-accent">{exp.position}</h3>
+                <span className="text-xs opacity-40">{exp.periodShort}</span>
+              </div>
+              <p className="text-xs opacity-70 mb-2">{exp.company}</p>
+
+              {isExpanded && (
+                <ul className="text-xs space-y-2 mt-3 pt-3 border-t border-current opacity-10-border">
+                  {exp.description.slice(0, 2).map((item, idx) => (
+                    <li key={idx} className="opacity-70 leading-relaxed">
+                      <span className="text-accent mr-1">&#x2192;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  )
+})
+
+export const MobileEducation = memo(function MobileEducation() {
+  return (
+    <section className="mb-8">
+      <div className="section-header-mobile mb-4">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">cat</span>
+        <span className="terminal-arg">edu</span>
+      </div>
+
+      <div className="space-y-3">
+        {EDUCATION.map((edu) => (
+          <article key={edu.id} className="mobile-card">
+            <div className="flex justify-between items-start mb-1">
+              <h3 className="font-bold text-sm">{edu.institutionShort}</h3>
+              <span className="text-xs opacity-40">{edu.period}</span>
+            </div>
+            <p className="text-xs opacity-70">{edu.degreeShort}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+})
+
+export const MobileProjects = memo(function MobileProjects() {
+  return (
+    <section className="mb-8">
+      <div className="section-header-mobile mb-4">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">ls</span>
+        <span className="terminal-arg">projects</span>
+      </div>
+
+      <div className="space-y-3">
+        {PROJECTS.map((project) => (
+          <article key={project.id} className="mobile-card">
+            <h3 className="font-bold text-sm mb-2 flex items-center gap-1">
+              <span className="text-accent opacity-60">./</span>
+              {project.title}
+            </h3>
+            <p className="text-xs opacity-70 leading-relaxed">
+              {project.items[0]}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+})
+
+export const MobileSkills = memo(function MobileSkills() {
+  const coreSkills = [
+    ...SKILLS.programming.items.slice(0, 2),
+    ...SKILLS.aiml.items.slice(0, 3),
+    ...SKILLS.tools.items.slice(0, 3),
+  ]
+
+  return (
+    <section className="mb-8">
+      <div className="section-header-mobile mb-4">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">cat</span>
+        <span className="terminal-arg">skills</span>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {coreSkills.map((skill, idx) => (
+          <span key={idx} className="skill-tag-mobile">
+            {skill}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {CERTIFICATIONS.map((cert, idx) => (
+          <span key={idx} className="cert-badge-mobile">
+            {cert}
+          </span>
+        ))}
+      </div>
+    </section>
+  )
+})
+
+export const MobileContact = memo(function MobileContact() {
+  return (
+    <footer className="mt-auto pt-6 border-t border-current opacity-10-border">
+      <div className="section-header-mobile mb-4">
+        <span className="terminal-prompt">$</span>
+        <span className="terminal-command">echo</span>
+        <span className="terminal-arg">$CONTACT</span>
+      </div>
+
+      <div className="space-y-3 text-sm">
+        <a
+          href={`mailto:${PERSONAL_INFO.email}`}
+          className="block opacity-70 hover:opacity-100 transition-opacity"
+        >
+          <span className="text-accent mr-2">mail:</span>
+          {PERSONAL_INFO.email}
+        </a>
+        <a
+          href={PERSONAL_INFO.linkedin.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block opacity-70 hover:opacity-100 transition-opacity"
+        >
+          <span className="text-accent mr-2">in:</span>
+          {PERSONAL_INFO.linkedin.display}
+        </a>
+        <a
+          href={PERSONAL_INFO.website.url}
+          className="block opacity-70 hover:opacity-100 transition-opacity"
+        >
+          <span className="text-accent mr-2">web:</span>
+          {PERSONAL_INFO.website.display}
+        </a>
+      </div>
+
+      <div className="mt-6 text-xs opacity-30 flex items-center gap-2">
+        <span className="status-dot-small"></span>
+        <span>online</span>
+        <span className="ml-auto">{PERSONAL_INFO.location}</span>
+      </div>
+    </footer>
   )
 })

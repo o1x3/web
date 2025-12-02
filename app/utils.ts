@@ -19,3 +19,11 @@ export function safeOpenLink(url: string): void {
 export function formatList(items: readonly string[], separator = ' • '): string {
   return items.join(separator)
 }
+
+/**
+ * Truncate text to specified length
+ */
+export function truncateText(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text
+  return text.slice(0, maxLength - 3) + '...'
+}
