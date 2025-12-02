@@ -66,7 +66,7 @@ export const TerminalHeader = memo(function TerminalHeader() {
   }, [fullName])
 
   return (
-    <header className="terminal-section mb-8 md:mb-12">
+    <header className="terminal-section mb-4 md:mb-6">
       <div className="terminal-line mb-2">
         <span className="terminal-prompt">$</span>
         <span className="terminal-command">whoami</span>
@@ -104,7 +104,7 @@ export const ExperienceSection = memo(function ExperienceSection() {
   const [expandedId, setExpandedId] = useState<string | null>('omni-rpa')
 
   return (
-    <section className="terminal-section mb-8 md:mb-12">
+    <section className="terminal-section mb-4 md:mb-6">
       <div className="section-header mb-6">
         <span className="terminal-prompt">$</span>
         <span className="terminal-command">cat</span>
@@ -168,7 +168,7 @@ export const ExperienceSection = memo(function ExperienceSection() {
 
 export const EducationSection = memo(function EducationSection() {
   return (
-    <section className="terminal-section mb-8 md:mb-12">
+    <section className="terminal-section mb-4 md:mb-6">
       <div className="section-header mb-6">
         <span className="terminal-prompt">$</span>
         <span className="terminal-command">cat</span>
@@ -206,7 +206,7 @@ export const EducationSection = memo(function EducationSection() {
 
 export const ProjectsSection = memo(function ProjectsSection() {
   return (
-    <section className="terminal-section mb-8 md:mb-12">
+    <section className="terminal-section mb-4 md:mb-6">
       <div className="section-header mb-6">
         <span className="terminal-prompt">$</span>
         <span className="terminal-command">ls -la</span>
@@ -248,7 +248,7 @@ export const ProjectsSection = memo(function ProjectsSection() {
 
 export const SkillsSection = memo(function SkillsSection() {
   return (
-    <section className="terminal-section mb-8 md:mb-12">
+    <section className="terminal-section mb-4 md:mb-6">
       <div className="section-header mb-6">
         <span className="terminal-prompt">$</span>
         <span className="terminal-command">cat</span>

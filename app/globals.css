@@ -180,9 +180,9 @@ body {
   height: 100vh;
   width: 100%;
   overflow-y: auto;
-  padding: var(--space-8);
-  padding-left: clamp(2rem, 5vw, 6rem);
-  padding-right: clamp(2rem, 4vw, 4rem);
+  padding: var(--space-4) var(--space-6);
+  padding-left: clamp(1.5rem, 3vw, 3rem);
+  padding-right: clamp(1rem, 2vw, 2rem);
   scrollbar-width: thin;
   scrollbar-color: var(--color-muted) transparent;
 }
@@ -648,11 +648,11 @@ body {
   }
 }
 
-/* Large screens: content fills available space */
+/* Large screens: modest padding increase */
 @media (min-width: 1600px) {
   .terminal-main {
-    padding-left: clamp(4rem, 8vw, 10rem);
-    padding-right: clamp(3rem, 5vw, 6rem);
+    padding-left: clamp(2rem, 4vw, 4rem);
+    padding-right: clamp(1.5rem, 3vw, 3rem);
   }
 }
 
