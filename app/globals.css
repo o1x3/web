@@ -165,11 +165,13 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-8) var(--space-6);
+  padding-left: 300px;
 }
 
 @media (max-width: 768px) {
   .main-container {
     padding: var(--space-6) var(--space-4);
+    padding-left: var(--space-4);
   }
 }
 
@@ -225,7 +227,7 @@ body {
   background: var(--surface-hover);
   border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 0 20px 0 oklch(65% 0.15 70 / 0.3);
 }
 
 .bento-card-interactive {
@@ -393,94 +395,178 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SKILL GRAPH - Interactive SVG
+   LAYOUT WITH SIDEBAR
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.skill-graph {
-  margin: var(--space-8) 0;
-  padding: var(--space-6);
-  background: var(--surface-inset);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+.layout-with-sidebar {
+  position: relative;
+  min-height: 100vh;
 }
 
-.skill-graph svg {
+.skill-sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 280px;
+  display: flex;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .skill-sidebar {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SKILL GRAPH FLOATING - Draggable organic nodes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.skill-graph-floating {
+  position: relative;
   width: 100%;
-  height: auto;
-  max-height: 300px;
+  height: 100%;
+  user-select: none;
 }
 
-.skill-node {
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-out);
-}
-
-.skill-node circle {
-  fill: var(--surface-elevated);
-  stroke: var(--border);
-  stroke-width: 2;
-  transition: all var(--duration-normal) var(--ease-out);
-}
-
-.skill-node:hover circle,
-.skill-node.active circle {
-  fill: var(--accent);
-  stroke: var(--accent);
-}
-
-.skill-node text {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  fill: var(--text-secondary);
-  text-anchor: middle;
-  dominant-baseline: middle;
+/* SVG layer for curved edges */
+.skill-graph-edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  transition: fill var(--duration-normal) var(--ease-out);
+  z-index: 1;
 }
 
-.skill-node:hover text,
-.skill-node.active text {
-  fill: var(--surface);
-}
-
-.skill-edge {
-  stroke: var(--border);
-  stroke-width: 1;
+.skill-edge-curve {
   fill: none;
-  transition: stroke var(--duration-normal) var(--ease-out);
+  stroke: var(--border);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  transition: stroke var(--duration-normal) var(--ease-out),
+              opacity var(--duration-normal) var(--ease-out);
 }
 
-.skill-edge.highlighted {
+.skill-edge-curve.highlighted {
   stroke: var(--accent);
   stroke-width: 2;
 }
 
-.skill-node.dimmed circle {
-  opacity: 0.3;
-}
-
-.skill-node.dimmed text {
-  opacity: 0.3;
-}
-
-.skill-edge.dimmed {
+.skill-edge-curve.dimmed {
   opacity: 0.15;
 }
 
-/* Mobile: Horizontal scrolling tags */
-.skill-tags-mobile {
+/* Floating draggable node */
+.skill-node-floating {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: grab;
+  z-index: 10;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.skill-node-floating.dragging {
+  cursor: grabbing;
+  z-index: 100;
+}
+
+.skill-node-floating .skill-node-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--surface-elevated);
+  border: 2px solid var(--border);
+  transition: all var(--duration-normal) var(--ease-out);
+  flex-shrink: 0;
+}
+
+.skill-node-floating:hover .skill-node-dot,
+.skill-node-floating.active .skill-node-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.15);
+  box-shadow: 0 0 20px oklch(65% 0.15 70 / 0.4);
+}
+
+.skill-node-floating.dragging .skill-node-dot {
+  transform: scale(1.2);
+  box-shadow: 0 0 30px oklch(65% 0.15 70 / 0.6);
+}
+
+.skill-node-floating.dimmed {
+  opacity: 0.3;
+}
+
+.skill-node-floating .skill-node-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  transition: color var(--duration-normal) var(--ease-out);
+  pointer-events: none;
+}
+
+.skill-node-floating:hover .skill-node-label,
+.skill-node-floating.active .skill-node-label {
+  color: var(--accent);
+}
+
+/* Floating tooltip */
+.skill-tooltip-floating {
+  position: absolute;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-elevated);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  z-index: 200;
+  pointer-events: none;
+  animation: tooltipFadeIn var(--duration-fast) var(--ease-out);
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.skill-tooltip-item {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Mobile: Show tags instead of graph */
+.skill-graph-floating .skill-tags-mobile {
   display: none;
 }
 
 @media (max-width: 768px) {
-  .skill-graph svg {
+  .skill-graph-floating .skill-graph-edges,
+  .skill-graph-floating .skill-node-floating,
+  .skill-tooltip-floating {
     display: none;
   }
 
-  .skill-tags-mobile {
+  .skill-graph-floating .skill-tags-mobile {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
+    padding: var(--space-4);
   }
 }
 

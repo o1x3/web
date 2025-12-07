@@ -3,12 +3,12 @@
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import { ThemeToggle } from './components/ui/ThemeToggle'
+import { SkillGraph } from './components/ui/SkillGraph'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { ExperienceSection } from './components/sections/Experience'
 import { EducationSection } from './components/sections/Education'
 import { ProjectsSection } from './components/sections/Projects'
-import { SkillsSection } from './components/sections/Skills'
 import { startUniqueFaviconRotation } from './favicon-manager'
 import { PERSONAL_INFO, EDUCATION, SKILLS } from './data'
 
@@ -83,19 +83,25 @@ export default function Home() {
       <div className="app-container">
         <ThemeToggle />
 
-        <main className="main-container">
-          <Header />
+        <div className="layout-with-sidebar">
+          {/* Left sidebar with vertical skill graph */}
+          <aside className="skill-sidebar">
+            <SkillGraph />
+          </aside>
 
-          <ExperienceSection />
+          {/* Main content */}
+          <main className="main-container">
+            <Header />
 
-          <EducationSection />
+            <ExperienceSection />
 
-          <ProjectsSection />
+            <EducationSection />
 
-          <SkillsSection />
+            <ProjectsSection />
 
-          <Footer />
-        </main>
+            <Footer />
+          </main>
+        </div>
       </div>
     </>
   )
