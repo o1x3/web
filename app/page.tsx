@@ -1,8 +1,5 @@
-'use client'
-
-import { useEffect, useState, useRef } from 'react'
 import Script from 'next/script'
-import { ThemeToggle } from './components/ui/ThemeToggle'
+import { ClientWrapper } from './components/ClientWrapper'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { ExperienceSection } from './components/sections/Experience'
@@ -10,7 +7,6 @@ import { ProjectsSection } from './components/sections/Projects'
 import { PublicationSection } from './components/sections/Publication'
 import { SkillsSection } from './components/sections/Skills'
 import { EducationSection } from './components/sections/Education'
-import { startUniqueFaviconRotation } from './favicon-manager'
 import { PERSONAL_INFO, EDUCATION, SKILLS } from './data'
 
 // Structured data for SEO
@@ -45,34 +41,6 @@ const structuredData = {
 }
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false)
-  const faviconCleanupRef = useRef<(() => void) | null>(null)
-
-  useEffect(() => {
-    setMounted(true)
-
-    // Initialize dynamic favicon rotation
-    if (typeof window !== 'undefined') {
-      const timer = setTimeout(() => {
-        faviconCleanupRef.current = startUniqueFaviconRotation()
-      }, 100)
-
-      return () => {
-        clearTimeout(timer)
-        faviconCleanupRef.current?.()
-      }
-    }
-  }, [])
-
-  // Prevent hydration mismatch - show minimal loading state
-  if (!mounted) {
-    return (
-      <div className="container">
-        <div style={{ minHeight: '100vh' }} />
-      </div>
-    )
-  }
-
   return (
     <>
       <Script
@@ -82,17 +50,17 @@ export default function Home() {
         strategy="afterInteractive"
       />
 
-      <ThemeToggle />
-
-      <main className="container">
-        <Header />
-        <ExperienceSection />
-        <ProjectsSection />
-        <PublicationSection />
-        <SkillsSection />
-        <EducationSection />
-        <Footer />
-      </main>
+      <ClientWrapper>
+        <main className="container">
+          <Header />
+          <ExperienceSection />
+          <ProjectsSection />
+          <PublicationSection />
+          <SkillsSection />
+          <EducationSection />
+          <Footer />
+        </main>
+      </ClientWrapper>
     </>
   )
 }

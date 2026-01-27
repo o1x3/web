@@ -318,6 +318,22 @@ a.badge:hover {
   color: var(--text-muted);
 }
 
+.footer-security {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.footer-security a {
+  color: var(--text-muted);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.footer-security a:hover {
+  opacity: 1;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    SKILLS - Comma-separated inline lists
    ═══════════════════════════════════════════════════════════════════════════ */

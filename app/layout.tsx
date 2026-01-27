@@ -5,6 +5,9 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ErrorBoundary } from './error-boundary'
 import './globals.css'
 
+// Force dynamic rendering for CSP nonces
+export const dynamic = 'force-dynamic'
+
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
@@ -72,13 +75,13 @@ export const viewport = {
   ],
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
