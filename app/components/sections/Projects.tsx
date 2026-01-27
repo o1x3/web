@@ -12,19 +12,31 @@ export const ProjectsSection = memo(function ProjectsSection() {
           <div key={project.id} className="entry">
             <div className="entry-title">
               {'url' in project ? (
-                <a href={project.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.title} (opens in new window)`}
+                >
                   {project.title}
                 </a>
               ) : (
                 project.title
               )}
-              {'badges' in project && project.badges.map((badge, i) => (
+              {'badges' in project && project.badges.map((badge) => (
                 'url' in badge ? (
-                  <a key={i} href={badge.url} target="_blank" rel="noopener noreferrer" className="badge">
+                  <a
+                    key={badge.label}
+                    href={badge.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="badge"
+                    aria-label={`${badge.label} (opens in new window)`}
+                  >
                     {badge.label}
                   </a>
                 ) : (
-                  <span key={i} className="badge">{badge.label}</span>
+                  <span key={badge.label} className="badge">{badge.label}</span>
                 )
               ))}
             </div>

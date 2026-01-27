@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 
 interface ExpandableTextProps {
   short: string
@@ -20,7 +20,14 @@ export function ExpandableText({ short, full }: ExpandableTextProps) {
       const lineHeight = parseFloat(getComputedStyle(containerRef.current).lineHeight)
       setHeights({ short: lineHeight, full: fullHeight })
     }
-  }, [short, full])
+  }, [])
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setExpanded((prev) => !prev)
+    }
+  }, [])
 
   return (
     <span
@@ -31,6 +38,12 @@ export function ExpandableText({ short, full }: ExpandableTextProps) {
       }}
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
+      onFocus={() => setExpanded(true)}
+      onBlur={() => setExpanded(false)}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-expanded={expanded}
     >
       <span className={`expandable-short ${expanded ? 'fade-out' : ''}`}>
         {short}

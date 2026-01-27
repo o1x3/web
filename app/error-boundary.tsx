@@ -33,7 +33,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       }
 
       return (
-        <div className="h-screen flex items-center justify-center font-mono p-4">
+        <div
+          className="h-screen flex items-center justify-center font-mono p-4"
+          role="alert"
+          aria-live="assertive"
+        >
           <div className="text-center">
             <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>
             <p className="opacity-70 mb-4">
@@ -41,7 +45,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-gray-900 hover:bg-gray-800 transition-colors rounded"
+              className="px-4 py-2 bg-gray-900 hover:bg-gray-800 transition-colors rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600"
             >
               Reload page
             </button>

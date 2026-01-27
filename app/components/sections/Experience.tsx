@@ -29,8 +29,8 @@ export const ExperienceSection = memo(function ExperienceSection() {
               </div>
             )}
             <ul className="bullet-list">
-              {exp.description.map((item, i) => (
-                <li key={i}>
+              {exp.description.map((item) => (
+                <li key={item.short}>
                   <ExpandableText short={item.short} full={item.full} />
                 </li>
               ))}

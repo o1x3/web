@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Script from 'next/script'
 import { ThemeToggle } from './components/ui/ThemeToggle'
 import { Header } from './components/layout/Header'
@@ -46,6 +46,7 @@ const structuredData = {
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
+  const faviconCleanupRef = useRef<(() => void) | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -53,11 +54,13 @@ export default function Home() {
     // Initialize dynamic favicon rotation
     if (typeof window !== 'undefined') {
       const timer = setTimeout(() => {
-        const cleanup = startUniqueFaviconRotation()
-        return cleanup
+        faviconCleanupRef.current = startUniqueFaviconRotation()
       }, 100)
 
-      return () => clearTimeout(timer)
+      return () => {
+        clearTimeout(timer)
+        faviconCleanupRef.current?.()
+      }
     }
   }, [])
 
