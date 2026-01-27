@@ -39,7 +39,7 @@ export const Footer = memo(function Footer() {
       <div className="footer-location">{PERSONAL_INFO.location}</div>
       <div className="footer-security">
         <a
-          href="https://securityheaders.com/?q=o1x3.com"
+          href="https://securityheaders.com/?q=https%3A%2F%2Fwww.o1x3.com%2F&followRedirects=on"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Security headers rated A+ (opens in new window)"
