@@ -1,17 +1,14 @@
 'use client'
 
 import { memo } from 'react'
-import { PERSONAL_INFO } from '../../data'
+import { PERSONAL_INFO, SUMMARY } from '../../data'
 
 export const Header = memo(function Header() {
   return (
-    <header className="hero-section">
-      <h1 className="hero-name">{PERSONAL_INFO.name}</h1>
-      <div className="hero-title">
-        <span>{PERSONAL_INFO.title}</span>
-        <span className="hero-separator">·</span>
-        <span className="hero-org">{PERSONAL_INFO.currentCompany}</span>
-      </div>
+    <header className="header">
+      <h1 className="header-name">{PERSONAL_INFO.name}</h1>
+      <p className="header-title">{PERSONAL_INFO.title}</p>
+      <p className="header-bio">{SUMMARY}</p>
     </header>
   )
 })

@@ -3,12 +3,13 @@
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import { ThemeToggle } from './components/ui/ThemeToggle'
-import { SkillGraph } from './components/ui/SkillGraph'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { ExperienceSection } from './components/sections/Experience'
-import { EducationSection } from './components/sections/Education'
 import { ProjectsSection } from './components/sections/Projects'
+import { PublicationSection } from './components/sections/Publication'
+import { SkillsSection } from './components/sections/Skills'
+import { EducationSection } from './components/sections/Education'
 import { startUniqueFaviconRotation } from './favicon-manager'
 import { PERSONAL_INFO, EDUCATION, SKILLS } from './data'
 
@@ -34,12 +35,12 @@ const structuredData = {
   })),
   email: `mailto:${PERSONAL_INFO.email}`,
   url: PERSONAL_INFO.website.url,
-  sameAs: [PERSONAL_INFO.linkedin.url],
+  sameAs: [PERSONAL_INFO.linkedin.url, PERSONAL_INFO.github.url],
   knowsAbout: [
-    ...SKILLS.programming.items,
+    ...SKILLS.languages.items,
     ...SKILLS.aiml.items,
+    ...SKILLS.backend.items,
     ...SKILLS.cloud.items,
-    ...SKILLS.tools.items,
   ],
 }
 
@@ -63,10 +64,8 @@ export default function Home() {
   // Prevent hydration mismatch - show minimal loading state
   if (!mounted) {
     return (
-      <div className="app-container">
-        <main className="main-container">
-          <div style={{ minHeight: '100vh' }} />
-        </main>
+      <div className="container">
+        <div style={{ minHeight: '100vh' }} />
       </div>
     )
   }
@@ -80,29 +79,17 @@ export default function Home() {
         strategy="afterInteractive"
       />
 
-      <div className="app-container">
-        <ThemeToggle />
+      <ThemeToggle />
 
-        <div className="layout-with-sidebar">
-          {/* Left sidebar with vertical skill graph */}
-          <aside className="skill-sidebar">
-            <SkillGraph />
-          </aside>
-
-          {/* Main content */}
-          <main className="main-container">
-            <Header />
-
-            <ExperienceSection />
-
-            <EducationSection />
-
-            <ProjectsSection />
-
-            <Footer />
-          </main>
-        </div>
-      </div>
+      <main className="container">
+        <Header />
+        <ExperienceSection />
+        <ProjectsSection />
+        <PublicationSection />
+        <SkillsSection />
+        <EducationSection />
+        <Footer />
+      </main>
     </>
   )
 }

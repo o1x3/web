@@ -1,4 +1,5 @@
 export { ExperienceSection } from './Experience'
 export { EducationSection } from './Education'
 export { ProjectsSection } from './Projects'
+export { PublicationSection } from './Publication'
 export { SkillsSection } from './Skills'
