@@ -18,6 +18,15 @@ export const ProjectsSection = memo(function ProjectsSection() {
               ) : (
                 project.title
               )}
+              {'badges' in project && project.badges.map((badge, i) => (
+                'url' in badge ? (
+                  <a key={i} href={badge.url} target="_blank" rel="noopener noreferrer" className="badge">
+                    {badge.label}
+                  </a>
+                ) : (
+                  <span key={i} className="badge">{badge.label}</span>
+                )
+              ))}
             </div>
             <ul className="bullet-list">
               <li>{project.description}</li>

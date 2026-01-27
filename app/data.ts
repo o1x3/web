@@ -21,24 +21,39 @@ export const PERSONAL_INFO = {
   },
 } as const
 
-export const SUMMARY = `Founding engineer who built the AI backend for a cloud automation platform from ground zero — now weeks from launch. Own a 20-agent orchestration system, real-time sync architecture, and full ML infrastructure. Lead code reviews, mentor engineers, and sync daily with founders. Thrive on bleeding-edge problems and fast iteration.`
+export const SUMMARY = `Building an AI platform that replaces cloud architects. 20-agent system, real-time sync, shipping soon.`
 
 export const EXPERIENCE = [
   {
     id: 'omni-rpa',
-    company: 'Omni RPA Inc / Agentic Solutions Pvt Ltd',
-    location: 'San Jose / Hyderabad',
-    position: 'Founding Software Engineer — AI & Backend Systems',
+    companies: [
+      { name: 'Omni RPA Inc', location: 'San Jose' },
+      { name: 'Agentic Solutions Pvt Ltd', location: 'Hyderabad' },
+    ],
+    position: 'Founding Software Engineer',
+    focus: 'AI & Backend Systems',
     period: 'Jan 2025 – Present',
-    periodShort: '2025–Pres',
     description: [
-      'Built core AI backend from scratch for a platform replacing cloud architects — users configure AWS/Azure/GCP infrastructure via chat while context graph and cost calculator update live; one-click deployment. Onboarded first enterprise client (Arrcus Cloud); launching publicly in weeks.',
-      'Architected 20+ agent system: main orchestration agent coordinates tool calling, function execution, and RAG retrieval while ambient agents maintain shared context graph consistency across all user interactions in real-time.',
-      'Built "hive mind" sync layer — websockets and event-driven architecture keep chat, context graph, live cost calculator, and UI synchronized; sub-second latency throughout.',
-      'Designed hybrid graph architecture (Neo4j + FalkorDB) powering millions of nodes with sub-2s query latency; built orchestration layer over cloud SKU pricing APIs serving millions of data points to agents.',
-      'Built async document ingestion pipeline (Python, NATS JetStream) processing hundreds of thousands of PDF pages into searchable knowledge graph for RAG; manage Supabase for session storage; built custom eval framework.',
-      'Own 3-5 repositories end-to-end: manage all PRs/issues, containerize and ship to production, on-call for incidents. Debugged through countless production issues to reach stable operation.',
-      'Lead cross-functional work across every team (frontend, data, Java backend, DevOps); mentored 2 interns, onboarded engineers, write technical specs. Demo to clients; sync daily with founders.',
+      {
+        short: 'Core AI backend for chat-to-infrastructure',
+        full: 'Core AI backend for chat-to-infrastructure — configure AWS/Azure/GCP via conversation, deploy in one click. First enterprise client onboarded.',
+      },
+      {
+        short: '20+ agent orchestration system',
+        full: '20+ agent orchestration: tool calling, RAG retrieval, shared context graph synced across all sessions.',
+      },
+      {
+        short: 'Real-time sync layer with websockets',
+        full: 'Real-time sync layer — websockets keep chat, cost calculator, and UI in lockstep. Sub-second latency.',
+      },
+      {
+        short: 'Hybrid graph DB and async doc pipeline',
+        full: 'Hybrid graph DB (Neo4j + FalkorDB), async doc pipeline processing 100k+ PDFs, custom eval framework.',
+      },
+      {
+        short: 'Own 3-5 repos, lead cross-team work',
+        full: 'Own 3-5 repos end-to-end. Lead cross-team work, mentor engineers, demo to clients, sync with founders daily.',
+      },
     ],
   },
 ] as const
@@ -47,18 +62,33 @@ export const PROJECTS = [
   {
     id: 'ctoken',
     title: 'ctoken',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/ctoken' },
+      { label: 'PyPI', url: 'https://pypi.org/project/ctoken' },
+      { label: 'MIT' },
+    ],
     url: 'https://github.com/o1x3/ctoken',
-    description: 'OpenAI API cost estimation library published on PyPI. Supports all models, streaming, caching breakdown. MIT licensed, CI/CD, full test suite.',
+    description: 'OpenAI API cost estimation library. Supports all models, streaming, caching breakdown.',
   },
   {
     id: 'ios-apps',
-    title: 'iOS Apps (In Development)',
-    description: 'Building two apps with on-device AI using Apple Foundation Models: health/fitness tracker and personal finance manager. Shipping Q1 2026.',
+    title: 'iOS Apps',
+    badges: [
+      { label: 'Swift' },
+      { label: 'SwiftUI' },
+      { label: 'WIP' },
+    ],
+    description: 'Two apps with on-device AI using Apple Foundation Models. Shipping Q1 2026.',
   },
   {
     id: 'crop-detection',
-    title: 'Crop Ripeness Detection (Research Intern)',
-    description: 'Built real-time detection system using YOLOv8 fine-tuned on proprietary agricultural dataset; deployed to production at Digital University of Kerala.',
+    title: 'Crop Ripeness Detection',
+    badges: [
+      { label: 'Python' },
+      { label: 'YOLOv8' },
+      { label: 'Research' },
+    ],
+    description: 'Real-time detection fine-tuned on agricultural dataset; deployed at Digital University Kerala.',
   },
 ] as const
 
