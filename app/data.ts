@@ -32,27 +32,54 @@ export const EXPERIENCE = [
     ],
     position: 'Founding Software Engineer',
     focus: 'AI & Backend Systems',
-    period: 'Jan 2025 – Present',
+    period: 'Jan 2024 – Present',
     description: [
       {
-        short: 'Core AI backend for chat-to-infrastructure',
-        full: 'Core AI backend for chat-to-infrastructure — configure AWS/Azure/GCP via conversation, deploy in one click. First enterprise client onboarded.',
-      },
-      {
-        short: '20+ agent orchestration system',
-        full: '20+ agent orchestration: tool calling, RAG retrieval, shared context graph synced across all sessions.',
+        short: 'Core backend from scratch for cloud automation',
+        full: 'Built core backend from scratch for cloud automation platform; onboarded first enterprise client pre-launch. Validated 100+ deployment workflows through production testing.',
       },
       {
         short: 'Real-time sync layer with websockets',
-        full: 'Real-time sync layer — websockets keep chat, cost calculator, and UI in lockstep. Sub-second latency.',
+        full: 'Designed real-time sync layer using websockets and event-driven architecture; keeps multiple UI components synchronized with sub-second latency.',
       },
       {
-        short: 'Hybrid graph DB and async doc pipeline',
-        full: 'Hybrid graph DB (Neo4j + FalkorDB), async doc pipeline processing 100k+ PDFs, custom eval framework.',
+        short: 'Hybrid graph DB powering millions of nodes',
+        full: 'Architected hybrid graph database system (Neo4j + FalkorDB) powering millions of nodes with sub-second query latency.',
       },
       {
-        short: 'Own 3-5 repos, lead cross-team work',
-        full: 'Own 3-5 repos end-to-end. Lead cross-team work, mentor engineers, demo to clients, sync with founders daily.',
+        short: 'Cloud provider SKU pricing orchestration',
+        full: 'Built orchestration layer over cloud provider SKU pricing APIs (AWS/Azure/GCP), serving millions of data points to downstream consumers in real-time.',
+      },
+      {
+        short: 'Async doc ingestion pipeline',
+        full: 'Built async document ingestion pipeline (Python, NATS JetStream) processing hundreds of thousands of PDF pages into searchable knowledge graph.',
+      },
+      {
+        short: 'Own 3-5 repos, primary on-call engineer',
+        full: 'Own 3-5 repositories end-to-end: manage all PRs/issues, containerize services, ship to production. Primary on-call engineer; 2hr worst-case incident recovery.',
+      },
+      {
+        short: 'Infrastructure monitoring with Grafana & PostHog',
+        full: 'Manage infrastructure monitoring with Grafana and PostHog (on-premise). Handle Supabase for session storage and Redis for caching.',
+      },
+      {
+        short: 'Lead cross-functional work, mentor engineers',
+        full: 'Lead cross-functional work across frontend, data, Java backend, and DevOps teams in a fully remote team of 10. Mentored 2 interns, onboarded engineers, write technical specs.',
+      },
+    ],
+  },
+  {
+    id: 'duk',
+    companies: [
+      { name: 'Digital University of Kerala', location: 'Kerala' },
+    ],
+    position: 'Research Intern',
+    focus: 'Computer Vision',
+    period: 'Oct 2023 – Dec 2023',
+    description: [
+      {
+        short: 'Real-time crop ripeness detection with YOLOv8',
+        full: 'Built real-time crop ripeness detection system using YOLOv8 fine-tuned on proprietary agricultural dataset; deployed to production.',
       },
     ],
   },
@@ -101,25 +128,25 @@ export const PUBLICATION = {
 } as const
 
 export const SKILLS = {
-  certifications: {
-    label: 'Certifications',
-    items: ['AWS Certified Cloud Practitioner', 'Microsoft Azure Administrator (AZ-104)'],
-  },
   languages: {
     label: 'Languages',
-    items: ['Python', 'SQL', 'C', 'C++', 'Java', 'Swift (learning)'],
-  },
-  aiml: {
-    label: 'AI/ML',
-    items: ['Multi-Agent Systems', 'LLM Orchestration', 'Tool/Function Calling', 'RAG', 'Eval Frameworks', 'MCP', 'PyTorch'],
+    items: ['Python', 'SQL', 'Java', 'C', 'C++'],
   },
   backend: {
     label: 'Backend',
-    items: ['Async Python', 'Websockets', 'Event-Driven', 'FastAPI', 'NATS', 'Neo4j', 'FalkorDB', 'Supabase', 'Redis'],
+    items: ['Async Python', 'FastAPI', 'Websockets', 'Event-Driven Architecture', 'NATS JetStream'],
+  },
+  databases: {
+    label: 'Databases',
+    items: ['Neo4j', 'FalkorDB', 'Supabase (Postgres)', 'Redis'],
   },
   cloud: {
     label: 'Cloud & DevOps',
-    items: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'CI/CD'],
+    items: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'CI/CD', 'Grafana', 'PostHog'],
+  },
+  certifications: {
+    label: 'Certifications',
+    items: ['AWS Certified Cloud Practitioner', 'Microsoft Azure Administrator (AZ-104)'],
   },
 } as const
 

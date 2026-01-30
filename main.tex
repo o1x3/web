@@ -1,32 +1,26 @@
-\documentclass[11pt]{article}       % set main text size
-\usepackage[letterpaper,                % set paper size to letterpaper. change to a4paper for resumes outside of North America
-top=0.5in,                          % specify top page margin
-bottom=0.5in,                       % specify bottom page margin
-left=0.5in,                         % specify left page margin
-right=0.5in]{geometry}              % specify right page margin
+\documentclass[11pt]{article}
+\usepackage[letterpaper,
+top=0.4in,
+bottom=0.4in,
+left=0.5in,
+right=0.5in]{geometry}
                        
-%\usepackage{XCharter}               % set font. comment this line out if you want to use the default LaTeX font Computer Modern
-\usepackage[T1]{fontenc}            % output encoding
-\usepackage[utf8]{inputenc}         % input encoding
-\usepackage{enumitem}               % enable lists for bullet points: itemize and \item
-\usepackage[hidelinks]{hyperref}    % format hyperlinks
-\usepackage{titlesec}               % enable section title customization
-\raggedright                        % disable text justification
-\pagestyle{empty}                   % disable page numbering
-\usepackage{tfrupee}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\raggedright
+\pagestyle{empty}
 
-% ensure PDF output will be all-Unicode and machine-readable
 \input{glyphtounicode}
 \pdfgentounicode=1
 
-% format section headings: bolding, size, white space above and below
 \titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
 
-% format bullet points: size, white space above and below, white space between bullets
 \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
-\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt} %%% Test various topsep values to fix vertical spacing errors
+\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=5pt}
 
-% resume starts here
 \begin{document}
 
 % name
@@ -34,73 +28,56 @@ right=0.5in]{geometry}              % specify right page margin
 \LARGE \textbf{Karthik Vinayan}
 \end{center}
 
-\vspace{5pt}
+\vspace{3pt}
 
 % contact information
-\centerline{\href{mailto:karthikvinayan57@gmail.com}{karthikvinayan57@gmail.com} \hspace{0.5em} | \hspace{0.5em} Hyderabad, IN \hspace{0.5em} | \hspace{0.5em} \href{https://linkedin.com/in/karthik-vinayan}{linkedin.com/in/karthik-vinayan} \hspace{0.5em} | \hspace{0.5em} \href{https://o1x3.com}{o1x3.com}}
-
+\centerline{\href{mailto:karthikvinayan57@gmail.com}{karthikvinayan57@gmail.com} \hspace{0.5em} | \hspace{0.5em} Hyderabad, IN \hspace{0.5em} | \hspace{0.5em} \href{https://linkedin.com/in/karthik-vinayan}{LinkedIn} \hspace{0.5em} | \hspace{0.5em} \href{https://github.com/o1x3}{GitHub} \hspace{0.5em} | \hspace{0.5em} \href{https://o1x3.com}{o1x3.com}}
 
 \vspace{-10pt}
 
-% education section
-\section*{Education}
-\noindent
-\textbf{Vellore Institute of Technology} -- B.Tech Computer Science and Engineering \hfill \quad Sep 2021 -- Aug 2025 \\
-Specialization in Artificial Intelligence and Machine Learning -- Chennai, IN \\
-\noindent
-\textbf{St. Thomas Central School} -- AISSCE - PCM with Computer Science \hfill \quad Jun 2009 -- Mar 2021 \\
-Thiruvananthapuram, IN
+% summary
+\section*{Summary}
+Founding engineer who built the AI backend for a cloud automation platform from ground zero — now weeks from launch. Own a 20-agent orchestration system, real-time sync architecture, and full ML infrastructure. Lead code reviews, mentor engineers, and sync daily with founders. Thrive on bleeding-edge problems and fast iteration.
+
+\vspace{-6.5pt}
+\section*{Experience}
+
+\textbf{Founding Software Engineer — AI \& Backend Systems} \hfill Jan 2025 -- Present \\
+{\small Omni RPA Inc / Agentic Solutions Pvt Ltd — San Jose / Hyderabad}
+\begin{itemize}
+  \item Built core AI backend from scratch for a platform replacing cloud architects — users configure AWS/Azure/GCP infrastructure via chat while context graph and cost calculator update live; one-click deployment. Onboarded first enterprise client (Arrcus Cloud); launching publicly in weeks.
+  \item Architected 20+ agent system: main orchestration agent coordinates tool calling, function execution, and RAG retrieval while ambient agents maintain shared context graph consistency across all user interactions in real-time.
+  \item Built "hive mind" sync layer — websockets and event-driven architecture keep chat, context graph, live cost calculator, and UI synchronized; sub-second latency throughout.
+  \item Designed hybrid graph architecture (Neo4j + FalkorDB) powering millions of nodes with sub-2s query latency; built orchestration layer over cloud SKU pricing APIs serving millions of data points to agents.
+  \item Built async document ingestion pipeline (Python, NATS JetStream) processing hundreds of thousands of PDF pages into searchable knowledge graph for RAG; manage Supabase for session storage; built custom eval framework.
+  \item Own 3-5 repositories end-to-end: manage all PRs/issues, containerize and ship to production, on-call for incidents. Debugged through countless production issues to reach stable operation.
+  \item Lead cross-functional work across every team (frontend, data, Java backend, DevOps); mentored 2 interns, onboarded engineers, write technical specs. Demo to clients; sync daily with founders.
+\end{itemize}
+
+\vspace{-18.5pt}
+
+\section*{Open Source \& Projects}
+\textbf{\href{https://github.com/o1x3/ctoken}{ctoken}} — OpenAI API cost estimation library published on PyPI. Supports all models, streaming, caching breakdown. MIT licensed, CI/CD, full test suite. \\[4pt]
+\textbf{iOS Apps (In Development)} — Building two apps with on-device AI using Apple Foundation Models: health/fitness tracker and personal finance manager. Shipping Q1 2026. \\[4pt]
+\textbf{Crop Ripeness Detection (Research Intern)} — Built real-time detection system using YOLOv8 fine-tuned on proprietary agricultural dataset; deployed to production at Digital University of Kerala.
 
 \vspace{-6.5pt}
 
-\section*{Experience}
-\textbf{Founding Software Engineer,} Omni RPA Inc — San Jose, California \hfill June 2024 – Present \\
-\vspace{-9pt}
-\begin{itemize}
-  \item Built and deployed agentic AI systems using LLMs and a NebulaGraph-based Knowledge Graph; enabled dynamic retrieval, reasoning, and contextual handling for CSP-focused automation use cases.
-  \item Developed and maintained large-scale Knowledge Graphs with custom ETL pipelines; mapped structured/unstructured data and optimized graph query performance for real-time applications.
-  \item Designed RESTful APIs and backend services around LLM agents and Knowledge Graphs; implemented MCP servers to coordinate multi-agent workflows and backend data systems.
-  \item Led DevOps efforts; containerized services with Docker, managed Kubernetes deployments, and set up CI/CD pipelines for testing, versioning, and environment rollouts.
-  \item Architected end-to-end system designs for enterprise automation platforms; collaborated with stakeholders to define requirements, created technical proposals and architecture diagrams, and delivered proof-of-concept demos to support client pitches and business development.
-\end{itemize}
+\section*{Publication}
+\textbf{Automated Medicine Delivery System for Hospitals} — Springer LNNS, 2025 \\
+{\small Led team building Raspberry Pi autonomous robot with obstacle detection, path following, and RFID room ID. \href{https://doi.org/10.1007/978-981-96-3652-5\_40}{DOI: 10.1007/978-981-96-3652-5\_40}}
 
+\vspace{-6.5pt}
 
+\section*{Skills \& Certifications}
+\textbf{Certifications:} AWS Certified Cloud Practitioner, Microsoft Azure Administrator (AZ-104) \\
+\textbf{Languages:} Python, SQL, C, C++, Java, Swift (learning) \\
+\textbf{AI/ML:} Multi-Agent Systems, LLM Orchestration, Tool/Function Calling, RAG, Eval Frameworks, MCP, PyTorch \\
+\textbf{Backend:} Async Python, Websockets, Event-Driven, FastAPI, NATS, Neo4j, FalkorDB, Supabase, Redis \\
+\textbf{Cloud \& DevOps:} AWS, Azure, GCP, Docker, Kubernetes, CI/CD
 
-\textbf{Research Intern,} Digital University of Kerala -- Thiruvananthapuram, IN \hfill Oct 2023 -- Dec 2023 \\
-\vspace{-9pt}
-\begin{itemize}
-  \item Engineered an innovative computer vision solution, employing a YOLOv8 model finely tuned on a proprietary dataset, showcasing real-time tomato ripeness detection in a production environment
-\end{itemize}
+\vspace{-6.5pt}
+\section*{Education}
+\textbf{Vellore Institute of Technology} -- B.Tech CSE, AI \& ML Specialization \hfill Sep 2021 -- Aug 2025
 
-
-% \textbf{Job Title,} \href{https://www.fstl1992.com/}{Company} -- City, ST \hfill XXXX -- XXXX \\
-% \vspace{-9pt}
-
-\vspace{-18.5pt}
-
-% projects section
-\section*{Projects and Experience}
-\textbf{Python-Powered Data Engineering Consultant} \\
-\vspace{-9pt}
-\begin{itemize}
-  \item Developed custom web scraping pipelines to extract valuable data from various sources, including websites, APIs, and databases. Designed and implemented RESTful APIs using Flask to seamlessly integrate scraped data into client systems
-  \item Designed and implemented robust data pipelines for data cleaning, transformation, and validation, leveraging Pandas and other Python libraries
-  \item Built and deployed automated web servers to ensure continuous data updates and accessibility
-\end{itemize}
-\textbf{Advanced Driver Assistance System (ADAS) Development} \\
-\vspace{-9pt}
-\begin{itemize}
-  \item Led a team in the design and development of an ADAS prototype buggy leveraging Raspberry Pi implementing core ADAS features such as lane following assistance, automatic lane changing, and object detection using computer vision and machine learning techniques in Python
-  \item Successfully adapted the ADAS technology for a hospital setup, pending publication, demonstrating adaptability and innovative problem-solving
-\end{itemize}
-
-\vspace{-18.5pt}
-% skills section
-\section*{Skills}
-\textbf{Programming Languages:} Python (Pandas, NumPy, TensorFlow, Pytorch), C, C++, Java, SQL \\
-\textbf{AI/ML Technologies:} TensorFlow, PyTorch, Large Language Models (LLMs), Computer Vision, Machine Learning \\
-\textbf{Data \& Cloud:} BigQuery, AWS (Cloud Practitioner), Azure (AZ-104 Certified Administrator), GCP \\
-\textbf{Development Tools:} Git, Docker, RESTful APIs, Flask, RAG, GraphDBs \\
-\textbf{Languages:} English (Fluent), Malayalam (Native), Hindi (Conversational), Tamil (Conversational) \\
-\textbf{Clubs and Extra-Curricular:} IEEE Computer Society, Core organizer for Vibrance'23 and Technovit'23
 \end{document}

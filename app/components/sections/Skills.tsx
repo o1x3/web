@@ -5,11 +5,11 @@ import { SKILLS } from '../../data'
 
 export const SkillsSection = memo(function SkillsSection() {
   const skillCategories = [
-    SKILLS.certifications,
     SKILLS.languages,
-    SKILLS.aiml,
     SKILLS.backend,
+    SKILLS.databases,
     SKILLS.cloud,
+    SKILLS.certifications,
   ]
 
   return (
