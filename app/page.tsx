@@ -8,6 +8,7 @@ import { PublicationSection } from './components/sections/Publication'
 import { SkillsSection } from './components/sections/Skills'
 import { EducationSection } from './components/sections/Education'
 import { PERSONAL_INFO, EDUCATION, SKILLS } from './data'
+import { fetchOSSContributions } from './lib/github'
 
 // Structured data for SEO
 const structuredData = {
@@ -40,7 +41,9 @@ const structuredData = {
   ],
 }
 
-export default function Home() {
+export default async function Home() {
+  const contributions = await fetchOSSContributions()
+
   return (
     <>
       <Script
@@ -54,7 +57,7 @@ export default function Home() {
         <main className="container">
           <Header />
           <ExperienceSection />
-          <ProjectsSection />
+          <ProjectsSection contributions={contributions} />
           <PublicationSection />
           <SkillsSection />
           <EducationSection />

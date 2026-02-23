@@ -97,6 +97,9 @@ export const PROJECTS = [
     url: 'https://github.com/o1x3/ctoken',
     description: 'OpenAI API cost estimation library. Supports all models, streaming, caching breakdown.',
   },
+] as const
+
+export const SIDE_PROJECTS = [
   {
     id: 'ios-apps',
     title: 'iOS Apps',
