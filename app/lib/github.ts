@@ -6,15 +6,16 @@ export interface OSSContribution {
   description: string
   date: string
   avatarUrl: string
+  stars: string
 }
 
 const README_URL =
   'https://raw.githubusercontent.com/o1x3/o1x3/refs/heads/main/README.md'
 
 // Each PR line looks like:
-// - <img src="https://github.com/owner.png" width="18" /> [owner/repo#N](url) — description · Mon YYYY
+// - <img ...> [owner/repo#N](url) — description · Mon YYYY <!-- ★ 12345 -->
 const PR_REGEX =
-  /-\s*<img\s+src="([^"]+)"[^/]*\/>\s*\[([^\]]+)\]\(([^)]+)\)\s*—\s*(.+?)\s*·\s*(.+)$/
+  /-\s*<img\s+src="([^"]+)"[^/]*\/>\s*\[([^\]]+)\]\(([^)]+)\)\s*—\s*(.+?)\s*·\s*(.+?)\s*<!--\s*★\s*(\d+)\s*-->/
 
 export async function fetchOSSContributions(): Promise<OSSContribution[]> {
   try {
@@ -28,7 +29,7 @@ export async function fetchOSSContributions(): Promise<OSSContribution[]> {
       const match = line.match(PR_REGEX)
       if (!match) continue
 
-      const [, avatarUrl, repoRef, prUrl, description, date] = match
+      const [, avatarUrl, repoRef, prUrl, description, date, starsRaw] = match
       const [repo, prNumber] = repoRef.split('#')
 
       contributions.push({
@@ -39,6 +40,9 @@ export async function fetchOSSContributions(): Promise<OSSContribution[]> {
         description: description.replace(/`/g, '').trim(),
         date: date.trim(),
         avatarUrl,
+        stars: Number(starsRaw) >= 1000
+          ? `${(Number(starsRaw) / 1000).toFixed(1).replace(/\.0$/, '')}k`
+          : starsRaw,
       })
     }
 
