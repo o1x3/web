@@ -36,6 +36,7 @@ export function middleware(request: NextRequest) {
   response.headers.set('Permissions-Policy', 'accelerometer=(),camera=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),payment=(),usb=()')
   response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
   response.headers.set('X-XSS-Protection', '1; mode=block')
+  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin')
 
   return response
 }

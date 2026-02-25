@@ -39,7 +39,7 @@ export async function fetchOSSContributions(): Promise<OSSContribution[]> {
         prUrl,
         description: description.replace(/`/g, '').trim(),
         date: date.trim(),
-        avatarUrl,
+        avatarUrl: avatarUrl.includes('?') ? avatarUrl : `${avatarUrl}?s=36&v=4`,
         stars: Number(starsRaw) >= 1000
           ? `${(Number(starsRaw) / 1000).toFixed(1).replace(/\.0$/, '')}k`
           : starsRaw,
