@@ -1,9 +1,6 @@
-'use client'
-
-import { memo } from 'react'
 import { PERSONAL_INFO } from '../../data'
 
-export const Footer = memo(function Footer() {
+export function Footer() {
   return (
     <footer className="footer">
       <div className="footer-links">
@@ -49,4 +46,4 @@ export const Footer = memo(function Footer() {
       </div>
     </footer>
   )
-})
+}

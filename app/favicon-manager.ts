@@ -1,5 +1,3 @@
-'use client'
-
 // Constants
 const CANVAS_SIZE = 32
 const FAVICON_ROTATION_INTERVAL = 30000 // 30 seconds

@@ -34,18 +34,35 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
       return (
         <div
-          className="h-screen flex items-center justify-center font-mono p-4"
+          style={{
+            minHeight: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: 'monospace',
+            padding: '1rem',
+          }}
           role="alert"
           aria-live="assertive"
         >
-          <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>
-            <p className="opacity-70 mb-4">
+          <div style={{ textAlign: 'center' }}>
+            <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+              Something went wrong
+            </h1>
+            <p style={{ opacity: 0.7, marginBottom: '1rem' }}>
               {this.state.error?.message || 'An unexpected error occurred'}
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-gray-900 hover:bg-gray-800 transition-colors rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600"
+              style={{
+                padding: '0.5rem 1rem',
+                background: '#1a1a1a',
+                color: '#e5e5e5',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontFamily: 'monospace',
+              }}
             >
               Reload page
             </button>

@@ -1,12 +1,9 @@
-'use client'
-
-import { memo } from 'react'
 import { EDUCATION } from '../../data'
 
-export const EducationSection = memo(function EducationSection() {
+export function EducationSection() {
   return (
-    <section className="section-row">
-      <div className="section-label">Education</div>
+    <section className="section-row" aria-label="Education">
+      <h2 className="section-label">Education</h2>
       <div className="section-content">
         {EDUCATION.map((edu) => (
           <div key={edu.id} className="entry">
@@ -20,4 +17,4 @@ export const EducationSection = memo(function EducationSection() {
       </div>
     </section>
   )
-})
+}

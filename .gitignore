@@ -74,3 +74,6 @@ public/
 
 *.tex
 .serena/
+improve.md
+build-output.txt
+findings/

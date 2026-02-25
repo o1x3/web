@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
     "default-src 'self'",
     scriptSrc,
     "style-src 'self' 'unsafe-inline'",
-    "font-src 'self' https://fonts.gstatic.com",
+    "font-src 'self'",
     "img-src 'self' data: https: blob:",
     "connect-src 'self' https://vercel.live https://api.vercel.com https://vitals.vercel-analytics.com wss://localhost:* ws://localhost:*",
     "frame-ancestors 'none'",

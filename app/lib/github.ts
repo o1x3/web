@@ -19,7 +19,7 @@ const PR_REGEX =
 
 export async function fetchOSSContributions(): Promise<OSSContribution[]> {
   try {
-    const res = await fetch(README_URL, { next: { revalidate: 0 } })
+    const res = await fetch(README_URL, { next: { revalidate: 3600 } })
     if (!res.ok) return []
     const text = await res.text()
 

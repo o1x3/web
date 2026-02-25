@@ -1,13 +1,10 @@
-'use client'
-
-import { memo } from 'react'
 import { EXPERIENCE } from '../../data'
 import { ExpandableText } from '../ui/ExpandableText'
 
-export const ExperienceSection = memo(function ExperienceSection() {
+export function ExperienceSection() {
   return (
-    <section className="section-row">
-      <div className="section-label">Experience</div>
+    <section className="section-row" aria-label="Experience">
+      <h2 className="section-label">Experience</h2>
       <div className="section-content">
         {EXPERIENCE.map((exp) => (
           <div key={exp.id} className="entry">
@@ -40,4 +37,4 @@ export const ExperienceSection = memo(function ExperienceSection() {
       </div>
     </section>
   )
-})
+}

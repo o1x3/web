@@ -45,10 +45,10 @@ export function ExpandableText({ short, full }: ExpandableTextProps) {
       tabIndex={0}
       aria-expanded={expanded}
     >
-      <span className={`expandable-short ${expanded ? 'fade-out' : ''}`}>
+      <span className={`expandable-short ${expanded ? 'fade-out' : ''}`} aria-hidden={expanded}>
         {short}
       </span>
-      <span ref={fullRef} className={`expandable-full ${expanded ? '' : 'fade-out'}`}>
+      <span ref={fullRef} className={`expandable-full ${expanded ? '' : 'fade-out'}`} aria-hidden={!expanded}>
         {full}
       </span>
     </span>

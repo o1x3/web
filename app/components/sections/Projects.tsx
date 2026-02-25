@@ -1,8 +1,53 @@
 'use client'
 
-import { memo, useState } from 'react'
+import { memo, useState, useEffect, useRef, useCallback } from 'react'
 import { PROJECTS, SIDE_PROJECTS } from '../../data'
 import type { OSSContribution } from '../../lib/github'
+
+function useModal(onClose: () => void) {
+  const modalRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    triggerRef.current = document.activeElement as HTMLElement
+
+    // Focus the modal
+    const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    firstFocusable?.focus()
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+      if (e.key === 'Tab') {
+        const focusable = modalRef.current?.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        if (!focusable?.length) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      triggerRef.current?.focus()
+    }
+  }, [onClose])
+
+  return modalRef
+}
 
 const VISIBLE_CONTRIBUTIONS = 4
 
@@ -86,11 +131,20 @@ function ContributionEntry({ c }: { c: OSSContribution }) {
 }
 
 function SideProjectsModal({ onClose }: { onClose: () => void }) {
+  const modalRef = useModal(onClose)
+
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={modalRef}
+        className="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="side-projects-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="modal-header">
-          <span className="modal-title">Side Projects</span>
+          <span className="modal-title" id="side-projects-title">Side Projects</span>
           <button className="modal-close" onClick={onClose} aria-label="Close">
             &times;
           </button>
@@ -112,11 +166,20 @@ function ContributionsModal({
   contributions: OSSContribution[]
   onClose: () => void
 }) {
+  const modalRef = useModal(onClose)
+
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={modalRef}
+        className="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contributions-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="modal-header">
-          <span className="modal-title">Open Source Contributions</span>
+          <span className="modal-title" id="contributions-title">Open Source Contributions</span>
           <button className="modal-close" onClick={onClose} aria-label="Close">
             &times;
           </button>
@@ -145,16 +208,17 @@ export const ProjectsSection = memo(function ProjectsSection({
 
   return (
     <>
-      <section className="section-row">
-        <div className="section-label">
+      <section className="section-row" aria-label="Projects">
+        <h2 className="section-label">
           Projects
           <button
             className="section-label-btn"
             onClick={() => setShowSideProjects(true)}
+            aria-label="Show side projects"
           >
             (side projects)
           </button>
-        </div>
+        </h2>
         <div className="section-content">
           {PROJECTS.map((project) => (
             <ProjectEntry key={project.id} project={project} />
@@ -163,16 +227,10 @@ export const ProjectsSection = memo(function ProjectsSection({
       </section>
 
       {visible.length > 0 && (
-        <section className="section-row">
-          <div className="section-label">Open Source</div>
+        <section className="section-row" aria-label="Open Source">
+          <h2 className="section-label">Open Source</h2>
           <div className="section-content">
-            <div
-              className="oss-list-wrapper"
-              onClick={() => setShowContributions(true)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setShowContributions(true) }}
-            >
+            <div className="oss-list-wrapper">
               <div className="oss-list">
                 {visible.map((c) => (
                   <ContributionEntry key={c.id} c={c} />
@@ -181,9 +239,12 @@ export const ProjectsSection = memo(function ProjectsSection({
               {hasMore && (
                 <>
                   <div className="oss-fade" aria-hidden="true" />
-                  <span className="oss-hint">
+                  <button
+                    className="oss-hint"
+                    onClick={() => setShowContributions(true)}
+                  >
                     {visible.length} of {contributions.length} · view all →
-                  </span>
+                  </button>
                 </>
               )}
             </div>

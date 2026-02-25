@@ -1,5 +1,3 @@
-import Script from 'next/script'
-import { ClientWrapper } from './components/ClientWrapper'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { ExperienceSection } from './components/sections/Experience'
@@ -46,24 +44,20 @@ export default async function Home() {
 
   return (
     <>
-      <Script
-        id="structured-data"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        strategy="afterInteractive"
       />
 
-      <ClientWrapper>
-        <main className="container">
-          <Header />
-          <ExperienceSection />
-          <ProjectsSection contributions={contributions} />
-          <PublicationSection />
-          <SkillsSection />
-          <EducationSection />
-          <Footer />
-        </main>
-      </ClientWrapper>
+      <main className="container">
+        <Header />
+        <ExperienceSection />
+        <ProjectsSection contributions={contributions} />
+        <PublicationSection />
+        <SkillsSection />
+        <EducationSection />
+        <Footer />
+      </main>
     </>
   )
 }

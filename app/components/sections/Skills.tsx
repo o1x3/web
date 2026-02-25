@@ -1,9 +1,6 @@
-'use client'
-
-import { memo } from 'react'
 import { SKILLS } from '../../data'
 
-export const SkillsSection = memo(function SkillsSection() {
+export function SkillsSection() {
   const skillCategories = [
     SKILLS.languages,
     SKILLS.backend,
@@ -13,8 +10,8 @@ export const SkillsSection = memo(function SkillsSection() {
   ]
 
   return (
-    <section className="section-row">
-      <div className="section-label">Skills</div>
+    <section className="section-row" aria-label="Skills">
+      <h2 className="section-label">Skills</h2>
       <div className="section-content">
         {skillCategories.map((category) => (
           <div key={category.label} className="skill-line">
@@ -25,4 +22,4 @@ export const SkillsSection = memo(function SkillsSection() {
       </div>
     </section>
   )
-})
+}

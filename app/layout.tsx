@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
-import { JetBrains_Mono, Space_Grotesk } from 'next/font/google'
+import { headers } from 'next/headers'
+import { JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ErrorBoundary } from './error-boundary'
+import { ThemeToggle } from './components/ui/ThemeToggle'
+import { FaviconInit } from './components/FaviconInit'
 import './globals.css'
 
 // Force dynamic rendering for CSP nonces
@@ -14,15 +17,6 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
   preload: true,
   fallback: ['Monaco', 'Consolas', 'monospace'],
-  adjustFontFallback: true,
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  preload: true,
-  fallback: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
   adjustFontFallback: true,
 })
 
@@ -46,7 +40,7 @@ export const metadata: Metadata = {
     siteName: 'Karthik Vinayan Portfolio',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Karthik Vinayan | Founding Software Engineer - AI/ML',
     description: 'Founding Software Engineer specializing in LLM agents, Knowledge Graphs, and enterprise AI automation.',
     creator: '@karthikvinayan',
@@ -80,14 +74,22 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const nonce = (await headers()).get('x-nonce') ?? ''
+
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://vercel.live" />
+        <script
+          nonce={nonce}
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}})()`,
+          }}
+        />
       </head>
       <body className="font-mono">
+        <ThemeToggle />
+        <FaviconInit />
         <ErrorBoundary>
           {children}
         </ErrorBoundary>

@@ -1,12 +1,9 @@
-'use client'
-
-import { memo } from 'react'
 import { PUBLICATION } from '../../data'
 
-export const PublicationSection = memo(function PublicationSection() {
+export function PublicationSection() {
   return (
-    <section className="section-row">
-      <div className="section-label">Publication</div>
+    <section className="section-row" aria-label="Publication">
+      <h2 className="section-label">Publication</h2>
       <div className="section-content">
         <div className="entry">
           <div className="entry-title">
@@ -24,4 +21,4 @@ export const PublicationSection = memo(function PublicationSection() {
       </div>
     </section>
   )
-})
+}
