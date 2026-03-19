@@ -3,7 +3,7 @@
 
 export const PERSONAL_INFO = {
   name: 'Karthik Vinayan',
-  title: 'Founding Software Engineer',
+  title: 'AI Platform Engineer',
   currentCompany: 'Omni RPA Inc',
   email: 'karthikvinayan57@gmail.com',
   location: 'Hyderabad, IN',
@@ -21,7 +21,7 @@ export const PERSONAL_INFO = {
   },
 } as const
 
-export const SUMMARY = `Building an AI platform that replaces cloud architects. 20-agent system, real-time sync, shipping soon.`
+export const SUMMARY = `Built the backend for a production AI cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP, semantic memory — all from zero.`
 
 export const EXPERIENCE = [
   {
@@ -30,41 +30,33 @@ export const EXPERIENCE = [
       { name: 'Omni RPA Inc', location: 'San Jose' },
       { name: 'Agentic Solutions Pvt Ltd', location: 'Hyderabad' },
     ],
-    position: 'Founding Software Engineer',
+    position: 'AI Platform Engineer',
     focus: 'AI & Backend Systems',
     period: 'Jan 2024 – Present',
     description: [
       {
-        short: 'Core backend from scratch for cloud automation',
-        full: 'Built core backend from scratch for cloud automation platform; onboarded first enterprise client pre-launch. Validated 100+ deployment workflows through production testing.',
+        short: 'MCP server and client from scratch',
+        full: 'Built the entire MCP implementation from scratch. Tool gating with prerequisite chains, dynamic schema conversion, attribute matrix filtering, value validation against live session state.',
       },
       {
-        short: 'Real-time sync layer with websockets',
-        full: 'Designed real-time sync layer using websockets and event-driven architecture; keeps multiple UI components synchronized with sub-second latency.',
+        short: 'Knowledge graph and RAG infra',
+        full: 'Own the entire knowledge graph stack. Neo4j to FalkorDB migration, hybrid RAG on Weaviate with gRPC, two-layer semantic cache (Redis + RedisVL), event-driven ingestion pipeline on NATS.',
       },
       {
-        short: 'Hybrid graph DB powering millions of nodes',
-        full: 'Architected hybrid graph database system (Neo4j + FalkorDB) powering millions of nodes with sub-second query latency.',
+        short: 'DAG-based multi-agent orchestrator',
+        full: '8 agent types, topological sort with cycle detection, parallel execution, dependency injection, persistence, WebSocket streaming.',
       },
       {
-        short: 'Cloud provider SKU pricing orchestration',
-        full: 'Built orchestration layer over cloud provider SKU pricing APIs (AWS/Azure/GCP), serving millions of data points to downstream consumers in real-time.',
+        short: 'Semantic memory on PostgreSQL with pgvector',
+        full: 'Embedding-based retrieval, rolling summarization, optimistic concurrency control. Runs in background, enables continuity across sessions.',
       },
       {
-        short: 'Async doc ingestion pipeline',
-        full: 'Built async document ingestion pipeline (Python, NATS JetStream) processing hundreds of thousands of PDF pages into searchable knowledge graph.',
+        short: 'Performance engineering across services',
+        full: 'Database indexing, bulk operations, L1/L2 cache layering, parallel graph calls, redundant query elimination.',
       },
       {
-        short: 'Own 3-5 repos, primary on-call engineer',
-        full: 'Own 3-5 repositories end-to-end: manage all PRs/issues, containerize services, ship to production. Primary on-call engineer; 2hr worst-case incident recovery.',
-      },
-      {
-        short: 'Infrastructure monitoring with Grafana & PostHog',
-        full: 'Manage infrastructure monitoring with Grafana and PostHog (on-premise). Handle Supabase for session storage and Redis for caching.',
-      },
-      {
-        short: 'Lead cross-functional work, mentor engineers',
-        full: 'Lead cross-functional work across frontend, data, Java backend, and DevOps teams in a fully remote team of 10. Mentored 2 interns, onboarded engineers, write technical specs.',
+        short: 'Own 3-5 repos end-to-end, primary on-call',
+        full: 'Manage all PRs/issues, containerize services, ship to production. 2hr worst-case incident recovery.',
       },
     ],
   },
@@ -86,6 +78,29 @@ export const EXPERIENCE = [
 ] as const
 
 export const PROJECTS = [
+  {
+    id: 'podspawn',
+    title: 'podspawn',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/podspawn/podspawn' },
+      { label: 'Go' },
+      { label: 'AGPL-3.0' },
+    ],
+    url: 'https://github.com/podspawn/podspawn',
+    description: 'Ephemeral dev containers. One binary, local or over SSH. Docker-backed with Podfile config, gVisor sandboxing, companion services, Prometheus metrics.',
+  },
+  {
+    id: 'tenso',
+    title: 'Tenso',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/PatchPerson/Tenso' },
+      { label: 'Rust' },
+      { label: 'SolidJS' },
+      { label: 'MIT' },
+    ],
+    url: 'https://github.com/PatchPerson/Tenso',
+    description: 'Postman alternative built with Tauri 2.0 and SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL and OpenAPI import.',
+  },
   {
     id: 'ctoken',
     title: 'ctoken',
@@ -133,23 +148,23 @@ export const PUBLICATION = {
 export const SKILLS = {
   languages: {
     label: 'Languages',
-    items: ['Python', 'SQL', 'Java', 'C', 'C++'],
+    items: ['Python', 'Go', 'Rust', 'TypeScript', 'SQL', 'Java'],
   },
   backend: {
     label: 'Backend',
-    items: ['Async Python', 'FastAPI', 'Websockets', 'Event-Driven Architecture', 'NATS JetStream'],
+    items: ['FastAPI', 'MCP Protocol', 'Websockets', 'NATS JetStream', 'Event-Driven Architecture'],
+  },
+  aiml: {
+    label: 'AI & ML',
+    items: ['Multi-Agent Orchestration', 'RAG Pipelines', 'Semantic Caching', 'LLM Tool Calling', 'pgvector'],
   },
   databases: {
     label: 'Databases',
-    items: ['Neo4j', 'FalkorDB', 'Supabase (Postgres)', 'Redis'],
+    items: ['Neo4j', 'FalkorDB', 'Supabase (Postgres)', 'Redis', 'Weaviate'],
   },
   cloud: {
     label: 'Cloud & DevOps',
-    items: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'CI/CD', 'Grafana', 'PostHog'],
-  },
-  certifications: {
-    label: 'Certifications',
-    items: ['AWS Certified Cloud Practitioner', 'Microsoft Azure Administrator (AZ-104)'],
+    items: ['AWS (CCP)', 'Azure (AZ-104)', 'GCP', 'Docker', 'Kubernetes', 'Grafana', 'OpenTelemetry'],
   },
 } as const
 

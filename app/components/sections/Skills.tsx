@@ -6,7 +6,7 @@ export function SkillsSection() {
     SKILLS.backend,
     SKILLS.databases,
     SKILLS.cloud,
-    SKILLS.certifications,
+    SKILLS.aiml,
   ]
 
   return (
