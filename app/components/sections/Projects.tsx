@@ -51,10 +51,30 @@ function useModal(onClose: () => void) {
 
 const VISIBLE_CONTRIBUTIONS = 4
 
+function getGitHubAvatarUrl(project: (typeof PROJECTS)[number] | (typeof SIDE_PROJECTS)[number]): string | null {
+  if (!('badges' in project)) return null
+  const ghBadge = project.badges.find((b) => b.label === 'GitHub' && 'url' in b)
+  if (!ghBadge || !('url' in ghBadge)) return null
+  const match = ghBadge.url.match(/github\.com\/([^/]+)/)
+  return match ? `https://github.com/${match[1]}.png?size=36` : null
+}
+
 function ProjectEntry({ project }: { project: (typeof PROJECTS)[number] | (typeof SIDE_PROJECTS)[number] }) {
+  const avatarUrl = getGitHubAvatarUrl(project)
+
   return (
     <div className="entry">
-      <div className="entry-title">
+      <div className="entry-title" style={avatarUrl ? { display: 'flex', alignItems: 'center', gap: '0.4rem' } : undefined}>
+        {avatarUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={avatarUrl}
+            alt=""
+            width={18}
+            height={18}
+            className="contrib-avatar"
+          />
+        )}
         {'url' in project ? (
           <a
             href={project.url}

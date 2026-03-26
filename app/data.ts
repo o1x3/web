@@ -82,12 +82,13 @@ export const PROJECTS = [
     id: 'podspawn',
     title: 'podspawn',
     badges: [
+      { label: 'Docs', url: 'https://podspawn.dev' },
       { label: 'GitHub', url: 'https://github.com/podspawn/podspawn' },
       { label: 'Go' },
       { label: 'AGPL-3.0' },
     ],
-    url: 'https://github.com/podspawn/podspawn',
-    description: 'Ephemeral dev containers. One binary, local or over SSH. Docker-backed with Podfile config, gVisor sandboxing, companion services, Prometheus metrics.',
+    url: 'https://podspawn.dev',
+    description: 'One-command dev environments, locally or over SSH. Single binary, Docker-backed with composable Podfile config, companion services, native sshd integration, gVisor sandboxing, and Prometheus metrics.',
   },
   {
     id: 'tenso',
