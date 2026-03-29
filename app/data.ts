@@ -36,27 +36,43 @@ export const EXPERIENCE = [
     description: [
       {
         short: 'MCP server and client from scratch',
-        full: 'Built the entire MCP implementation from scratch. Tool gating with prerequisite chains, dynamic schema conversion, attribute matrix filtering, value validation against live session state.',
-      },
-      {
-        short: 'Knowledge graph and RAG infra',
-        full: 'Own the entire knowledge graph stack. Neo4j to FalkorDB migration, hybrid RAG on Weaviate with gRPC, two-layer semantic cache (Redis + RedisVL), event-driven ingestion pipeline on NATS.',
+        full: 'Built while the protocol was 5 weeks old. Tool gating with prerequisite chains, dynamic schema generation, attribute matrix filtering, mandatory reason parameter on every pricing call to kill speculative tool use and create an audit trail.',
       },
       {
         short: 'DAG-based multi-agent orchestrator',
-        full: '8 agent types, topological sort with cycle detection, parallel execution, dependency injection, persistence, WebSocket streaming.',
+        full: '8 agent types (pricing-researcher, memory-retriever, cost-analyzer, constraint-validator, recommendation-builder, and others). Topological sort, cycle detection, parallel tier execution, WebSocket streaming. Users see a live DAG panel with agents moving through pending/running/completed.',
+      },
+      {
+        short: '8 ambient agents on a separate scheduler',
+        full: 'Conflict detection, requirement completeness, workflow recommendations, context summarization, SKU recommendations, service monitoring. Push notifications to UI without the user asking. Plus a graph reasoning agent with 2-round LLM planning and compensation-based rollback on write failures.',
+      },
+      {
+        short: 'Knowledge graph and RAG stack',
+        full: '7-stage NATS pipeline for document ingestion with 85–95% of entity extraction handled locally via GLiNER ONNX (no LLM API calls). Neo4j to FalkorDB migration, hybrid retrieval on Weaviate/gRPC, two-layer semantic cache to avoid redundant LLM calls.',
+      },
+      {
+        short: 'Fine-tuned GGUF model for constraint extraction',
+        full: 'DR levels, cost/ops tolerance, region identification. Scikit-learn intent regressor as fast secondary signal. Confidence gating at 0.65 routes low-confidence inputs to a stronger model. Also training in-house LLM on workflow and Terraform data.',
+      },
+      {
+        short: 'Model routing by task complexity',
+        full: 'gpt-5 for complex reasoning, gpt-5-nano for lightweight ops like title generation and context summaries, gpt-4.1-mini for graph manipulation. Not everything needs the expensive model.',
       },
       {
         short: 'Semantic memory on PostgreSQL with pgvector',
-        full: 'Embedding-based retrieval, rolling summarization, optimistic concurrency control. Runs in background, enables continuity across sessions.',
+        full: 'Hybrid ranking by similarity + recency + relevance, rolling summarization, personalized welcome prompts for returning users. Agents remember past conversations.',
       },
       {
-        short: 'Performance engineering across services',
-        full: 'Database indexing, bulk operations, L1/L2 cache layering, parallel graph calls, redundant query elimination.',
+        short: 'OTel tracing and cost attribution',
+        full: 'Cross-service tracing with session-ID propagation, PostHog cost attribution per user/session/agent, model benchmarking across GPT/Gemini/Claude/Llama.',
       },
       {
-        short: 'Own 3-5 repos end-to-end, primary on-call',
-        full: 'Manage all PRs/issues, containerize services, ship to production. 2hr worst-case incident recovery.',
+        short: 'Onboarded first enterprise client pre-launch',
+        full: 'Hands-on usage, bug filing, iterated on agent behavior and UX across 32 deployment workflows (multi-region DR, HIPAA/PCI-DSS, EKS, ML platforms).',
+      },
+      {
+        short: 'Own 3–5 repos end-to-end, primary on-call',
+        full: '2hr worst-case recovery. Lead work across frontend, data, Java backend, and DevOps in a 10-person remote team.',
       },
     ],
   },
@@ -153,19 +169,19 @@ export const SKILLS = {
   },
   backend: {
     label: 'Backend',
-    items: ['FastAPI', 'MCP Protocol', 'Websockets', 'NATS JetStream', 'Event-Driven Architecture'],
+    items: ['FastAPI', 'WebSockets', 'NATS JetStream', 'Event-Driven Architecture'],
   },
   aiml: {
     label: 'AI & ML',
-    items: ['Multi-Agent Orchestration', 'RAG Pipelines', 'Semantic Caching', 'LLM Tool Calling', 'pgvector'],
+    items: ['Multi-Agent Orchestration', 'MCP Protocol', 'RAG', 'Semantic Caching', 'LLM Tool Calling', 'Eval Frameworks', 'pgvector', 'vLLM', 'llama.cpp'],
   },
   databases: {
     label: 'Databases',
-    items: ['Neo4j', 'FalkorDB', 'Supabase (Postgres)', 'Redis', 'Weaviate'],
+    items: ['FalkorDB', 'Neo4j', 'Weaviate', 'Supabase (Postgres)', 'Redis'],
   },
   cloud: {
     label: 'Cloud & DevOps',
-    items: ['AWS (CCP)', 'Azure (AZ-104)', 'GCP', 'Docker', 'Kubernetes', 'Grafana', 'OpenTelemetry'],
+    items: ['AWS (CCP)', 'Azure (AZ-104)', 'GCP', 'Docker', 'Kubernetes', 'OpenTelemetry'],
   },
 } as const
 

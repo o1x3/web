@@ -33,6 +33,7 @@ const structuredData = {
   sameAs: [PERSONAL_INFO.linkedin.url, PERSONAL_INFO.github.url],
   knowsAbout: [
     ...SKILLS.languages.items,
+    ...SKILLS.aiml.items,
     ...SKILLS.backend.items,
     ...SKILLS.databases.items,
     ...SKILLS.cloud.items,
