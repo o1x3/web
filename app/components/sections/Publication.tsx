@@ -7,7 +7,7 @@ export function PublicationSection() {
       <div className="section-content">
         <div className="entry">
           <div className="entry-title">
-            {PUBLICATION.title} — {PUBLICATION.venue}
+            {PUBLICATION.title}. {PUBLICATION.venue}
           </div>
           <ul className="bullet-list">
             <li>

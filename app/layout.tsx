@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Karthik Vinayan | Founding Software Engineer - AI/ML',
-  description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform — multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory. Python, Go, Rust.',
+  description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory. Python, Go, Rust.',
   keywords: ['AI Platform Engineer', 'LLM Agents', 'Knowledge Graphs', 'MCP Protocol', 'Multi-Agent Systems', 'Python', 'Go', 'Rust', 'FalkorDB', 'FastAPI'],
   authors: [{ name: 'Karthik Vinayan' }],
   creator: 'Karthik Vinayan',
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://o1x3.com',
     title: 'Karthik Vinayan | Founding Software Engineer - AI/ML',
-    description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform — multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
+    description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
     siteName: 'Karthik Vinayan Portfolio',
   },
   twitter: {
     card: 'summary',
     title: 'Karthik Vinayan | Founding Software Engineer - AI/ML',
-    description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform — multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
+    description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
   },
   robots: {
     index: true,

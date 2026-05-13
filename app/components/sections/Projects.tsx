@@ -87,22 +87,23 @@ function ProjectEntry({ project }: { project: (typeof PROJECTS)[number] | (typeo
         ) : (
           project.title
         )}
-        {'badges' in project && project.badges.map((badge) => (
-          'url' in badge ? (
+        {'badges' in project && project.badges.map((badge) => {
+          const badgeClass = badge.label === 'WIP' ? 'badge wip-badge' : 'badge'
+          return 'url' in badge ? (
             <a
               key={badge.label}
               href={badge.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="badge"
+              className={badgeClass}
               aria-label={`${badge.label} (opens in new window)`}
             >
               {badge.label}
             </a>
           ) : (
-            <span key={badge.label} className="badge">{badge.label}</span>
+            <span key={badge.label} className={badgeClass}>{badge.label}</span>
           )
-        ))}
+        })}
       </div>
       <ul className="bullet-list">
         <li>{project.description}</li>

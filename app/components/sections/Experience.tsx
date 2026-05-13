@@ -17,7 +17,7 @@ export function ExperienceSection() {
             )}
             {'companies' in exp && (
               <div className="entry-subtitle">
-                {exp.companies[0].name} — {exp.companies[0].location}
+                {exp.companies[0].name}, {exp.companies[0].location}
                 {exp.companies[1] && (
                   <span className="company-aka">
                     ↳ {exp.companies[1].name}, {exp.companies[1].location}

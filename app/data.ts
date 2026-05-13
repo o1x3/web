@@ -5,7 +5,7 @@ export const PERSONAL_INFO = {
   name: 'Karthik Vinayan',
   title: 'AI Platform Engineer',
   currentCompany: 'Omni RPA Inc',
-  email: 'karthikvinayan57@gmail.com',
+  email: 'karthik@o1x3.com',
   location: 'Hyderabad, IN',
   github: {
     url: 'https://github.com/o1x3',
@@ -21,7 +21,7 @@ export const PERSONAL_INFO = {
   },
 } as const
 
-export const SUMMARY = `Built the backend for a production AI cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP, semantic memory — all from zero.`
+export const SUMMARY = `Built the backend for a production AI cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.`
 
 export const EXPERIENCE = [
   {
@@ -32,7 +32,7 @@ export const EXPERIENCE = [
     ],
     position: 'AI Platform Engineer',
     focus: 'AI & Backend Systems',
-    period: 'Jan 2024 – Present',
+    period: 'Jun 2024 → Apr 2026',
     description: [
       {
         short: 'MCP server and client from scratch',
@@ -104,7 +104,19 @@ export const PROJECTS = [
       { label: 'AGPL-3.0' },
     ],
     url: 'https://podspawn.dev',
-    description: 'One-command dev environments, locally or over SSH. Single binary, Docker-backed with composable Podfile config, companion services, native sshd integration, gVisor sandboxing, and Prometheus metrics.',
+    description: 'One-command dev environments, locally or over SSH. Single binary, Docker-backed with composable Podfile config, branch-isolated workspaces, native sshd integration, gVisor sandboxing, and a session control plane with actor-scoped audit.',
+  },
+  {
+    id: 'juno',
+    title: 'juno',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/juno' },
+      { label: 'TypeScript' },
+      { label: 'Bun' },
+      { label: 'WIP' },
+    ],
+    url: 'https://github.com/o1x3/juno',
+    description: 'Local coding agent in the terminal. Bun + Ink TUI, append-only JSONL session log with resume, plan/exec mode split with read-only tools in plan mode, OAuth + API-key auth with automatic routing between the OpenAI SDK and the ChatGPT Codex backend.',
   },
   {
     id: 'tenso',
@@ -117,6 +129,18 @@ export const PROJECTS = [
     ],
     url: 'https://github.com/PatchPerson/Tenso',
     description: 'Postman alternative built with Tauri 2.0 and SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL and OpenAPI import.',
+  },
+  {
+    id: 'hn',
+    title: 'hn',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/hn-web' },
+      { label: 'Next.js' },
+      { label: 'TypeScript' },
+      { label: 'MIT' },
+    ],
+    url: 'https://github.com/o1x3/hn-web',
+    description: 'Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, writes proxied through news.ycombinator.com with per-request CSRF token scraping and 500ms rate limiting, IndexedDB store with fuzzy-anchor highlight relocation, recursive collapsible threads, reply inbox, reader mode.',
   },
   {
     id: 'ctoken',
