@@ -19,9 +19,9 @@ const structuredData = {
     name: PERSONAL_INFO.currentCompany,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'San Jose',
-      addressRegion: 'CA',
-      addressCountry: 'US',
+      addressLocality: 'Bengaluru',
+      addressRegion: 'KA',
+      addressCountry: 'IN',
     },
   },
   alumniOf: EDUCATION.map((edu) => ({

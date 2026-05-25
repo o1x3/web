@@ -21,9 +21,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Karthik Vinayan | Founding Software Engineer - AI/ML',
-  description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory. Python, Go, Rust.',
-  keywords: ['AI Platform Engineer', 'LLM Agents', 'Knowledge Graphs', 'MCP Protocol', 'Multi-Agent Systems', 'Python', 'Go', 'Rust', 'FalkorDB', 'FastAPI'],
+  title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
+  description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory. Python, Go, Rust.',
+  keywords: ['Applied AI Engineer', 'Clueso', 'LLM Agents', 'Knowledge Graphs', 'MCP Protocol', 'Multi-Agent Systems', 'Python', 'Go', 'Rust', 'FalkorDB', 'FastAPI'],
   authors: [{ name: 'Karthik Vinayan' }],
   creator: 'Karthik Vinayan',
   publisher: 'Karthik Vinayan',
@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://o1x3.com',
-    title: 'Karthik Vinayan | Founding Software Engineer - AI/ML',
-    description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
+    title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
+    description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
     siteName: 'Karthik Vinayan Portfolio',
   },
   twitter: {
     card: 'summary',
-    title: 'Karthik Vinayan | Founding Software Engineer - AI/ML',
-    description: 'Founding Software Engineer at Omni RPA Inc. Built the AI backend for a cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
+    title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
+    description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
   },
   robots: {
     index: true,

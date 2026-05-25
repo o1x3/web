@@ -3,10 +3,10 @@
 
 export const PERSONAL_INFO = {
   name: 'Karthik Vinayan',
-  title: 'AI Platform Engineer',
-  currentCompany: 'Omni RPA Inc',
+  title: 'Applied AI Engineer',
+  currentCompany: 'Clueso',
   email: 'karthik@o1x3.com',
-  location: 'Hyderabad, IN',
+  location: 'Bengaluru, IN',
   github: {
     url: 'https://github.com/o1x3',
     display: 'github',
@@ -21,18 +21,32 @@ export const PERSONAL_INFO = {
   },
 } as const
 
-export const SUMMARY = `Built the backend for a production AI cloud automation platform. Multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.`
+export const SUMMARY = `Building AI at Clueso (YC W23). Previously built the backend for a production AI cloud automation platform — multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.`
 
 export const EXPERIENCE = [
+  {
+    id: 'clueso',
+    companies: [
+      { name: 'Clueso', location: 'Bengaluru', url: 'https://clueso.io' },
+    ],
+    position: 'Applied AI Engineer',
+    period: 'May 2026 – Present',
+    description: [
+      {
+        short: 'Building AI at Clueso (YC W23)',
+        full: 'AI that turns screen recordings into polished product videos and step-by-step docs.',
+      },
+    ],
+  },
   {
     id: 'omni-rpa',
     companies: [
       { name: 'Omni RPA Inc', location: 'San Jose' },
       { name: 'Agentic Solutions Pvt Ltd', location: 'Hyderabad' },
     ],
-    position: 'AI Platform Engineer',
+    position: 'Founding AI Engineer',
     focus: 'AI & Backend Systems',
-    period: 'Jun 2024 → Apr 2026',
+    period: 'Jun 2024 – Apr 2026',
     description: [
       {
         short: 'MCP server and client from scratch',

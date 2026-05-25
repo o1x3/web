@@ -17,7 +17,18 @@ export function ExperienceSection() {
             )}
             {'companies' in exp && (
               <div className="entry-subtitle">
-                {exp.companies[0].name}, {exp.companies[0].location}
+                {'url' in exp.companies[0] ? (
+                  <a
+                    href={exp.companies[0].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {exp.companies[0].name}
+                  </a>
+                ) : (
+                  exp.companies[0].name
+                )}
+                , {exp.companies[0].location}
                 {exp.companies[1] && (
                   <span className="company-aka">
                     ↳ {exp.companies[1].name}, {exp.companies[1].location}
@@ -25,13 +36,15 @@ export function ExperienceSection() {
                 )}
               </div>
             )}
-            <ul className="bullet-list">
-              {exp.description.map((item) => (
-                <li key={item.short}>
-                  <ExpandableText short={item.short} full={item.full} />
-                </li>
-              ))}
-            </ul>
+            {exp.description.length > 0 && (
+              <ul className="bullet-list">
+                {exp.description.map((item) => (
+                  <li key={item.short}>
+                    <ExpandableText short={item.short} full={item.full} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </div>
