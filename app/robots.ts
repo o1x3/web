@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
     },
     sitemap: 'https://o1x3.com/sitemap.xml',
+    host: 'https://o1x3.com',
   }
 }
