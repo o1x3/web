@@ -25,6 +25,15 @@ export function Footer() {
         </a>
         <span aria-hidden="true">·</span>
         <a
+          href={PERSONAL_INFO.x.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${PERSONAL_INFO.x.display} on X (opens in new window)`}
+        >
+          {PERSONAL_INFO.x.display}
+        </a>
+        <span aria-hidden="true">·</span>
+        <a
           href={PERSONAL_INFO.website.url}
           target="_blank"
           rel="noopener noreferrer"

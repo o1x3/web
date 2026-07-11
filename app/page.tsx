@@ -1,12 +1,11 @@
-import { Header } from './components/layout/Header'
-import { Footer } from './components/layout/Footer'
+import { Hero } from './components/sections/Hero'
+import { FeaturedBuildsSection } from './components/sections/Builds'
 import { ExperienceSection } from './components/sections/Experience'
-import { ProjectsSection } from './components/sections/Projects'
-import { PublicationSection } from './components/sections/Publication'
 import { SkillsSection } from './components/sections/Skills'
-import { EducationSection } from './components/sections/Education'
+import { DotField } from './components/sections/DotField'
+import { ContactSection } from './components/sections/Contact'
 import { PERSONAL_INFO, EDUCATION, SKILLS } from './data'
-import { fetchOSSContributions } from './lib/github'
+import { fetchMergedContributions } from './lib/contributions'
 
 // Structured data for SEO
 const structuredData = {
@@ -30,7 +29,11 @@ const structuredData = {
   })),
   email: `mailto:${PERSONAL_INFO.email}`,
   url: PERSONAL_INFO.website.url,
-  sameAs: [PERSONAL_INFO.linkedin.url, PERSONAL_INFO.github.url],
+  sameAs: [
+    PERSONAL_INFO.linkedin.url,
+    PERSONAL_INFO.github.url,
+    PERSONAL_INFO.x.url,
+  ],
   knowsAbout: [
     ...SKILLS.languages.items,
     ...SKILLS.aiml.items,
@@ -41,7 +44,9 @@ const structuredData = {
 }
 
 export default async function Home() {
-  const contributions = await fetchOSSContributions()
+  const contributions = await fetchMergedContributions(
+    PERSONAL_INFO.githubAccounts
+  )
 
   return (
     <>
@@ -50,15 +55,19 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <main className="container">
-        <Header />
-        <ExperienceSection />
-        <ProjectsSection contributions={contributions} />
-        <PublicationSection />
-        <SkillsSection />
-        <EducationSection />
-        <Footer />
-      </main>
+      <Hero />
+      <FeaturedBuildsSection />
+      <ExperienceSection />
+      {contributions && (
+        <section className="section-row" aria-label="GitHub activity">
+          <h2 className="section-label">a year in dots</h2>
+          <div className="section-content">
+            <DotField calendar={contributions} />
+          </div>
+        </section>
+      )}
+      <SkillsSection />
+      <ContactSection />
     </>
   )
 }

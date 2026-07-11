@@ -6,6 +6,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ErrorBoundary } from './error-boundary'
 import { ThemeToggle } from './components/ui/ThemeToggle'
 import { FaviconInit } from './components/FaviconInit'
+import { Nav } from './components/layout/Nav'
+import { Footer } from './components/layout/Footer'
 import './globals.css'
 
 // Force dynamic rendering for CSP nonces
@@ -41,6 +43,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
+    site: '@pawnsloth',
+    creator: '@pawnsloth',
     title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
     description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
   },
@@ -90,7 +94,11 @@ export default async function RootLayout({
         <ThemeToggle />
         <FaviconInit />
         <ErrorBoundary>
-          {children}
+          <main className="container">
+            <Nav />
+            {children}
+            <Footer />
+          </main>
         </ErrorBoundary>
         <Analytics />
         <SpeedInsights />
