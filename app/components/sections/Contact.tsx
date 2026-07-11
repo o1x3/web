@@ -4,8 +4,8 @@ export function ContactSection() {
   return (
     <section className="cta" aria-label="Contact">
       <p className="cta-line">
-        Building something with agents, infra, or anything that lives in a
-        terminal? I read everything sent my way — usually same day.
+        Building something with agents or infra? I read everything sent my
+        way, usually same day.
       </p>
       <div className="cta-links">
         <a href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>

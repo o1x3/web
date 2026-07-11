@@ -163,7 +163,7 @@ export const BUILDS: readonly Build[] = [
     ],
     url: 'https://github.com/o1x3/ergo',
     description:
-      'Local-first AI code review. Bring your own ChatGPT or Codex subscription — it runs your linters, feeds the findings to the model, and prints the verdict as TUI, JSON, SARIF, or markdown with the token bill attached.',
+      'Local-first AI code review. Bring your own ChatGPT or Codex subscription: it runs your linters, feeds the findings to the model, and prints the verdict as TUI, JSON, SARIF, or markdown with the token bill attached.',
   },
   {
     id: 'dcon',
@@ -178,7 +178,7 @@ export const BUILDS: readonly Build[] = [
     ],
     url: 'https://github.com/o1x3/dcon',
     description:
-      "Drop-in docker CLI for macOS backed by Apple's container runtime — speak docker, execute on per-container lightweight VMs. Warm-pool pre-boot takes container start from ~700ms to ~90ms; ships as a ~6MB static binary.",
+      "Drop-in docker CLI for macOS backed by Apple's container runtime. Speak docker, execute on per-container lightweight VMs. Warm-pool pre-boot takes container start from ~700ms to ~90ms; ships as a ~6MB static binary.",
   },
   {
     id: 'hn',
@@ -223,7 +223,7 @@ export const BUILDS: readonly Build[] = [
     ],
     url: 'https://github.com/o1x3/furl',
     description:
-      'HTTP client with human syntax — name=value builds JSON, `:` sets headers, `@` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager), published to crates.io.',
+      'HTTP client with human syntax: name=value builds JSON, `:` sets headers, `@` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager), published to crates.io.',
   },
   {
     id: 'tmax',
@@ -236,7 +236,7 @@ export const BUILDS: readonly Build[] = [
     ],
     url: 'https://github.com/o1x3/tmax',
     description:
-      'Pastel, neofetch-style terminal card for AI coding-harness token usage — Claude Code, Codex, pi.dev. Bubble Tea + Lipgloss, adapts to light/dark terminals, reads local session logs so nothing leaves the machine.',
+      'Pastel, neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Bubble Tea + Lipgloss, adapts to light/dark terminals, reads local session logs so nothing leaves the machine.',
   },
   {
     id: 'nx',
@@ -249,7 +249,7 @@ export const BUILDS: readonly Build[] = [
     ],
     url: 'https://github.com/o1x3/nx',
     description:
-      'Personal dev CLI. Pretty git stats across every repo in a folder at once — concurrent fetching, auto-detected default branches, GoReleaser self-updates, intentionally no Cobra.',
+      'Personal dev CLI. Pretty git stats across every repo in a folder at once. Concurrent fetching, auto-detected default branches, GoReleaser self-updates, intentionally no Cobra.',
   },
   {
     id: 'ctoken',
@@ -290,7 +290,7 @@ export const BUILDS: readonly Build[] = [
       { label: 'Swift' },
     ],
     url: 'https://github.com/o1x3/sentinel',
-    description: '2FA app for iOS. Codes generated and stored on device, nowhere else.',
+    description: '2FA app for iOS. Codes live on the device.',
   },
   {
     id: 'ios-apps',

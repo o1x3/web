@@ -9,8 +9,8 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 ## Profile
 
 - [Portfolio](https://o1x3.com): Experience, featured builds, skills, and a merged GitHub activity graph.
-- [Stuff](https://o1x3.com/stuff): Everything I build — CLIs, agents, clients, apps, plus upstream OSS contributions.
-- [Story](https://o1x3.com/story): The narrative version — college robot to production AI agents.
+- [Stuff](https://o1x3.com/stuff): Everything I build: CLIs, agents, clients, apps, plus upstream OSS contributions.
+- [Story](https://o1x3.com/story): The narrative version, college robot to production AI agents.
 - [GitHub (@o1x3)](https://github.com/o1x3): Personal repos — ergo, dcon, juno, hn, ctoken, and more.
 - [X (@pawnsloth)](https://x.com/pawnsloth): Short-form thoughts and product feedback for indie devs.
 - [LinkedIn](https://linkedin.com/in/karthik-vinayan): Professional history.
@@ -25,7 +25,7 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 ## Projects
 
 - [podspawn](https://podspawn.dev): One-command dev environments, locally or over SSH. Single Go binary, Docker-backed, composable Podfile config, branch-isolated workspaces, native sshd, gVisor sandboxing, actor-scoped audit. AGPL-3.0. [Source](https://github.com/podspawn/podspawn).
-- [ergo](https://github.com/o1x3/ergo): Local-first AI code review — bring your own ChatGPT/Codex subscription, runs linters, TUI/JSON/SARIF/markdown output with per-review token costs. TypeScript, Bun.
+- [ergo](https://github.com/o1x3/ergo): Local-first AI code review. Bring your own ChatGPT/Codex subscription; runs linters, outputs TUI/JSON/SARIF/markdown with per-review token costs. TypeScript, Bun.
 - [dcon](https://github.com/o1x3/dcon): Drop-in docker CLI for macOS on Apple's container runtime. Warm-pool pre-boot (~90ms starts), ~6MB static binary. Go.
 - [furl](https://github.com/o1x3/furl): HTTP client with human request syntax, published to crates.io. Rust.
 - [tmax](https://github.com/o1x3/tmax): Neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Go, Bubble Tea.

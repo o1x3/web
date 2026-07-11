@@ -21,7 +21,7 @@ export default function StoryPage() {
           <p>
             B.Tech at {EDUCATION[0].institutionShort}, AI &amp; ML
             specialization. The part that actually mattered: leading a team
-            that built an autonomous medicine-delivery robot for hospitals —
+            that built an autonomous medicine-delivery robot for hospitals.
             Raspberry Pi, obstacle detection, path following, RFID room
             identification. It ended up published in{' '}
             <a href={PUBLICATION.doiUrl} target="_blank" rel="noopener noreferrer">
@@ -62,7 +62,7 @@ export default function StoryPage() {
             <a href="https://clueso.io" target="_blank" rel="noopener noreferrer">
               Clueso
             </a>{' '}
-            (YC W23) in Bengaluru — turning screen recordings into polished
+            (YC W23) in Bengaluru, turning screen recordings into polished
             product videos and docs. Built with love, for people who care
             about craft.
           </p>
@@ -73,7 +73,7 @@ export default function StoryPage() {
         <h2 className="prose-heading">off the clock</h2>
         <div className="prose">
           <p>
-            I ship small tools compulsively — a docker clone for macOS started
+            I ship small tools compulsively. A docker clone for macOS started
             as an overnight bet and ended up on Homebrew. Most of what I make
             lives in the terminal, because that&apos;s where I live too.
           </p>

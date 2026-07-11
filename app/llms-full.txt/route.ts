@@ -59,37 +59,37 @@ One-command dev environments, locally or over SSH. Single binary, Docker-backed 
 
 TypeScript, Bun. Source: https://github.com/o1x3/ergo
 
-Local-first AI code review. Bring your own ChatGPT or Codex subscription — runs your linters, feeds the findings to the model, and prints the verdict as TUI, JSON, SARIF, or markdown with the token bill attached.
+Local-first AI code review. Bring your own ChatGPT or Codex subscription: it runs your linters, feeds the findings to the model, and prints the verdict as TUI, JSON, SARIF, or markdown with the token bill attached.
 
 ### dcon
 
 Go, Homebrew. Source: https://github.com/o1x3/dcon
 
-Drop-in docker CLI for macOS backed by Apple's container runtime — speak docker, execute on per-container lightweight VMs. Warm-pool pre-boot takes container start from ~700ms to ~90ms; ships as a ~6MB static binary.
+Drop-in docker CLI for macOS backed by Apple's container runtime. Speak docker, execute on per-container lightweight VMs. Warm-pool pre-boot takes container start from ~700ms to ~90ms; ships as a ~6MB static binary.
 
 ### furl
 
 Rust. Source: https://github.com/o1x3/furl — crates.io: https://crates.io/crates/furl-http
 
-HTTP client with human syntax — name=value builds JSON, \`:\` sets headers, \`@\` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager).
+HTTP client with human syntax: name=value builds JSON, \`:\` sets headers, \`@\` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager).
 
 ### tmax
 
 Go. Source: https://github.com/o1x3/tmax
 
-Pastel, neofetch-style terminal card for AI coding-harness token usage — Claude Code, Codex, pi.dev. Bubble Tea + Lipgloss, adapts to light/dark terminals, reads local session logs only.
+Pastel, neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Bubble Tea + Lipgloss, adapts to light/dark terminals, reads local session logs only.
 
 ### nx
 
 Go. Source: https://github.com/o1x3/nx
 
-Personal dev CLI. Pretty git stats across every repo in a folder at once — concurrent fetching, auto-detected default branches, self-updating.
+Personal dev CLI. Pretty git stats across every repo in a folder at once. Concurrent fetching, auto-detected default branches, self-updating.
 
 ### sentinel
 
 Swift. Source: https://github.com/o1x3/sentinel
 
-2FA app for iOS. Codes generated and stored on device, nowhere else.
+2FA app for iOS. Codes live on the device.
 
 ### juno
 
