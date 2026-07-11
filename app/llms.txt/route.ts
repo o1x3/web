@@ -8,8 +8,11 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 
 ## Profile
 
-- [Portfolio](https://o1x3.com): Single-page site with full experience, projects, publication, and skills.
-- [GitHub (@o1x3)](https://github.com/o1x3): Personal repos — juno, hn, ctoken, and more.
+- [Portfolio](https://o1x3.com): Experience, featured builds, skills, and a merged GitHub activity graph.
+- [Stuff](https://o1x3.com/stuff): Everything I build — CLIs, agents, clients, apps, plus upstream OSS contributions.
+- [Story](https://o1x3.com/story): The narrative version — college robot to production AI agents.
+- [GitHub (@o1x3)](https://github.com/o1x3): Personal repos — ergo, dcon, juno, hn, ctoken, and more.
+- [X (@pawnsloth)](https://x.com/pawnsloth): Short-form thoughts and product feedback for indie devs.
 - [LinkedIn](https://linkedin.com/in/karthik-vinayan): Professional history.
 - Email: karthik@o1x3.com
 
@@ -22,6 +25,10 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 ## Projects
 
 - [podspawn](https://podspawn.dev): One-command dev environments, locally or over SSH. Single Go binary, Docker-backed, composable Podfile config, branch-isolated workspaces, native sshd, gVisor sandboxing, actor-scoped audit. AGPL-3.0. [Source](https://github.com/podspawn/podspawn).
+- [ergo](https://github.com/o1x3/ergo): Local-first AI code review — bring your own ChatGPT/Codex subscription, runs linters, TUI/JSON/SARIF/markdown output with per-review token costs. TypeScript, Bun.
+- [dcon](https://github.com/o1x3/dcon): Drop-in docker CLI for macOS on Apple's container runtime. Warm-pool pre-boot (~90ms starts), ~6MB static binary. Go.
+- [furl](https://github.com/o1x3/furl): HTTP client with human request syntax, published to crates.io. Rust.
+- [tmax](https://github.com/o1x3/tmax): Neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Go, Bubble Tea.
 - [juno](https://github.com/o1x3/juno): Local coding agent in the terminal. Bun + Ink TUI, append-only JSONL session log with resume, plan/exec split, OAuth + API-key auth routing between the OpenAI SDK and the ChatGPT Codex backend. TypeScript, WIP.
 - [Tenso](https://github.com/PatchPerson/Tenso): Postman alternative on Tauri 2.0 + SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL/OpenAPI import. Rust, MIT.
 - [hn](https://github.com/o1x3/hn-web): Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, CSRF-scraped write proxy, IndexedDB store with fuzzy-anchor highlight relocation, recursive collapsible threads. MIT.
