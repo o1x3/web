@@ -11,6 +11,11 @@
   --bg: #F7F5F0;
   --text: #1a1a1a;
   --text-muted: #595550;
+  --dot-0: #e3ded4;
+  --dot-1: #b8b0a1;
+  --dot-2: #8a8172;
+  --dot-3: #55503f;
+  --dot-4: #1a1a1a;
 
   /* Typography */
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', monospace;
@@ -20,6 +25,11 @@
   --bg: #1a1a1a;
   --text: #e5e5e5;
   --text-muted: #999999;
+  --dot-0: #2b2b2b;
+  --dot-1: #4a4a45;
+  --dot-2: #737165;
+  --dot-3: #aaa79b;
+  --dot-4: #e5e5e5;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -59,12 +69,12 @@ body {
 .container {
   max-width: 680px;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 @media (max-width: 640px) {
   .container {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem 2.5rem;
   }
 }
 
@@ -81,6 +91,57 @@ a {
 
 a:hover {
   opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAV - dotted underline that resolves solid on hover/active
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.nav {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 2.5rem;
+}
+
+.nav-brand {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.nav-brand .nav-spinner {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in srgb, var(--text-muted) 50%, transparent);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease, border-bottom-style 0.15s ease;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  border-bottom-color: var(--text);
+  opacity: 1;
+}
+
+.nav-link[aria-current='page'] {
+  color: var(--text);
+  border-bottom: 1px solid var(--text);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -285,30 +346,204 @@ a.badge:hover {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   HEADER
+   HERO
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.header {
-  padding-bottom: 2rem;
-  margin-bottom: 1rem;
+.hero {
+  padding: 2.5rem 0 2rem;
 }
 
-.header-name {
-  font-size: 1.5rem;
+.hero-name {
+  font-size: 1.625rem;
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.375rem;
 }
 
-.header-title {
+.hero-tagline {
   font-size: 0.9375rem;
   color: var(--text-muted);
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
 }
 
-.header-bio {
+.hero-tagline .tagline-spinner {
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+/* Grid-overlay rotator: all phrases stacked in one cell, tallest sets height */
+.tagline-words {
+  display: inline-grid;
+}
+
+.tagline-word {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  white-space: nowrap;
+}
+
+.tagline-word.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .tagline-word { white-space: normal; }
+}
+
+.hero-bio {
   font-size: 0.9375rem;
   line-height: 1.7;
   max-width: 60ch;
+  margin-bottom: 1.5rem;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem 1rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.hero-meta a {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in srgb, var(--text-muted) 50%, transparent);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.hero-meta a:hover {
+  color: var(--text);
+  border-bottom-color: var(--text);
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTRIBUTION DOT FIELD
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dotfield-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.dotfield-scroll {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.dotfield {
+  display: block;
+}
+
+.dotfield-caption {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.dotfield-caption a {
+  color: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STACK LINES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.skill-line {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.skill-label {
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PAGE HEADER (stuff / story)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.page-header {
+  padding: 1.5rem 0 0.5rem;
+}
+
+.page-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.page-intro {
+  margin-top: 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STORY PROSE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  max-width: 62ch;
+}
+
+.prose-section {
+  padding: 1.75rem 0;
+}
+
+.prose-section + .prose-section {
+  border-top: 1px solid color-mix(in srgb, var(--text-muted) 20%, transparent);
+}
+
+.prose-heading {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.prose-heading::before {
+  content: '\2846';
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTACT CTA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cta {
+  padding: 2rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--text-muted) 20%, transparent);
+}
+
+.cta-line {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+.cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -452,82 +687,6 @@ a.badge:hover {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   MODAL
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-}
-
-.modal-card {
-  background: var(--bg);
-  border: 1px solid color-mix(in srgb, var(--text-muted) 30%, transparent);
-  border-radius: 6px;
-  max-width: 600px;
-  width: 100%;
-  max-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--text-muted) 20%, transparent);
-}
-
-.modal-title {
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  line-height: 1;
-  padding: 0 0.25rem;
-  transition: color 0.15s ease;
-}
-
-.modal-close:hover {
-  color: var(--text);
-}
-
-.modal-body {
-  padding: 1.25rem;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   SKILLS - Comma-separated inline lists
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.skill-line {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-}
-
-.skill-label {
-  font-weight: 500;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
    SELECTION & FOCUS
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -588,7 +747,8 @@ a.badge:hover {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @media print {
-  .theme-toggle {
+  .theme-toggle,
+  .nav {
     display: none;
   }
 
