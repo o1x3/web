@@ -19,7 +19,20 @@ export const PERSONAL_INFO = {
     url: 'https://o1x3.com',
     display: 'o1x3.com',
   },
+  x: {
+    url: 'https://x.com/pawnsloth',
+    display: '@pawnsloth',
+  },
+  githubAccounts: ['o1x3', 'karthikvinayan'],
 } as const
+
+export const TAGLINES = [
+  'applied ai engineer',
+  'builds agents for a living',
+  'ships CLIs for fun',
+  'terminal dweller',
+  'infra from zero, twice',
+] as const
 
 export const SUMMARY = `Building AI at Clueso (YC W23). Previously built the backend for a production AI cloud automation platform — multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.`
 
@@ -107,10 +120,26 @@ export const EXPERIENCE = [
   },
 ] as const
 
-export const PROJECTS = [
+// Everything I build, grouped for the /stuff page. `featured` items also
+// surface on the home page.
+export type Build = {
+  id: string
+  title: string
+  year: string
+  group: 'tools' | 'web & apps' | 'odd ones'
+  featured?: boolean
+  badges: readonly { label: string; url?: string }[]
+  url?: string
+  description: string
+}
+
+export const BUILDS: readonly Build[] = [
   {
     id: 'podspawn',
     title: 'podspawn',
+    year: '2026',
+    group: 'tools',
+    featured: true,
     badges: [
       { label: 'Docs', url: 'https://podspawn.dev' },
       { label: 'GitHub', url: 'https://github.com/podspawn/podspawn' },
@@ -118,35 +147,45 @@ export const PROJECTS = [
       { label: 'AGPL-3.0' },
     ],
     url: 'https://podspawn.dev',
-    description: 'One-command dev environments, locally or over SSH. Single binary, Docker-backed with composable Podfile config, branch-isolated workspaces, native sshd integration, gVisor sandboxing, and a session control plane with actor-scoped audit.',
+    description:
+      'One-command dev environments, locally or over SSH. Single binary, Docker-backed with composable Podfile config, branch-isolated workspaces, native sshd integration, gVisor sandboxing, and a session control plane with actor-scoped audit.',
   },
   {
-    id: 'juno',
-    title: 'juno',
+    id: 'ergo',
+    title: 'ergo',
+    year: '2026',
+    group: 'tools',
+    featured: true,
     badges: [
-      { label: 'GitHub', url: 'https://github.com/o1x3/juno' },
+      { label: 'GitHub', url: 'https://github.com/o1x3/ergo' },
       { label: 'TypeScript' },
       { label: 'Bun' },
-      { label: 'WIP' },
     ],
-    url: 'https://github.com/o1x3/juno',
-    description: 'Local coding agent in the terminal. Bun + Ink TUI, append-only JSONL session log with resume, plan/exec mode split with read-only tools in plan mode, OAuth + API-key auth with automatic routing between the OpenAI SDK and the ChatGPT Codex backend.',
+    url: 'https://github.com/o1x3/ergo',
+    description:
+      'Local-first AI code review. Bring your own ChatGPT or Codex subscription — it runs your linters, feeds the findings to the model, and prints the verdict as TUI, JSON, SARIF, or markdown with the token bill attached.',
   },
   {
-    id: 'tenso',
-    title: 'Tenso',
+    id: 'dcon',
+    title: 'dcon',
+    year: '2026',
+    group: 'tools',
+    featured: true,
     badges: [
-      { label: 'GitHub', url: 'https://github.com/PatchPerson/Tenso' },
-      { label: 'Rust' },
-      { label: 'SolidJS' },
-      { label: 'MIT' },
+      { label: 'GitHub', url: 'https://github.com/o1x3/dcon' },
+      { label: 'Go' },
+      { label: 'Homebrew' },
     ],
-    url: 'https://github.com/PatchPerson/Tenso',
-    description: 'Postman alternative built with Tauri 2.0 and SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL and OpenAPI import.',
+    url: 'https://github.com/o1x3/dcon',
+    description:
+      "Drop-in docker CLI for macOS backed by Apple's container runtime — speak docker, execute on per-container lightweight VMs. Warm-pool pre-boot takes container start from ~700ms to ~90ms; ships as a ~6MB static binary.",
   },
   {
     id: 'hn',
     title: 'hn',
+    year: '2026',
+    group: 'web & apps',
+    featured: true,
     badges: [
       { label: 'GitHub', url: 'https://github.com/o1x3/hn-web' },
       { label: 'Next.js' },
@@ -154,41 +193,122 @@ export const PROJECTS = [
       { label: 'MIT' },
     ],
     url: 'https://github.com/o1x3/hn-web',
-    description: 'Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, writes proxied through news.ycombinator.com with per-request CSRF token scraping and 500ms rate limiting, IndexedDB store with fuzzy-anchor highlight relocation, recursive collapsible threads, reply inbox, reader mode.',
+    description:
+      'Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, writes proxied through news.ycombinator.com with per-request CSRF token scraping and 500ms rate limiting, IndexedDB store with fuzzy-anchor highlight relocation, recursive collapsible threads, reply inbox, reader mode.',
+  },
+  {
+    id: 'juno',
+    title: 'juno',
+    year: '2026',
+    group: 'tools',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/juno' },
+      { label: 'TypeScript' },
+      { label: 'Bun' },
+      { label: 'WIP' },
+    ],
+    url: 'https://github.com/o1x3/juno',
+    description:
+      'Local coding agent in the terminal. Bun + Ink TUI, append-only JSONL session log with resume, plan/exec mode split with read-only tools in plan mode, OAuth + API-key auth with automatic routing between the OpenAI SDK and the ChatGPT Codex backend.',
+  },
+  {
+    id: 'furl',
+    title: 'furl',
+    year: '2026',
+    group: 'tools',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/furl' },
+      { label: 'crates.io', url: 'https://crates.io/crates/furl-http' },
+      { label: 'Rust' },
+    ],
+    url: 'https://github.com/o1x3/furl',
+    description:
+      'HTTP client with human syntax — name=value builds JSON, `:` sets headers, `@` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager), published to crates.io.',
+  },
+  {
+    id: 'tmax',
+    title: 'tmax',
+    year: '2026',
+    group: 'tools',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/tmax' },
+      { label: 'Go' },
+    ],
+    url: 'https://github.com/o1x3/tmax',
+    description:
+      'Pastel, neofetch-style terminal card for AI coding-harness token usage — Claude Code, Codex, pi.dev. Bubble Tea + Lipgloss, adapts to light/dark terminals, reads local session logs so nothing leaves the machine.',
+  },
+  {
+    id: 'nx',
+    title: 'nx',
+    year: '2026',
+    group: 'tools',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/nx' },
+      { label: 'Go' },
+    ],
+    url: 'https://github.com/o1x3/nx',
+    description:
+      'Personal dev CLI. Pretty git stats across every repo in a folder at once — concurrent fetching, auto-detected default branches, GoReleaser self-updates, intentionally no Cobra.',
   },
   {
     id: 'ctoken',
     title: 'ctoken',
+    year: '2025',
+    group: 'tools',
     badges: [
       { label: 'GitHub', url: 'https://github.com/o1x3/ctoken' },
       { label: 'PyPI', url: 'https://pypi.org/project/ctoken' },
       { label: 'MIT' },
     ],
     url: 'https://github.com/o1x3/ctoken',
-    description: 'OpenAI API cost estimation library. Supports all models, streaming, caching breakdown.',
+    description:
+      'OpenAI API cost estimation library. Supports all models, streaming, caching breakdown.',
   },
-] as const
-
-export const SIDE_PROJECTS = [
+  {
+    id: 'tenso',
+    title: 'Tenso',
+    year: '2025',
+    group: 'web & apps',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/PatchPerson/Tenso' },
+      { label: 'Rust' },
+      { label: 'SolidJS' },
+      { label: 'MIT' },
+    ],
+    url: 'https://github.com/PatchPerson/Tenso',
+    description:
+      'Postman alternative built with Tauri 2.0 and SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL and OpenAPI import.',
+  },
+  {
+    id: 'sentinel',
+    title: 'sentinel',
+    year: '2026',
+    group: 'web & apps',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/sentinel' },
+      { label: 'Swift' },
+    ],
+    url: 'https://github.com/o1x3/sentinel',
+    description: '2FA app for iOS. Codes generated and stored on device, nowhere else.',
+  },
   {
     id: 'ios-apps',
-    title: 'iOS Apps',
-    badges: [
-      { label: 'Swift' },
-      { label: 'SwiftUI' },
-      { label: 'WIP' },
-    ],
-    description: 'Two apps with on-device AI using Apple Foundation Models. Shipping Q1 2026.',
+    title: 'iOS apps',
+    year: '2026',
+    group: 'odd ones',
+    badges: [{ label: 'Swift' }, { label: 'SwiftUI' }, { label: 'WIP' }],
+    description:
+      'Two apps with on-device AI using Apple Foundation Models. Shipping when they stop embarrassing me.',
   },
   {
     id: 'crop-detection',
-    title: 'Crop Ripeness Detection',
-    badges: [
-      { label: 'Python' },
-      { label: 'YOLOv8' },
-      { label: 'Research' },
-    ],
-    description: 'Real-time detection fine-tuned on agricultural dataset; deployed at Digital University Kerala.',
+    title: 'crop ripeness detection',
+    year: '2023',
+    group: 'odd ones',
+    badges: [{ label: 'Python' }, { label: 'YOLOv8' }, { label: 'Research' }],
+    description:
+      'Real-time detection fine-tuned on a proprietary agricultural dataset; deployed at Digital University Kerala.',
   },
 ] as const
 
