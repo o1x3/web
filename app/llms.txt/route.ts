@@ -2,16 +2,16 @@ export const dynamic = 'force-static'
 
 const BODY = `# Karthik Vinayan
 
-> Applied AI Engineer at Clueso (YC W23), based in Bengaluru. Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform from zero — multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.
+> Applied AI Engineer at Clueso (YC W23), based in Bengaluru. Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform from zero: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.
 
-I work across AI systems and backend infrastructure: LLM agents, multi-agent orchestration, the Model Context Protocol, retrieval and knowledge graphs, and the serving stack underneath them. Primary languages are Python, Go, and Rust. This file is a map of who I am and what I've built — the linked pages have the detail.
+I work across AI systems and backend infrastructure: LLM agents, multi-agent orchestration, the Model Context Protocol, retrieval and knowledge graphs, and the serving stack underneath them. Primary languages are Python, Go, and Rust. This file is a map of who I am and what I've built; the linked pages have the detail.
 
 ## Profile
 
 - [Portfolio](https://o1x3.com): Experience, featured builds, skills, and a merged GitHub activity graph.
 - [Stuff](https://o1x3.com/stuff): Everything I build: CLIs, agents, clients, apps, plus upstream OSS contributions.
 - [Story](https://o1x3.com/story): The narrative version, college robot to production AI agents.
-- [GitHub (@o1x3)](https://github.com/o1x3): Personal repos — ergo, dcon, juno, hn, ctoken, and more.
+- [GitHub (@o1x3)](https://github.com/o1x3): Personal repos: ergo, dcon, juno, hn, ctoken, and more.
 - [X (@pawnsloth)](https://x.com/pawnsloth): Short-form thoughts and product feedback for indie devs.
 - [LinkedIn](https://linkedin.com/in/karthik-vinayan): Professional history.
 - Email: karthik@o1x3.com
@@ -32,7 +32,7 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 - [juno](https://github.com/o1x3/juno): Local coding agent in the terminal. Bun + Ink TUI, append-only JSONL session log with resume, plan/exec split, OAuth + API-key auth routing between the OpenAI SDK and the ChatGPT Codex backend. TypeScript, WIP.
 - [Tenso](https://github.com/PatchPerson/Tenso): Postman alternative on Tauri 2.0 + SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL/OpenAPI import. Rust, MIT.
 - [hn](https://github.com/o1x3/hn-web): Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, CSRF-scraped write proxy, IndexedDB store with fuzzy-anchor highlight relocation, recursive collapsible threads. MIT.
-- [ctoken](https://github.com/o1x3/ctoken): OpenAI API cost-estimation library — all models, streaming, caching breakdown. [PyPI](https://pypi.org/project/ctoken). MIT.
+- [ctoken](https://github.com/o1x3/ctoken): OpenAI API cost-estimation library: all models, streaming, caching breakdown. [PyPI](https://pypi.org/project/ctoken). MIT.
 
 ## Publication
 
@@ -40,7 +40,7 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 
 ## Optional
 
-- [llms-full.txt](https://o1x3.com/llms-full.txt): The complete resume content inline — every experience bullet, skill, and project detail in one document.
+- [llms-full.txt](https://o1x3.com/llms-full.txt): The complete resume content inline: every experience bullet, skill, and project detail in one document.
 `
 
 export function GET() {

@@ -34,7 +34,7 @@ export const TAGLINES = [
   'infra from zero, twice',
 ] as const
 
-export const SUMMARY = `Building AI at Clueso (YC W23). Previously built the backend for a production AI cloud automation platform — multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.`
+export const SUMMARY = `Building AI at Clueso (YC W23). Previously built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.`
 
 export const EXPERIENCE = [
   {
@@ -167,7 +167,7 @@ export const BUILDS: readonly Build[] = [
     url: 'https://github.com/o1x3/ergo',
     description: 'Code review from the AI subscription you already pay for.',
     detail:
-      'Runs your linters locally, hands the findings to ChatGPT or Codex, prints the verdict as TUI, JSON, SARIF, or markdown. Every review shows its token bill.',
+      'Runs your linters locally and hands the findings to ChatGPT or Codex. The verdict comes back as TUI, JSON, SARIF, or markdown, with the token bill for every review.',
   },
   {
     id: 'dcon',
@@ -245,7 +245,7 @@ export const BUILDS: readonly Build[] = [
     url: 'https://github.com/o1x3/tmax',
     description: 'A neofetch card for your AI token spend.',
     detail:
-      'Reads local session logs from Claude Code, Codex, and pi.dev. Bubble Tea + Lipgloss, pastel, adapts to your terminal theme. Nothing leaves the machine.',
+      'Reads local session logs from Claude Code, Codex, and pi.dev, and never phones home. Bubble Tea + Lipgloss with a pastel palette that follows your terminal theme.',
   },
   {
     id: 'nx',
@@ -259,7 +259,7 @@ export const BUILDS: readonly Build[] = [
     url: 'https://github.com/o1x3/nx',
     description: 'git status for every repo in the folder, at once.',
     detail:
-      'Concurrent fetching, auto-detected default branches, GoReleaser self-updates. Intentionally no Cobra.',
+      'Fetches concurrently and auto-detects default branches. Self-updates through GoReleaser. Intentionally no Cobra.',
   },
   {
     id: 'ctoken',
@@ -273,7 +273,8 @@ export const BUILDS: readonly Build[] = [
     ],
     url: 'https://github.com/o1x3/ctoken',
     description: 'Know what an OpenAI call costs before the invoice does.',
-    detail: 'Python library on PyPI. All models, streaming, cached-token breakdown.',
+    detail:
+      'Python library on PyPI. Covers every model, streaming included, and breaks out cached-token costs.',
   },
   {
     id: 'tenso',

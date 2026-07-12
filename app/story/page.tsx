@@ -4,7 +4,7 @@ import { PERSONAL_INFO, PUBLICATION, EDUCATION } from '../data'
 export const metadata: Metadata = {
   title: 'story | Karthik Vinayan',
   description:
-    'Who I am now and how I got here: AI at Clueso, founding-engineer years at Omni RPA, and a college robot that started it all.',
+    'Who I am now and how I got here, from a college robot to AI at Clueso.',
   alternates: { canonical: '/story' },
 }
 
@@ -24,8 +24,7 @@ export default function StoryPage() {
               Clueso
             </a>{' '}
             (YC W23) in Bengaluru. We turn screen recordings into polished
-            product videos and docs. Built with love, for people who care
-            about craft.
+            product videos and docs.
           </p>
           <p>
             Most of what I know comes from shipping agents to production and

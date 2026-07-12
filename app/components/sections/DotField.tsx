@@ -1,7 +1,7 @@
 import type { ContributionCalendar } from '../../lib/contributions'
 
-// A year of commits as a field of dots — same dots as the favicon, just more
-// of them. Rendered server-side as plain SVG circles.
+// A year of commits as a field of dots: the same dots as the favicon, just
+// more of them. Rendered server-side as plain SVG circles.
 
 const DOT_RADIUS = 1.9
 const CELL = 8.4

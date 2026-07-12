@@ -2,7 +2,7 @@ export const dynamic = 'force-static'
 
 const BODY = `# Karthik Vinayan
 
-> Applied AI Engineer at Clueso (YC W23), based in Bengaluru. Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform from zero — multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.
+> Applied AI Engineer at Clueso (YC W23), based in Bengaluru. Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform from zero: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.
 
 - Name: Karthik Vinayan
 - Title: Applied AI Engineer
@@ -16,7 +16,7 @@ const BODY = `# Karthik Vinayan
 
 ## Summary
 
-Building AI at Clueso (YC W23). Previously built the backend for a production AI cloud automation platform — multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.
+Building AI at Clueso (YC W23). Previously built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.
 
 ## Experience
 
@@ -24,7 +24,7 @@ Building AI at Clueso (YC W23). Previously built the backend for a production AI
 
 Bengaluru. May 2026 – Present.
 
-- Building AI at Clueso (YC W23) — AI that turns screen recordings into polished product videos and step-by-step docs.
+- Building AI at Clueso (YC W23): AI that turns screen recordings into polished product videos and step-by-step docs.
 
 ### Omni RPA Inc (San Jose) / Agentic Solutions Pvt Ltd (Hyderabad) — Founding AI Engineer, AI & Backend Systems
 

@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
-  description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory. Python, Go, Rust.',
+  description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory. Python, Go, Rust.',
   keywords: ['Applied AI Engineer', 'Clueso', 'LLM Agents', 'Knowledge Graphs', 'MCP Protocol', 'Multi-Agent Systems', 'Python', 'Go', 'Rust', 'FalkorDB', 'FastAPI'],
   authors: [{ name: 'Karthik Vinayan' }],
   creator: 'Karthik Vinayan',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://o1x3.com',
     title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
-    description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
+    description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
     siteName: 'Karthik Vinayan Portfolio',
   },
   twitter: {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     site: '@pawnsloth',
     creator: '@pawnsloth',
     title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
-    description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
+    description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
   },
   robots: {
     index: true,

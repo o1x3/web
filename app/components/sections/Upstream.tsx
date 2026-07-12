@@ -1,6 +1,6 @@
 import type { OSSContribution } from '../../lib/github'
 
-// Merged PRs to other people's projects — pulled live from the profile README.
+// Merged PRs to other people's projects, pulled live from the profile README.
 export function UpstreamSection({
   contributions,
 }: {
