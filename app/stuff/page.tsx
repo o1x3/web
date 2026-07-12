@@ -19,8 +19,8 @@ export default async function StuffPage() {
         <h1 className="page-title">stuff</h1>
         <p className="page-intro">
           By day I build AI at Clueso. This page is the rest: things I build
-          when nobody asked, mostly terminal-shaped, usually shipped before
-          they&apos;re finished. Half of these started as a joke.
+          when nobody asked, mostly terminal-shaped. Half of these started as
+          a joke.
         </p>
       </header>
       <AllBuildsSections />
