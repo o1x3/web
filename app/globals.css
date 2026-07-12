@@ -369,6 +369,9 @@ a.badge:hover {
 .expandable-short,
 .expandable-full {
   grid-area: 1 / 1;
+  /* Without this, grid stretch makes both spans report the taller sibling's
+     height, which breaks the collapsed-height measurement */
+  align-self: start;
   transition: opacity 0.2s ease;
 }
 
