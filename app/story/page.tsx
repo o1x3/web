@@ -23,8 +23,10 @@ export default function StoryPage() {
             <a href="https://clueso.io" target="_blank" rel="noopener noreferrer">
               Clueso
             </a>{' '}
-            (YC W23) in Bengaluru. We turn screen recordings into polished
-            product videos and docs.
+            (YC W23) in Bengaluru. We make product videos and docs with AI,
+            increasingly end to end: agents that study your product, script
+            it, record it in a real browser, and re-render when the code
+            changes.
           </p>
           <p>
             Most of what I know comes from shipping agents to production and

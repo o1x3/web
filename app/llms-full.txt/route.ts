@@ -24,7 +24,7 @@ Building AI at Clueso (YC W23). Previously built the backend for a production AI
 
 Bengaluru. May 2026 – Present.
 
-- Building AI at Clueso (YC W23): AI that turns screen recordings into polished product videos and step-by-step docs.
+- Building AI at Clueso (YC W23): an AI video and docs platform. Agents study your product, draft the script, drive a browser through the flow to capture it, edit the result, and re-render when the code ships.
 
 ### Omni RPA Inc (San Jose) / Agentic Solutions Pvt Ltd (Hyderabad) — Founding AI Engineer, AI & Backend Systems
 

@@ -18,7 +18,7 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 
 ## Experience
 
-- [Clueso (YC W23)](https://clueso.io): Applied AI Engineer, May 2026–present. AI that turns screen recordings into polished product videos and step-by-step docs.
+- [Clueso (YC W23)](https://clueso.io): Applied AI Engineer, May 2026–present. AI video and docs platform; agents study your product, script it, record it in a browser, and re-render when the code ships.
 - Omni RPA / Agentic Solutions: Founding AI Engineer, Jun 2024–Apr 2026. Built an MCP server/client when the protocol was 5 weeks old, a DAG-based multi-agent orchestrator (8 agent types, topological scheduling, WebSocket streaming), 8 ambient agents on a separate scheduler, a 7-stage NATS knowledge-graph + RAG pipeline (GLiNER ONNX local extraction, FalkorDB, Weaviate), fine-tuned GGUF constraint extraction, model routing by task complexity, and semantic memory on Postgres/pgvector. Onboarded the first enterprise client pre-launch; primary on-call.
 - Digital University of Kerala: Research Intern, Oct–Dec 2023. Real-time crop ripeness detection with YOLOv8, deployed to production.
 
