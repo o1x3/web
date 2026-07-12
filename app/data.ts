@@ -121,7 +121,8 @@ export const EXPERIENCE = [
 ] as const
 
 // Everything I build, grouped for the /stuff page. `featured` items also
-// surface on the home page.
+// surface on the home page. `description` is the one-line hook; `detail`
+// carries the spec sheet.
 export type Build = {
   id: string
   title: string
@@ -131,6 +132,7 @@ export type Build = {
   badges: readonly { label: string; url?: string }[]
   url?: string
   description: string
+  detail?: string
 }
 
 export const BUILDS: readonly Build[] = [
@@ -147,8 +149,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'AGPL-3.0' },
     ],
     url: 'https://podspawn.dev',
-    description:
-      'One-command dev environments, locally or over SSH. Single binary, Docker-backed with composable Podfile config, branch-isolated workspaces, native sshd integration, gVisor sandboxing, and a session control plane with actor-scoped audit.',
+    description: 'One command gets you a dev environment, locally or over SSH.',
+    detail:
+      'Single Go binary on Docker. Composable Podfile config, branch-isolated workspaces, native sshd, gVisor sandboxing, and a session control plane with actor-scoped audit.',
   },
   {
     id: 'ergo',
@@ -162,8 +165,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'Bun' },
     ],
     url: 'https://github.com/o1x3/ergo',
-    description:
-      'Local-first AI code review. Bring your own ChatGPT or Codex subscription: it runs your linters, feeds the findings to the model, and prints the verdict as TUI, JSON, SARIF, or markdown with the token bill attached.',
+    description: 'Code review from the AI subscription you already pay for.',
+    detail:
+      'Runs your linters locally, hands the findings to ChatGPT or Codex, prints the verdict as TUI, JSON, SARIF, or markdown. Every review shows its token bill.',
   },
   {
     id: 'dcon',
@@ -177,8 +181,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'Homebrew' },
     ],
     url: 'https://github.com/o1x3/dcon',
-    description:
-      "Drop-in docker CLI for macOS backed by Apple's container runtime. Speak docker, execute on per-container lightweight VMs. Warm-pool pre-boot takes container start from ~700ms to ~90ms; ships as a ~6MB static binary.",
+    description: "The docker CLI, rebuilt on Apple's container runtime.",
+    detail:
+      'Every container gets its own lightweight VM. Warm-pool pre-boot cuts start time from ~700ms to ~90ms. One ~6MB static binary, on Homebrew.',
   },
   {
     id: 'hn',
@@ -193,8 +198,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'MIT' },
     ],
     url: 'https://github.com/o1x3/hn-web',
-    description:
-      'Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, writes proxied through news.ycombinator.com with per-request CSRF token scraping and 500ms rate limiting, IndexedDB store with fuzzy-anchor highlight relocation, recursive collapsible threads, reply inbox, reader mode.',
+    description: 'Hacker News, as the client I actually wanted.',
+    detail:
+      'Next.js 15 with RSC. Writes proxied through news.ycombinator.com with per-request CSRF scraping and rate limiting, encrypted iron-session cookies, IndexedDB highlights that survive edits via fuzzy anchors, collapsible threads, reply inbox, reader mode.',
   },
   {
     id: 'juno',
@@ -208,8 +214,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'WIP' },
     ],
     url: 'https://github.com/o1x3/juno',
-    description:
-      'Local coding agent in the terminal. Bun + Ink TUI, append-only JSONL session log with resume, plan/exec mode split with read-only tools in plan mode, OAuth + API-key auth with automatic routing between the OpenAI SDK and the ChatGPT Codex backend.',
+    description: 'A coding agent that lives in the terminal.',
+    detail:
+      'Bun + Ink TUI. Append-only JSONL sessions with resume, plan/exec split with read-only tools in plan mode, OAuth or API-key auth routed between the OpenAI SDK and the ChatGPT Codex backend.',
   },
   {
     id: 'furl',
@@ -222,8 +229,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'Rust' },
     ],
     url: 'https://github.com/o1x3/furl',
-    description:
-      'HTTP client with human syntax: name=value builds JSON, `:` sets headers, `@` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager), published to crates.io.',
+    description: 'curl for people who type JSON all day.',
+    detail:
+      'name=value builds JSON, `:` sets headers, `@` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager), published to crates.io.',
   },
   {
     id: 'tmax',
@@ -235,8 +243,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'Go' },
     ],
     url: 'https://github.com/o1x3/tmax',
-    description:
-      'Pastel, neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Bubble Tea + Lipgloss, adapts to light/dark terminals, reads local session logs so nothing leaves the machine.',
+    description: 'A neofetch card for your AI token spend.',
+    detail:
+      'Reads local session logs from Claude Code, Codex, and pi.dev. Bubble Tea + Lipgloss, pastel, adapts to your terminal theme. Nothing leaves the machine.',
   },
   {
     id: 'nx',
@@ -248,8 +257,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'Go' },
     ],
     url: 'https://github.com/o1x3/nx',
-    description:
-      'Personal dev CLI. Pretty git stats across every repo in a folder at once. Concurrent fetching, auto-detected default branches, GoReleaser self-updates, intentionally no Cobra.',
+    description: 'git status for every repo in the folder, at once.',
+    detail:
+      'Concurrent fetching, auto-detected default branches, GoReleaser self-updates. Intentionally no Cobra.',
   },
   {
     id: 'ctoken',
@@ -262,8 +272,8 @@ export const BUILDS: readonly Build[] = [
       { label: 'MIT' },
     ],
     url: 'https://github.com/o1x3/ctoken',
-    description:
-      'OpenAI API cost estimation library. Supports all models, streaming, caching breakdown.',
+    description: 'Know what an OpenAI call costs before the invoice does.',
+    detail: 'Python library on PyPI. All models, streaming, cached-token breakdown.',
   },
   {
     id: 'tenso',
@@ -277,8 +287,9 @@ export const BUILDS: readonly Build[] = [
       { label: 'MIT' },
     ],
     url: 'https://github.com/PatchPerson/Tenso',
-    description:
-      'Postman alternative built with Tauri 2.0 and SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL and OpenAPI import.',
+    description: 'An HTTP workbench for when Postman got too heavy.',
+    detail:
+      'Tauri 2.0 and SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL and OpenAPI import.',
   },
   {
     id: 'sentinel',
@@ -290,7 +301,8 @@ export const BUILDS: readonly Build[] = [
       { label: 'Swift' },
     ],
     url: 'https://github.com/o1x3/sentinel',
-    description: '2FA app for iOS. Codes live on the device.',
+    description: '2FA for iOS.',
+    detail: 'Codes live on the device.',
   },
   {
     id: 'ios-apps',
@@ -298,8 +310,8 @@ export const BUILDS: readonly Build[] = [
     year: '2026',
     group: 'odd ones',
     badges: [{ label: 'Swift' }, { label: 'SwiftUI' }, { label: 'WIP' }],
-    description:
-      'Two apps with on-device AI using Apple Foundation Models. Shipping when they stop embarrassing me.',
+    description: 'Two apps with on-device AI using Apple Foundation Models.',
+    detail: 'Shipping when they stop embarrassing me.',
   },
   {
     id: 'crop-detection',
@@ -307,8 +319,9 @@ export const BUILDS: readonly Build[] = [
     year: '2023',
     group: 'odd ones',
     badges: [{ label: 'Python' }, { label: 'YOLOv8' }, { label: 'Research' }],
-    description:
-      'Real-time detection fine-tuned on a proprietary agricultural dataset; deployed at Digital University Kerala.',
+    description: 'Ripe or not, decided in real time.',
+    detail:
+      'YOLOv8 fine-tuned on a proprietary agricultural dataset. Deployed at Digital University Kerala.',
   },
 ] as const
 

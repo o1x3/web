@@ -34,9 +34,11 @@ function BuildEntry({ build }: { build: Build }) {
             )
           )}
         </span>
+        <span className="entry-leader" aria-hidden="true" />
         <span className="entry-date">{build.year}</span>
       </div>
-      <p className="entry-subtitle">{build.description}</p>
+      <p className="entry-hook">{build.description}</p>
+      {build.detail && <p className="entry-detail">{build.detail}</p>}
     </div>
   )
 }
@@ -66,16 +68,22 @@ const GROUPS: Build['group'][] = ['tools', 'web & apps', 'odd ones']
 export function AllBuildsSections() {
   return (
     <>
-      {GROUPS.map((group) => (
-        <section key={group} className="section-row" aria-label={group}>
-          <h2 className="section-label">{group}</h2>
-          <div className="section-content">
-            {BUILDS.filter((b) => b.group === group).map((build) => (
-              <BuildEntry key={build.id} build={build} />
-            ))}
-          </div>
-        </section>
-      ))}
+      {GROUPS.map((group) => {
+        const builds = BUILDS.filter((b) => b.group === group)
+        return (
+          <section key={group} className="section-row" aria-label={group}>
+            <h2 className="section-label">
+              {group}{' '}
+              <span className="section-count">⠿ {builds.length}</span>
+            </h2>
+            <div className="section-content">
+              {builds.map((build) => (
+                <BuildEntry key={build.id} build={build} />
+              ))}
+            </div>
+          </section>
+        )
+      })}
     </>
   )
 }

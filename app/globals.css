@@ -242,6 +242,38 @@ a:hover {
   color: var(--text-muted);
 }
 
+/* Build entries: hook line in full contrast, spec sheet muted below */
+.entry-hook {
+  font-size: 0.9rem;
+}
+
+.entry-detail {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: -0.25rem;
+}
+
+/* Dotted leader between title and year, favicon dots stretched thin */
+.entry-leader {
+  flex: 1 1 1ch;
+  min-width: 1ch;
+  border-bottom: 1px dotted color-mix(in srgb, var(--text-muted) 45%, transparent);
+  transform: translateY(-0.3em);
+}
+
+@media (max-width: 640px) {
+  .entry-leader {
+    display: none;
+  }
+}
+
+.section-count {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+  letter-spacing: 0.05em;
+}
+
 .company-aka {
   display: block;
   font-size: 0.75rem;

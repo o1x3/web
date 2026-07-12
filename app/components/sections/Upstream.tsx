@@ -29,6 +29,7 @@ export function UpstreamSection({
                 </a>
                 <span className="badge star-badge">★ {c.stars}</span>
               </span>
+              <span className="entry-leader" aria-hidden="true" />
               <span className="entry-date">{c.date}</span>
             </div>
             <p className="entry-subtitle">{c.description}</p>
