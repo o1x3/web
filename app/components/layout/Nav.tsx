@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { ThemeToggle } from '../ui/ThemeToggle'
 
 const LINKS = [
   { href: '/', label: 'index' },
@@ -31,6 +32,7 @@ export function Nav() {
             {label}
           </Link>
         ))}
+        <ThemeToggle />
       </div>
     </nav>
   )

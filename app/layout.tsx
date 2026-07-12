@@ -4,7 +4,6 @@ import { JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ErrorBoundary } from './error-boundary'
-import { ThemeToggle } from './components/ui/ThemeToggle'
 import { FaviconInit } from './components/FaviconInit'
 import { Nav } from './components/layout/Nav'
 import { Footer } from './components/layout/Footer'
@@ -91,7 +90,6 @@ export default async function RootLayout({
         />
       </head>
       <body className="font-mono">
-        <ThemeToggle />
         <FaviconInit />
         <ErrorBoundary>
           <main className="container">

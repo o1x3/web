@@ -582,16 +582,15 @@ a.badge:hover {
    THEME TOGGLE
    ═══════════════════════════════════════════════════════════════════════════ */
 
+/* Inline in the nav row, after the links */
 .theme-toggle {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 100;
-  width: 32px;
-  height: 32px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
   background: transparent;
   border: none;
   color: var(--text-muted);
@@ -604,15 +603,8 @@ a.badge:hover {
 }
 
 .theme-toggle svg {
-  width: 18px;
-  height: 18px;
-}
-
-@media (max-width: 640px) {
-  .theme-toggle {
-    top: 1rem;
-    right: 1rem;
-  }
+  width: 15px;
+  height: 15px;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
