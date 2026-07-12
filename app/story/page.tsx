@@ -4,7 +4,7 @@ import { PERSONAL_INFO, PUBLICATION, EDUCATION } from '../data'
 export const metadata: Metadata = {
   title: 'story | Karthik Vinayan',
   description:
-    'How I went from building a medicine-delivery robot in college to shipping AI agents in production.',
+    'Who I am now and how I got here: AI at Clueso, founding-engineer years at Omni RPA, and a college robot that started it all.',
   alternates: { canonical: '/story' },
 }
 
@@ -15,21 +15,22 @@ export default function StoryPage() {
         <h1 className="page-title">story</h1>
       </header>
 
-      <section className="prose-section" aria-label="How it started">
-        <h2 className="prose-heading">how it started</h2>
+      <section className="prose-section" aria-label="Now">
+        <h2 className="prose-heading">now</h2>
         <div className="prose">
           <p>
-            B.Tech at {EDUCATION[0].institutionShort}, AI &amp; ML
-            specialization. The part that actually mattered: leading a team
-            that built an autonomous medicine-delivery robot for hospitals.
-            Raspberry Pi, obstacle detection, path following, RFID room
-            identification. It ended up published in{' '}
-            <a href={PUBLICATION.doiUrl} target="_blank" rel="noopener noreferrer">
-              Springer LNNS
-            </a>
-            . Somewhere in between I spent a research winter fine-tuning YOLOv8
-            to tell ripe crops from unripe ones, and it shipped to production
-            at Digital University Kerala.
+            I&apos;m an applied AI engineer at{' '}
+            <a href="https://clueso.io" target="_blank" rel="noopener noreferrer">
+              Clueso
+            </a>{' '}
+            (YC W23) in Bengaluru. We turn screen recordings into polished
+            product videos and docs. Built with love, for people who care
+            about craft.
+          </p>
+          <p>
+            Most of what I know comes from shipping agents to production and
+            building the infra underneath them. The rest comes from small
+            tools nobody asked for.
           </p>
         </div>
       </section>
@@ -54,17 +55,21 @@ export default function StoryPage() {
         </div>
       </section>
 
-      <section className="prose-section" aria-label="Now">
-        <h2 className="prose-heading">now</h2>
+      <section className="prose-section" aria-label="How it started">
+        <h2 className="prose-heading">how it started</h2>
         <div className="prose">
           <p>
-            AI at{' '}
-            <a href="https://clueso.io" target="_blank" rel="noopener noreferrer">
-              Clueso
-            </a>{' '}
-            (YC W23) in Bengaluru, turning screen recordings into polished
-            product videos and docs. Built with love, for people who care
-            about craft.
+            B.Tech at {EDUCATION[0].institutionShort}, AI &amp; ML
+            specialization. The part that actually mattered: leading a team
+            that built an autonomous medicine-delivery robot for hospitals.
+            Raspberry Pi, obstacle detection, path following, RFID room
+            identification. It ended up published in{' '}
+            <a href={PUBLICATION.doiUrl} target="_blank" rel="noopener noreferrer">
+              Springer LNNS
+            </a>
+            . Somewhere in between I spent a research winter fine-tuning YOLOv8
+            to tell ripe crops from unripe ones, and it shipped to production
+            at Digital University Kerala.
           </p>
         </div>
       </section>
