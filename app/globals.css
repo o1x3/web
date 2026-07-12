@@ -693,6 +693,7 @@ a.badge:hover {
 
 .oss-hint {
   display: block;
+  text-align: left;
   margin-top: 0.75rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;

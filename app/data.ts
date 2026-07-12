@@ -46,8 +46,8 @@ export const EXPERIENCE = [
     period: 'May 2026 – Present',
     description: [
       {
-        short: 'Building AI at Clueso (YC W23)',
-        full: 'AI that turns screen recordings into polished product videos and step-by-step docs.',
+        short: 'Screen recordings in, product videos and docs out',
+        full: 'Clueso is an AI-first video editor (YC W23). Raw screen recordings become polished product videos and step-by-step docs.',
       },
     ],
   },
