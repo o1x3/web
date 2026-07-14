@@ -17,6 +17,14 @@
   --dot-3: #55503f;
   --dot-4: #1a1a1a;
 
+  /* Pane hues (desktop bento): ink-pen tones on paper */
+  --pane-me: #4a7d5f;
+  --pane-builds: #b06e3b;
+  --pane-exp: #6f5fa3;
+  --pane-dots: #4a7196;
+  --pane-skills: #a05a60;
+  --pane-cta: #8a833f;
+
   /* Typography */
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', monospace;
 }
@@ -30,6 +38,14 @@
   --dot-2: #737165;
   --dot-3: #aaa79b;
   --dot-4: #e5e5e5;
+
+  /* Pane hues: pastels on dark */
+  --pane-me: #a8d8b9;
+  --pane-builds: #f2c6a0;
+  --pane-exp: #c5b8e0;
+  --pane-dots: #a9cbe8;
+  --pane-skills: #e8b4b8;
+  --pane-cta: #d8d3a0;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -787,60 +803,160 @@ a.badge:hover {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   DESKTOP SHELL - sticky identity rail on the left, content on the right.
-   Below 1100px the rail vanishes and the top-nav single column takes over.
+   DESKTOP BENTO - home sections become tmux-style panes on wide screens.
+   Below 1100px the wrapper is display:contents and mobile stays untouched.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.rail {
-  display: none;
+.bento {
+  display: contents;
 }
 
 @media (min-width: 1100px) {
   .container {
-    max-width: 1240px;
-    display: grid;
-    grid-template-columns: 340px minmax(0, 1fr);
-    column-gap: 5.5rem;
-    align-items: start;
-    padding: 0 2rem;
+    max-width: 1220px;
   }
 
-  /* Rail replaces the top nav and the in-page hero */
-  .nav {
-    display: none;
-  }
-
-  .hero {
-    display: none;
-  }
-
-  /* Rail duplicates the contact links, so the in-flow footer retires */
+  /* Contact links live in the hero and cta panes; footer retires */
   .footer {
     display: none;
   }
 
-  .rail {
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding: 4.5rem 0 3.5rem;
+  .bento {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: 1.25rem;
+    align-items: stretch;
   }
 
-  .content {
+  /* Pane chrome: hairline with a whisper of each pane's hue */
+  .bento > * {
+    --hue: var(--text-muted);
+    border: 1px solid color-mix(in srgb, var(--hue) 34%, transparent);
+    border-radius: 6px;
+    padding: 1.4rem 1.6rem;
+    margin: 0;
     min-width: 0;
-    padding: 4.5rem 0 5rem;
   }
 
-  /* Text measures stay readable inside the wider pane */
+  .bento .hero { --hue: var(--pane-me); grid-column: 1; grid-row: 1; }
+  .bento [aria-label='Featured builds'] { --hue: var(--pane-builds); grid-column: 2 / 4; grid-row: 1; }
+  .bento [aria-label='Experience'] { --hue: var(--pane-exp); grid-column: 1; grid-row: 2 / 4; }
+  .bento [aria-label='GitHub activity'] { --hue: var(--pane-dots); grid-column: 2 / 4; grid-row: 2; }
+  .bento [aria-label='Skills'] { --hue: var(--pane-skills); grid-column: 2; grid-row: 3; }
+  .bento .cta { --hue: var(--pane-cta); grid-column: 3; grid-row: 3; }
+
+  /* Sections drop the label|content grid and the row separators */
+  .bento .section-row {
+    display: block;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .bento .section-row + .section-row {
+    border-top-width: 1px;
+  }
+
+  /* Labels become pastel pane headers */
+  .bento .section-label {
+    color: var(--hue);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    margin-bottom: 1.1rem;
+    padding-top: 0;
+  }
+
+  /* Builds pane: label and its "everything" link share the header line */
+  .bento [aria-label='Featured builds'] .section-row > div:first-child {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .bento [aria-label='Featured builds'] .section-label {
+    margin-bottom: 0;
+  }
+
+  .bento [aria-label='Featured builds'] .section-label::before { content: '⠿ 1:'; }
+  .bento [aria-label='Experience'] .section-label::before { content: '⠿ 2:'; }
+  .bento [aria-label='GitHub activity'] .section-label::before { content: '⠿ 3:'; }
+  .bento [aria-label='Skills'] .section-label::before { content: '⠿ 4:'; }
+
+  .bento .section-label-btn {
+    display: inline;
+    margin-top: 0;
+    margin-left: 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  /* Hero as pane 0 */
+  .bento .hero {
+    padding: 1.4rem 1.6rem;
+  }
+
+  .bento .hero::before {
+    content: '⠿ 0:me';
+    display: block;
+    color: var(--hue);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.1rem;
+  }
+
+  .bento .hero-name {
+    font-size: 1.75rem;
+  }
+
+  /* Contact as pane 5 */
+  .bento .cta {
+    border-top-width: 1px;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .bento .cta::before {
+    content: '⠿ 5:say hi';
+    display: block;
+    color: var(--hue);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.1rem;
+  }
+
+  /* Builds pane: entries two across, just name + badges + hook */
+  .bento [aria-label='Featured builds'] .section-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem 2.25rem;
+  }
+
+  .bento [aria-label='Featured builds'] .entry-detail {
+    display: none;
+  }
+
+  /* No leaders, no years-as-decor inside panes */
+  .bento .entry-leader {
+    display: none;
+  }
+
+  .bento [aria-label='Featured builds'] .entry-date {
+    display: none;
+  }
+
+  /* Dot field fills its pane */
+  .bento .dotfield {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Text measures stay sane inside the wider pages */
   .entry-hook,
   .entry-subtitle,
   .entry-detail {
     max-width: 62ch;
   }
 
-  /* Story sections keep the label | content rhythm of the home page */
+  /* Story keeps the label | prose rhythm on desktop */
   .prose-section {
     display: grid;
     grid-template-columns: 120px 1fr;
@@ -850,91 +966,4 @@ a.badge:hover {
   .prose-heading {
     margin-bottom: 0;
   }
-
-  .dotfield {
-    width: 100%;
-    max-width: 620px;
-    height: auto;
-  }
-}
-
-/* Rail internals */
-
-.rail-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4rem;
-}
-
-.rail-name {
-  font-size: 1.75rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-}
-
-.rail-bio {
-  margin-top: 1.5rem;
-  font-size: 0.875rem;
-  line-height: 1.7;
-  max-width: 34ch;
-}
-
-.rail-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.875rem;
-  margin-top: 3.5rem;
-  font-size: 0.9375rem;
-}
-
-.rail-nav a {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.rail-nav a::before {
-  content: '⠂ ';
-  color: color-mix(in srgb, var(--text-muted) 60%, transparent);
-  transition: color 0.15s ease;
-}
-
-.rail-nav a:hover {
-  color: var(--text);
-  opacity: 1;
-}
-
-.rail-nav a[aria-current='page'] {
-  color: var(--text);
-}
-
-.rail-nav a[aria-current='page']::before {
-  content: '⠿ ';
-  color: var(--text);
-}
-
-.rail-meta {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.45rem;
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-}
-
-.rail-meta a {
-  color: var(--text-muted);
-  text-decoration: none;
-  border-bottom: 1px dotted color-mix(in srgb, var(--text-muted) 50%, transparent);
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.rail-meta a:hover {
-  color: var(--text);
-  border-bottom-color: var(--text);
-  opacity: 1;
 }

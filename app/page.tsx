@@ -55,19 +55,21 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <Hero />
-      <FeaturedBuildsSection />
-      <ExperienceSection />
-      {contributions && (
-        <section className="section-row" aria-label="GitHub activity">
-          <h2 className="section-label">a year in dots</h2>
-          <div className="section-content">
-            <DotField calendar={contributions} />
-          </div>
-        </section>
-      )}
-      <SkillsSection />
-      <ContactSection />
+      <div className="bento">
+        <Hero />
+        <FeaturedBuildsSection />
+        <ExperienceSection />
+        {contributions && (
+          <section className="section-row" aria-label="GitHub activity">
+            <h2 className="section-label">a year in dots</h2>
+            <div className="section-content">
+              <DotField calendar={contributions} />
+            </div>
+          </section>
+        )}
+        <SkillsSection />
+        <ContactSection />
+      </div>
     </>
   )
 }
