@@ -6,6 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ErrorBoundary } from './error-boundary'
 import { FaviconInit } from './components/FaviconInit'
 import { Nav } from './components/layout/Nav'
+import { Rail } from './components/layout/Rail'
 import { Footer } from './components/layout/Footer'
 import './globals.css'
 
@@ -94,8 +95,11 @@ export default async function RootLayout({
         <ErrorBoundary>
           <main className="container">
             <Nav />
-            {children}
-            <Footer />
+            <Rail />
+            <div className="content">
+              {children}
+              <Footer />
+            </div>
           </main>
         </ErrorBoundary>
         <Analytics />

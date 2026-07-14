@@ -21,7 +21,7 @@ function useReducedMotion(): boolean {
   return reduced
 }
 
-function TaglineRotator() {
+export function TaglineRotator() {
   const reduced = useReducedMotion()
   const [frame, setFrame] = useState(0)
   const [word, setWord] = useState(0)

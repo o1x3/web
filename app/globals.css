@@ -79,49 +79,6 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   WIDE DESKTOP - use the horizontal room, keep line lengths readable
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-@media (min-width: 1100px) {
-  .container {
-    max-width: 980px;
-  }
-
-  .hero-name {
-    font-size: 1.875rem;
-  }
-
-  .section-row {
-    grid-template-columns: 200px 1fr;
-    gap: 4rem;
-  }
-
-  /* Prose measures stay readable while headers and leaders span the row */
-  .entry-hook,
-  .entry-subtitle,
-  .entry-detail {
-    max-width: 68ch;
-  }
-
-  /* Story sections join the same label | content rhythm as the home page */
-  .prose-section {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 4rem;
-  }
-
-  .prose-heading {
-    margin-bottom: 0;
-  }
-
-  .dotfield {
-    width: 100%;
-    max-width: 640px;
-    height: auto;
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
    LINKS
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -827,4 +784,157 @@ a.badge:hover {
     background: white;
     color: black;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESKTOP SHELL - sticky identity rail on the left, content on the right.
+   Below 1100px the rail vanishes and the top-nav single column takes over.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.rail {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .container {
+    max-width: 1240px;
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    column-gap: 5.5rem;
+    align-items: start;
+    padding: 0 2rem;
+  }
+
+  /* Rail replaces the top nav and the in-page hero */
+  .nav {
+    display: none;
+  }
+
+  .hero {
+    display: none;
+  }
+
+  /* Rail duplicates the contact links, so the in-flow footer retires */
+  .footer {
+    display: none;
+  }
+
+  .rail {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 4.5rem 0 3.5rem;
+  }
+
+  .content {
+    min-width: 0;
+    padding: 4.5rem 0 5rem;
+  }
+
+  /* Text measures stay readable inside the wider pane */
+  .entry-hook,
+  .entry-subtitle,
+  .entry-detail {
+    max-width: 62ch;
+  }
+
+  /* Story sections keep the label | content rhythm of the home page */
+  .prose-section {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 3rem;
+  }
+
+  .prose-heading {
+    margin-bottom: 0;
+  }
+
+  .dotfield {
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+  }
+}
+
+/* Rail internals */
+
+.rail-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.rail-name {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.rail-bio {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  max-width: 34ch;
+}
+
+.rail-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem;
+  margin-top: 3.5rem;
+  font-size: 0.9375rem;
+}
+
+.rail-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.rail-nav a::before {
+  content: '⠂ ';
+  color: color-mix(in srgb, var(--text-muted) 60%, transparent);
+  transition: color 0.15s ease;
+}
+
+.rail-nav a:hover {
+  color: var(--text);
+  opacity: 1;
+}
+
+.rail-nav a[aria-current='page'] {
+  color: var(--text);
+}
+
+.rail-nav a[aria-current='page']::before {
+  content: '⠿ ';
+  color: var(--text);
+}
+
+.rail-meta {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.rail-meta a {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in srgb, var(--text-muted) 50%, transparent);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.rail-meta a:hover {
+  color: var(--text);
+  border-bottom-color: var(--text);
+  opacity: 1;
 }
