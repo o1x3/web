@@ -813,7 +813,9 @@ a.badge:hover {
 
 @media (min-width: 1100px) {
   .container {
-    max-width: 1220px;
+    max-width: none;
+    padding-left: clamp(2rem, 3.5vw, 4rem);
+    padding-right: clamp(2rem, 3.5vw, 4rem);
   }
 
   /* Contact links live in the hero and cta panes; footer retires */
