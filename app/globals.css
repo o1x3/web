@@ -79,6 +79,49 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   WIDE DESKTOP - use the horizontal room, keep line lengths readable
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1100px) {
+  .container {
+    max-width: 980px;
+  }
+
+  .hero-name {
+    font-size: 1.875rem;
+  }
+
+  .section-row {
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+  }
+
+  /* Prose measures stay readable while headers and leaders span the row */
+  .entry-hook,
+  .entry-subtitle,
+  .entry-detail {
+    max-width: 68ch;
+  }
+
+  /* Story sections join the same label | content rhythm as the home page */
+  .prose-section {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+  }
+
+  .prose-heading {
+    margin-bottom: 0;
+  }
+
+  .dotfield {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    LINKS
    ═══════════════════════════════════════════════════════════════════════════ */
 
