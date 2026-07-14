@@ -79,6 +79,30 @@ Go. Source: https://github.com/o1x3/tmax
 
 Pastel, neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Bubble Tea + Lipgloss, adapts to light/dark terminals, reads local session logs only.
 
+### keiki
+
+Bun, Docker, Postgres.
+
+Self-hosted observability for Claude Code and Codex. One docker compose command stands up the dashboard; a proxy captures every request, token, dollar, and tool call into your own database. Nothing leaves your network.
+
+### clip
+
+Python, FastAPI, Bun.
+
+A public podcast in, a who-said-what transcript out. Speaker-attributed, word-timestamped transcripts through pyannote diarization or AssemblyAI, driven from a FastAPI and Bun control plane.
+
+### gala
+
+Astro, Supabase, Cloudflare R2.
+
+Drop a photo in Dropbox; the portfolio updates itself. An hourly GitHub Action extracts EXIF, geocodes the city, and optimizes each shot; images stream straight from R2's CDN.
+
+### lunel
+
+Rust, Expo, WIP. Source: https://github.com/o1x3/lunel
+
+AI-powered mobile IDE and cloud dev platform: a Rust PTY server underneath, an Expo app on top.
+
 ### nx
 
 Go. Source: https://github.com/o1x3/nx

@@ -248,6 +248,26 @@ export const BUILDS: readonly Build[] = [
       'Reads local session logs from Claude Code, Codex, and pi.dev, and never phones home. Bubble Tea + Lipgloss with a pastel palette that follows your terminal theme.',
   },
   {
+    id: 'keiki',
+    title: 'keiki',
+    year: '2026',
+    group: 'tools',
+    badges: [{ label: 'Bun' }, { label: 'Docker' }, { label: 'Postgres' }],
+    description: 'Self-hosted observability for Claude Code and Codex.',
+    detail:
+      'One docker compose command stands up the dashboard; a proxy captures every request, token, dollar, and tool call into your own database. Nothing leaves your network.',
+  },
+  {
+    id: 'clip',
+    title: 'clip',
+    year: '2026',
+    group: 'tools',
+    badges: [{ label: 'Python' }, { label: 'FastAPI' }, { label: 'Bun' }],
+    description: 'A public podcast in, a who-said-what transcript out.',
+    detail:
+      'Speaker-attributed, word-timestamped transcripts through pyannote diarization or AssemblyAI, driven from a FastAPI and Bun control plane with live progress and artifact review.',
+  },
+  {
     id: 'nx',
     title: 'nx',
     year: '2026',
@@ -275,6 +295,32 @@ export const BUILDS: readonly Build[] = [
     description: 'Know what an OpenAI call costs before the invoice does.',
     detail:
       'Python library on PyPI. Covers every model, streaming included, and breaks out cached-token costs.',
+  },
+  {
+    id: 'gala',
+    title: 'gala',
+    year: '2026',
+    group: 'web & apps',
+    badges: [{ label: 'Astro' }, { label: 'Supabase' }, { label: 'R2' }],
+    description: 'Drop a photo in Dropbox; the portfolio updates itself.',
+    detail:
+      'An hourly GitHub Action pulls from Dropbox, extracts EXIF, geocodes the city, and optimizes each shot. Metadata lands in Supabase, images on R2, and an Astro site streams them straight from the CDN.',
+  },
+  {
+    id: 'lunel',
+    title: 'lunel',
+    year: '2026',
+    group: 'web & apps',
+    badges: [
+      { label: 'GitHub', url: 'https://github.com/o1x3/lunel' },
+      { label: 'Rust' },
+      { label: 'Expo' },
+      { label: 'WIP' },
+    ],
+    url: 'https://github.com/o1x3/lunel',
+    description: 'An IDE that fits in your pocket.',
+    detail:
+      'AI-powered mobile IDE and cloud dev platform: a Rust PTY server underneath, an Expo app on top.',
   },
   {
     id: 'tenso',

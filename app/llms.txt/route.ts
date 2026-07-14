@@ -29,6 +29,10 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 - [dcon](https://github.com/o1x3/dcon): Drop-in docker CLI for macOS on Apple's container runtime. Warm-pool pre-boot (~90ms starts), ~6MB static binary. Go.
 - [furl](https://github.com/o1x3/furl): HTTP client with human request syntax, published to crates.io. Rust.
 - [tmax](https://github.com/o1x3/tmax): Neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Go, Bubble Tea.
+- keiki: Self-hosted observability for Claude Code and Codex; proxy captures every request, token, dollar, and tool call into your own Postgres. Bun, Docker.
+- clip: Speaker-attributed, word-timestamped podcast transcripts; FastAPI + Bun control plane. Python.
+- gala: Self-updating photo portfolio; Dropbox to GitHub Actions to Supabase/R2, Astro front end.
+- [lunel](https://github.com/o1x3/lunel): AI-powered mobile IDE and cloud dev platform; Rust PTY server, Expo app. WIP.
 - [juno](https://github.com/o1x3/juno): Local coding agent in the terminal. Bun + Ink TUI, append-only JSONL session log with resume, plan/exec split, OAuth + API-key auth routing between the OpenAI SDK and the ChatGPT Codex backend. TypeScript, WIP.
 - [Tenso](https://github.com/PatchPerson/Tenso): Postman alternative on Tauri 2.0 + SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL/OpenAPI import. Rust, MIT.
 - [hn](https://github.com/o1x3/hn-web): Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, CSRF-scraped write proxy, IndexedDB store with fuzzy-anchor highlight relocation, recursive collapsible threads. MIT.
