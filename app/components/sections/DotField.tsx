@@ -42,7 +42,7 @@ export function DotField({ calendar }: { calendar: ContributionCalendar }) {
               key={d.date}
               cx={d.col * CELL + CELL / 2}
               cy={d.row * CELL + CELL / 2}
-              r={d.level === 0 ? DOT_RADIUS * 0.72 : DOT_RADIUS}
+              r={DOT_RADIUS}
               fill={`var(--dot-${d.level})`}
             >
               <title>{`${d.count} on ${d.date}`}</title>
