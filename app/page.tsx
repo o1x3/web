@@ -60,7 +60,7 @@ export default async function Home() {
         <FeaturedBuildsSection />
         <ExperienceSection />
         {contributions && (
-          <section className="section-row" aria-label="GitHub activity">
+          <section className="section-row" aria-label="GitHub activity" data-pane="dots">
             <h2 className="section-label">a year in dots</h2>
             <div className="section-content">
               <DotField calendar={contributions} />

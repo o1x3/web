@@ -835,6 +835,7 @@ a.badge:hover {
   /* Pane chrome: hairline with a whisper of each pane's hue */
   .bento > * {
     --hue: var(--text-muted);
+
     border: 1px solid color-mix(in srgb, var(--hue) 34%, transparent);
     border-radius: 6px;
     padding: 1.4rem 1.6rem;
@@ -843,10 +844,10 @@ a.badge:hover {
   }
 
   .bento .hero { --hue: var(--pane-me); grid-column: 1; grid-row: 1; }
-  .bento [aria-label='GitHub activity'] { --hue: var(--pane-dots); grid-column: 2 / 4; grid-row: 1; }
-  .bento [aria-label='Experience'] { --hue: var(--pane-exp); grid-column: 1; grid-row: 2 / 4; }
-  .bento [aria-label='Featured builds'] { --hue: var(--pane-builds); grid-column: 2 / 4; grid-row: 2; }
-  .bento [aria-label='Skills'] { --hue: var(--pane-skills); grid-column: 2; grid-row: 3; }
+  .bento [data-pane='dots'] { --hue: var(--pane-dots); grid-column: 2 / 4; grid-row: 1; }
+  .bento [data-pane='experience'] { --hue: var(--pane-exp); grid-column: 1; grid-row: 2 / 4; }
+  .bento [data-pane='builds'] { --hue: var(--pane-builds); grid-column: 2 / 4; grid-row: 2; }
+  .bento [data-pane='skills'] { --hue: var(--pane-skills); grid-column: 2; grid-row: 3; }
   .bento .cta { --hue: var(--pane-cta); grid-column: 3; grid-row: 3; }
 
   /* Sections drop the label|content grid and the row separators */
@@ -870,21 +871,21 @@ a.badge:hover {
   }
 
   /* Builds pane: label and its "everything" link share the header line */
-  .bento [aria-label='Featured builds'] .section-row > div:first-child {
+  .bento [data-pane='builds'] .section-row > div:first-child {
     display: flex;
     align-items: baseline;
     gap: 0.9rem;
     margin-bottom: 1.1rem;
   }
 
-  .bento [aria-label='Featured builds'] .section-label {
+  .bento [data-pane='builds'] .section-label {
     margin-bottom: 0;
   }
 
-  .bento [aria-label='GitHub activity'] .section-label::before { content: '⠿ 1:'; }
-  .bento [aria-label='Experience'] .section-label::before { content: '⠿ 2:'; }
-  .bento [aria-label='Featured builds'] .section-label::before { content: '⠿ 3:'; }
-  .bento [aria-label='Skills'] .section-label::before { content: '⠿ 4:'; }
+  .bento [data-pane='dots'] .section-label::before { content: '⠿ 1:'; }
+  .bento [data-pane='experience'] .section-label::before { content: '⠿ 2:'; }
+  .bento [data-pane='builds'] .section-label::before { content: '⠿ 3:'; }
+  .bento [data-pane='skills'] .section-label::before { content: '⠿ 4:'; }
 
   .bento .section-label-btn {
     display: inline;
@@ -927,13 +928,13 @@ a.badge:hover {
   }
 
   /* Builds pane: entries two across, just name + badges + hook */
-  .bento [aria-label='Featured builds'] .section-content {
+  .bento [data-pane='builds'] .section-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.2rem 2.25rem;
   }
 
-  .bento [aria-label='Featured builds'] .entry-detail {
+  .bento [data-pane='builds'] .entry-detail {
     display: none;
   }
 
@@ -942,7 +943,7 @@ a.badge:hover {
     display: none;
   }
 
-  .bento [aria-label='Featured builds'] .entry-date {
+  .bento [data-pane='builds'] .entry-date {
     display: none;
   }
 

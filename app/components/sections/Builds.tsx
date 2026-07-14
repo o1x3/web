@@ -47,7 +47,7 @@ export function FeaturedBuildsSection() {
   const featured = BUILDS.filter((b) => b.featured)
 
   return (
-    <section className="section-row" aria-label="Featured builds">
+    <section className="section-row" aria-label="Featured builds" data-pane="builds">
       <div>
         <h2 className="section-label">Builds</h2>
         <Link href="/stuff" className="section-label-btn">

@@ -3,7 +3,7 @@ import { ExperienceBullets } from './ExperienceBullets'
 
 export function ExperienceSection() {
   return (
-    <section className="section-row" aria-label="Experience">
+    <section className="section-row" aria-label="Experience" data-pane="experience">
       <h2 className="section-label">Experience</h2>
       <div className="section-content">
         {EXPERIENCE.map((exp) => (
