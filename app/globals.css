@@ -909,22 +909,56 @@ a.badge:hover {
     order: 0;
   }
 
-  /* Pane chrome: hairline with a whisper of each pane's hue */
+  /* Pane chrome: each pane's hue on the frame, native corner resize like
+     any self-respecting tmux pane */
   .bento-col > *,
   .bento-duo > * {
     --hue: var(--text-muted);
 
-    border: 1px solid color-mix(in srgb, var(--hue) 34%, transparent);
+    position: relative;
+    border: 2px solid color-mix(in srgb, var(--hue) 40%, transparent);
     border-radius: 6px;
     padding: 1.4rem 1.6rem;
     margin: 0;
-    min-width: 0;
+    resize: both;
+    overflow: hidden;
+    max-width: 100%;
+    min-width: 260px;
+    min-height: 5.5rem;
+  }
+
+  /* Braille grip in the corner: the whole hint that panes resize */
+  .bento-col > *::after,
+  .bento-duo > *::after {
+    content: '⣿';
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.3rem;
+    font-size: 0.6rem;
+    line-height: 1;
+    color: var(--hue);
+    opacity: 0.4;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .bento-col > *:hover::after,
+  .bento-duo > *:hover::after {
+    opacity: 0.85;
   }
 
   .bento-col > .bento-duo {
     border: none;
     border-radius: 0;
     padding: 0;
+    resize: none;
+    overflow: visible;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .bento-col > .bento-duo::after {
+    content: none;
   }
 
   .bento .hero { --hue: var(--pane-me); }
@@ -938,6 +972,11 @@ a.badge:hover {
   .bento .section-row {
     display: block;
     padding: 1.4rem 1.6rem;
+  }
+
+  /* The base sibling-separator rule must not thin adjacent panes' top edges */
+  .bento .section-row + .section-row {
+    border-top: 2px solid color-mix(in srgb, var(--hue) 40%, transparent);
   }
 
   /* Labels become pastel pane headers */
