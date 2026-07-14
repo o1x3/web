@@ -840,9 +840,9 @@ a.badge:hover {
   }
 
   .bento .hero { --hue: var(--pane-me); grid-column: 1; grid-row: 1; }
-  .bento [aria-label='Featured builds'] { --hue: var(--pane-builds); grid-column: 2 / 4; grid-row: 1; }
+  .bento [aria-label='GitHub activity'] { --hue: var(--pane-dots); grid-column: 2 / 4; grid-row: 1; }
   .bento [aria-label='Experience'] { --hue: var(--pane-exp); grid-column: 1; grid-row: 2 / 4; }
-  .bento [aria-label='GitHub activity'] { --hue: var(--pane-dots); grid-column: 2 / 4; grid-row: 2; }
+  .bento [aria-label='Featured builds'] { --hue: var(--pane-builds); grid-column: 2 / 4; grid-row: 2; }
   .bento [aria-label='Skills'] { --hue: var(--pane-skills); grid-column: 2; grid-row: 3; }
   .bento .cta { --hue: var(--pane-cta); grid-column: 3; grid-row: 3; }
 
@@ -878,9 +878,9 @@ a.badge:hover {
     margin-bottom: 0;
   }
 
-  .bento [aria-label='Featured builds'] .section-label::before { content: '⠿ 1:'; }
+  .bento [aria-label='GitHub activity'] .section-label::before { content: '⠿ 1:'; }
   .bento [aria-label='Experience'] .section-label::before { content: '⠿ 2:'; }
-  .bento [aria-label='GitHub activity'] .section-label::before { content: '⠿ 3:'; }
+  .bento [aria-label='Featured builds'] .section-label::before { content: '⠿ 3:'; }
   .bento [aria-label='Skills'] .section-label::before { content: '⠿ 4:'; }
 
   .bento .section-label-btn {
@@ -941,6 +941,18 @@ a.badge:hover {
 
   .bento [aria-label='Featured builds'] .entry-date {
     display: none;
+  }
+
+  /* Dots pane rides beside the taller hero; keep the field centered.
+     Declared after the section-row block reset so the flex display wins. */
+  .bento [aria-label='GitHub activity'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bento [aria-label='GitHub activity'] .section-content {
+    flex: 1;
+    justify-content: center;
   }
 
   /* Dot field fills its pane */
