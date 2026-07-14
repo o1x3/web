@@ -829,12 +829,14 @@ a.badge:hover {
 
 /* Wrappers break the `+` sibling chain, so restate the mobile separators:
    every section but the first (builds) draws its own top rule */
-.bento .section-row {
-  border-top: 1px solid color-mix(in srgb, var(--text-muted) 20%, transparent);
-}
+@media (max-width: 1099.98px) {
+  .bento .section-row {
+    border-top: 1px solid color-mix(in srgb, var(--text-muted) 20%, transparent);
+  }
 
-.bento [data-pane='builds'] {
-  border-top: none;
+  .bento [data-pane='builds'] {
+    border-top: none;
+  }
 }
 
 @media (min-width: 1100px) {
@@ -890,6 +892,12 @@ a.badge:hover {
     min-width: 0;
   }
 
+  .bento-col > .bento-duo {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
   .bento .hero { --hue: var(--pane-me); }
   .bento [data-pane='dots'] { --hue: var(--pane-dots); }
   .bento [data-pane='experience'] { --hue: var(--pane-exp); }
@@ -901,7 +909,6 @@ a.badge:hover {
   .bento .section-row {
     display: block;
     padding: 1.4rem 1.6rem;
-    border-top-width: 1px;
   }
 
   /* Labels become pastel pane headers */
@@ -959,7 +966,6 @@ a.badge:hover {
 
   /* Contact as pane 5 */
   .bento .cta {
-    border-top-width: 1px;
     padding: 1.4rem 1.6rem;
   }
 
