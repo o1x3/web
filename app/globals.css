@@ -160,6 +160,27 @@ a:hover {
   border-bottom: 1px solid var(--text);
 }
 
+/* Contact line under the brand; desktop replaces the say-hi pane with this */
+.nav-say-hi {
+  display: none;
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.nav-say-hi a {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in srgb, var(--text-muted) 50%, transparent);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-say-hi a:hover {
+  color: var(--text);
+  border-bottom-color: var(--text);
+  opacity: 1;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    SECTION ROW - Two-column grid layout
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -846,8 +867,16 @@ a.badge:hover {
     padding-right: clamp(2rem, 3.5vw, 4rem);
   }
 
-  /* Contact links live in the hero and cta panes; footer retires */
+  /* Contact lives under the brand; the footer and the say-hi tile retire */
   .footer {
+    display: none;
+  }
+
+  .nav-say-hi {
+    display: block;
+  }
+
+  .bento .cta {
     display: none;
   }
 
@@ -867,7 +896,7 @@ a.badge:hover {
 
   .bento-duo {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1.25rem;
     align-items: start;
     min-width: 0;
