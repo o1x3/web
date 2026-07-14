@@ -803,12 +803,38 @@ a.badge:hover {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   DESKTOP BENTO - home sections become tmux-style panes on wide screens.
-   Below 1100px the wrapper is display:contents and mobile stays untouched.
+   DESKTOP BENTO - home sections pack into two column stacks on wide screens
+   so every box pushes up under the previous one. Below 1100px the wrappers
+   dissolve and flex `order` reproduces the original mobile sequence exactly.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .bento {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-col,
+.bento-duo {
   display: contents;
+}
+
+/* Mobile order matches the pre-bento DOM: hero, builds, experience, dots,
+   skills, contact */
+.bento .hero { order: 1; }
+.bento [data-pane='builds'] { order: 2; }
+.bento [data-pane='experience'] { order: 3; }
+.bento [data-pane='dots'] { order: 4; }
+.bento [data-pane='skills'] { order: 5; }
+.bento .cta { order: 6; }
+
+/* Wrappers break the `+` sibling chain, so restate the mobile separators:
+   every section but the first (builds) draws its own top rule */
+.bento .section-row {
+  border-top: 1px solid color-mix(in srgb, var(--text-muted) 20%, transparent);
+}
+
+.bento [data-pane='builds'] {
+  border-top: none;
 }
 
 @media (min-width: 1100px) {
@@ -823,17 +849,38 @@ a.badge:hover {
     display: none;
   }
 
-  /* Panes take their natural height; rows don't force uniform boxes */
   .bento {
     display: grid;
-    grid-template-columns: 1.15fr 1fr 1fr;
-    grid-auto-rows: auto;
+    grid-template-columns: 1.15fr 2fr;
     gap: 1.25rem;
     align-items: start;
   }
 
+  .bento-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+  }
+
+  .bento-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    min-width: 0;
+  }
+
+  /* Stacks pack top-down; the mobile ordering is irrelevant here */
+  .bento .hero,
+  .bento .section-row,
+  .bento .cta {
+    order: 0;
+  }
+
   /* Pane chrome: hairline with a whisper of each pane's hue */
-  .bento > * {
+  .bento-col > *,
+  .bento-duo > * {
     --hue: var(--text-muted);
 
     border: 1px solid color-mix(in srgb, var(--hue) 34%, transparent);
@@ -843,20 +890,17 @@ a.badge:hover {
     min-width: 0;
   }
 
-  .bento .hero { --hue: var(--pane-me); grid-column: 1; grid-row: 1; }
-  .bento [data-pane='dots'] { --hue: var(--pane-dots); grid-column: 2 / 4; grid-row: 1; }
-  .bento [data-pane='experience'] { --hue: var(--pane-exp); grid-column: 1; grid-row: 2 / 4; }
-  .bento [data-pane='builds'] { --hue: var(--pane-builds); grid-column: 2 / 4; grid-row: 2; }
-  .bento [data-pane='skills'] { --hue: var(--pane-skills); grid-column: 2; grid-row: 3; }
-  .bento .cta { --hue: var(--pane-cta); grid-column: 3; grid-row: 3; }
+  .bento .hero { --hue: var(--pane-me); }
+  .bento [data-pane='dots'] { --hue: var(--pane-dots); }
+  .bento [data-pane='experience'] { --hue: var(--pane-exp); }
+  .bento [data-pane='builds'] { --hue: var(--pane-builds); }
+  .bento [data-pane='skills'] { --hue: var(--pane-skills); }
+  .bento .cta { --hue: var(--pane-cta); }
 
   /* Sections drop the label|content grid and the row separators */
   .bento .section-row {
     display: block;
     padding: 1.4rem 1.6rem;
-  }
-
-  .bento .section-row + .section-row {
     border-top-width: 1px;
   }
 
@@ -871,7 +915,8 @@ a.badge:hover {
   }
 
   /* Builds pane: label and its "everything" link share the header line */
-  .bento [data-pane='builds'] .section-row > div:first-child {
+  .bento [data-pane='builds'] .section-row > div:first-child,
+  .bento [data-pane='builds'] > div:first-child {
     display: flex;
     align-items: baseline;
     gap: 0.9rem;

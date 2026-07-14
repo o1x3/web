@@ -56,19 +56,25 @@ export default async function Home() {
       />
 
       <div className="bento">
-        <Hero />
-        <FeaturedBuildsSection />
-        <ExperienceSection />
-        {contributions && (
-          <section className="section-row" aria-label="GitHub activity" data-pane="dots">
-            <h2 className="section-label">a year in dots</h2>
-            <div className="section-content">
-              <DotField calendar={contributions} />
-            </div>
-          </section>
-        )}
-        <SkillsSection />
-        <ContactSection />
+        <div className="bento-col">
+          <Hero />
+          <ExperienceSection />
+        </div>
+        <div className="bento-col">
+          {contributions && (
+            <section className="section-row" aria-label="GitHub activity" data-pane="dots">
+              <h2 className="section-label">a year in dots</h2>
+              <div className="section-content">
+                <DotField calendar={contributions} />
+              </div>
+            </section>
+          )}
+          <FeaturedBuildsSection />
+          <div className="bento-duo">
+            <SkillsSection />
+            <ContactSection />
+          </div>
+        </div>
       </div>
     </>
   )
