@@ -74,13 +74,18 @@ function toLevel(
 export async function fetchMergedContributions(
   users: readonly string[]
 ): Promise<ContributionCalendar | null> {
-  const calendars = (await Promise.all(users.map(fetchCalendar))).filter(
-    (c): c is Map<string, number> => c !== null
+  const results = await Promise.all(
+    users.map(async (user) => ({ user, cal: await fetchCalendar(user) }))
   )
-  if (calendars.length === 0) return null
+  // Only credit accounts whose calendar actually loaded, so the caption
+  // never claims data that isn't in the merge.
+  const valid = results.filter(
+    (r): r is { user: string; cal: Map<string, number> } => r.cal !== null
+  )
+  if (valid.length === 0) return null
 
   const merged = new Map<string, number>()
-  for (const cal of calendars) {
+  for (const { cal } of valid) {
     for (const [date, count] of cal) {
       merged.set(date, (merged.get(date) ?? 0) + count)
     }
@@ -96,6 +101,6 @@ export async function fetchMergedContributions(
   return {
     days,
     total: days.reduce((sum, d) => sum + d.count, 0),
-    accounts: [...users],
+    accounts: valid.map((r) => r.user),
   }
 }

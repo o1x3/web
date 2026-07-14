@@ -19,10 +19,11 @@ export function ExpandableText({ short, full }: ExpandableTextProps) {
     // ResizeObserver catches wrapping changes that window resize events miss.
     const measure = () => {
       if (shortRef.current && fullRef.current) {
-        setHeights({
-          short: shortRef.current.scrollHeight,
-          full: fullRef.current.scrollHeight,
-        })
+        const short = shortRef.current.scrollHeight
+        const full = fullRef.current.scrollHeight
+        setHeights((prev) =>
+          prev.short === short && prev.full === full ? prev : { short, full }
+        )
       }
     }
     measure()
