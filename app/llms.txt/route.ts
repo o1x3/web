@@ -2,30 +2,41 @@ export const dynamic = 'force-static'
 
 const BODY = `# Karthik Vinayan
 
-> Applied AI Engineer at Clueso (YC W23), based in Bengaluru. Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform from zero — multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.
+> Applied AI Engineer at Clueso (YC W23), based in Bengaluru. Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform from zero: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.
 
-I work across AI systems and backend infrastructure: LLM agents, multi-agent orchestration, the Model Context Protocol, retrieval and knowledge graphs, and the serving stack underneath them. Primary languages are Python, Go, and Rust. This file is a map of who I am and what I've built — the linked pages have the detail.
+I work across AI systems and backend infrastructure: LLM agents, multi-agent orchestration, the Model Context Protocol, retrieval and knowledge graphs, and the serving stack underneath them. Primary languages are Python, Go, and Rust. This file is a map of who I am and what I've built; the linked pages have the detail.
 
 ## Profile
 
-- [Portfolio](https://o1x3.com): Single-page site with full experience, projects, publication, and skills.
-- [GitHub (@o1x3)](https://github.com/o1x3): Personal repos — juno, hn, ctoken, and more.
+- [Portfolio](https://o1x3.com): Experience, featured builds, skills, and a merged GitHub activity graph.
+- [Stuff](https://o1x3.com/stuff): Everything I build: CLIs, agents, clients, apps, plus upstream OSS contributions.
+- [Story](https://o1x3.com/story): The narrative version, college robot to production AI agents.
+- [GitHub (@o1x3)](https://github.com/o1x3): Personal repos: ergo, dcon, juno, hn, ctoken, and more.
+- [X (@pawnsloth)](https://x.com/pawnsloth): Short-form thoughts and product feedback for indie devs.
 - [LinkedIn](https://linkedin.com/in/karthik-vinayan): Professional history.
 - Email: karthik@o1x3.com
 
 ## Experience
 
-- [Clueso (YC W23)](https://clueso.io): Applied AI Engineer, May 2026–present. AI that turns screen recordings into polished product videos and step-by-step docs.
+- [Clueso (YC W23)](https://clueso.io): Applied AI Engineer, May 2026–present. AI video and docs platform; agents study your product, script it, record it in a browser, and re-render when the code ships.
 - Omni RPA / Agentic Solutions: Founding AI Engineer, Jun 2024–Apr 2026. Built an MCP server/client when the protocol was 5 weeks old, a DAG-based multi-agent orchestrator (8 agent types, topological scheduling, WebSocket streaming), 8 ambient agents on a separate scheduler, a 7-stage NATS knowledge-graph + RAG pipeline (GLiNER ONNX local extraction, FalkorDB, Weaviate), fine-tuned GGUF constraint extraction, model routing by task complexity, and semantic memory on Postgres/pgvector. Onboarded the first enterprise client pre-launch; primary on-call.
 - Digital University of Kerala: Research Intern, Oct–Dec 2023. Real-time crop ripeness detection with YOLOv8, deployed to production.
 
 ## Projects
 
 - [podspawn](https://podspawn.dev): One-command dev environments, locally or over SSH. Single Go binary, Docker-backed, composable Podfile config, branch-isolated workspaces, native sshd, gVisor sandboxing, actor-scoped audit. AGPL-3.0. [Source](https://github.com/podspawn/podspawn).
+- [ergo](https://github.com/o1x3/ergo): Local-first AI code review. Bring your own ChatGPT/Codex subscription; runs linters, outputs TUI/JSON/SARIF/markdown with per-review token costs. TypeScript, Bun.
+- [dcon](https://github.com/o1x3/dcon): Drop-in docker CLI for macOS on Apple's container runtime. Warm-pool pre-boot (~90ms starts), ~6MB static binary. Go.
+- [furl](https://github.com/o1x3/furl): HTTP client with human request syntax, published to crates.io. Rust.
+- [tmax](https://github.com/o1x3/tmax): Neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Go, Bubble Tea.
+- keiki: Self-hosted observability for Claude Code and Codex; proxy captures every request, token, dollar, and tool call into your own Postgres. Bun, Docker.
+- clip: Speaker-attributed, word-timestamped podcast transcripts; FastAPI + Bun control plane. Python.
+- gala: Self-updating photo portfolio; Dropbox to GitHub Actions to Supabase/R2, Astro front end.
+- [lunel](https://github.com/o1x3/lunel): AI-powered mobile IDE and cloud dev platform; Rust PTY server, Expo app. WIP.
 - [juno](https://github.com/o1x3/juno): Local coding agent in the terminal. Bun + Ink TUI, append-only JSONL session log with resume, plan/exec split, OAuth + API-key auth routing between the OpenAI SDK and the ChatGPT Codex backend. TypeScript, WIP.
 - [Tenso](https://github.com/PatchPerson/Tenso): Postman alternative on Tauri 2.0 + SolidJS. Real-time team sync, WebSocket client, sandboxed JS scripting, cURL/OpenAPI import. Rust, MIT.
 - [hn](https://github.com/o1x3/hn-web): Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, CSRF-scraped write proxy, IndexedDB store with fuzzy-anchor highlight relocation, recursive collapsible threads. MIT.
-- [ctoken](https://github.com/o1x3/ctoken): OpenAI API cost-estimation library — all models, streaming, caching breakdown. [PyPI](https://pypi.org/project/ctoken). MIT.
+- [ctoken](https://github.com/o1x3/ctoken): OpenAI API cost-estimation library: all models, streaming, caching breakdown. [PyPI](https://pypi.org/project/ctoken). MIT.
 
 ## Publication
 
@@ -33,7 +44,7 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 
 ## Optional
 
-- [llms-full.txt](https://o1x3.com/llms-full.txt): The complete resume content inline — every experience bullet, skill, and project detail in one document.
+- [llms-full.txt](https://o1x3.com/llms-full.txt): The complete resume content inline: every experience bullet, skill, and project detail in one document.
 `
 
 export function GET() {

@@ -2,7 +2,7 @@ export const dynamic = 'force-static'
 
 const BODY = `# Karthik Vinayan
 
-> Applied AI Engineer at Clueso (YC W23), based in Bengaluru. Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform from zero — multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.
+> Applied AI Engineer at Clueso (YC W23), based in Bengaluru. Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform from zero: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.
 
 - Name: Karthik Vinayan
 - Title: Applied AI Engineer
@@ -10,12 +10,13 @@ const BODY = `# Karthik Vinayan
 - Location: Bengaluru, IN
 - Email: karthik@o1x3.com
 - Website: https://o1x3.com
-- GitHub: https://github.com/o1x3
+- GitHub: https://github.com/o1x3 (also https://github.com/karthikvinayan)
+- X: https://x.com/pawnsloth
 - LinkedIn: https://linkedin.com/in/karthik-vinayan
 
 ## Summary
 
-Building AI at Clueso (YC W23). Previously built the backend for a production AI cloud automation platform — multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.
+Building AI at Clueso (YC W23). Previously built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP, semantic memory, all from zero.
 
 ## Experience
 
@@ -23,7 +24,7 @@ Building AI at Clueso (YC W23). Previously built the backend for a production AI
 
 Bengaluru. May 2026 – Present.
 
-- Building AI at Clueso (YC W23) — AI that turns screen recordings into polished product videos and step-by-step docs.
+- Building AI at Clueso (YC W23): an AI video and docs platform. Agents study your product, draft the script, drive a browser through the flow to capture it, edit the result, and re-render when the code ships.
 
 ### Omni RPA Inc (San Jose) / Agentic Solutions Pvt Ltd (Hyderabad) — Founding AI Engineer, AI & Backend Systems
 
@@ -53,6 +54,66 @@ Kerala. Oct 2023 – Dec 2023.
 Go, AGPL-3.0. Docs: https://podspawn.dev — Source: https://github.com/podspawn/podspawn
 
 One-command dev environments, locally or over SSH. Single binary, Docker-backed with composable Podfile config, branch-isolated workspaces, native sshd integration, gVisor sandboxing, and a session control plane with actor-scoped audit.
+
+### ergo
+
+TypeScript, Bun. Source: https://github.com/o1x3/ergo
+
+Local-first AI code review. Bring your own ChatGPT or Codex subscription: it runs your linters, feeds the findings to the model, and prints the verdict as TUI, JSON, SARIF, or markdown with the token bill attached.
+
+### dcon
+
+Go, Homebrew. Source: https://github.com/o1x3/dcon
+
+Drop-in docker CLI for macOS backed by Apple's container runtime. Speak docker, execute on per-container lightweight VMs. Warm-pool pre-boot takes container start from ~700ms to ~90ms; ships as a ~6MB static binary.
+
+### furl
+
+Rust. Source: https://github.com/o1x3/furl — crates.io: https://crates.io/crates/furl-http
+
+HTTP client with human syntax: name=value builds JSON, \`:\` sets headers, \`@\` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager).
+
+### tmax
+
+Go. Source: https://github.com/o1x3/tmax
+
+Pastel, neofetch-style terminal card for AI coding-harness token usage (Claude Code, Codex, pi.dev). Bubble Tea + Lipgloss, adapts to light/dark terminals, reads local session logs only.
+
+### keiki
+
+Bun, Docker, Postgres.
+
+Self-hosted observability for Claude Code and Codex. One docker compose command stands up the dashboard; a proxy captures every request, token, dollar, and tool call into your own database. Nothing leaves your network.
+
+### clip
+
+Python, FastAPI, Bun.
+
+A public podcast in, a who-said-what transcript out. Speaker-attributed, word-timestamped transcripts through pyannote diarization or AssemblyAI, driven from a FastAPI and Bun control plane.
+
+### gala
+
+Astro, Supabase, Cloudflare R2.
+
+Drop a photo in Dropbox; the portfolio updates itself. An hourly GitHub Action extracts EXIF, geocodes the city, and optimizes each shot; images stream straight from R2's CDN.
+
+### lunel
+
+Rust, Expo, WIP. Source: https://github.com/o1x3/lunel
+
+AI-powered mobile IDE and cloud dev platform: a Rust PTY server underneath, an Expo app on top.
+
+### nx
+
+Go. Source: https://github.com/o1x3/nx
+
+Personal dev CLI. Pretty git stats across every repo in a folder at once. Concurrent fetching, auto-detected default branches, self-updating.
+
+### sentinel
+
+Swift. Source: https://github.com/o1x3/sentinel
+
+2FA app for iOS. Codes live on the device.
 
 ### juno
 

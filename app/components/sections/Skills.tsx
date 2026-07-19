@@ -10,7 +10,7 @@ export function SkillsSection() {
   ]
 
   return (
-    <section className="section-row" aria-label="Skills">
+    <section className="section-row" aria-label="Skills" data-pane="skills">
       <h2 className="section-label">Skills</h2>
       <div className="section-content">
         {skillCategories.map((category) => (

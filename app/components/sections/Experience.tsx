@@ -1,9 +1,9 @@
 import { EXPERIENCE } from '../../data'
-import { ExpandableText } from '../ui/ExpandableText'
+import { ExperienceBullets } from './ExperienceBullets'
 
 export function ExperienceSection() {
   return (
-    <section className="section-row" aria-label="Experience">
+    <section className="section-row" aria-label="Experience" data-pane="experience">
       <h2 className="section-label">Experience</h2>
       <div className="section-content">
         {EXPERIENCE.map((exp) => (
@@ -37,13 +37,7 @@ export function ExperienceSection() {
               </div>
             )}
             {exp.description.length > 0 && (
-              <ul className="bullet-list">
-                {exp.description.map((item) => (
-                  <li key={item.short}>
-                    <ExpandableText short={item.short} full={item.full} />
-                  </li>
-                ))}
-              </ul>
+              <ExperienceBullets items={exp.description} />
             )}
           </div>
         ))}
