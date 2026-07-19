@@ -524,6 +524,24 @@ a.badge:hover {
   color: inherit;
 }
 
+/* Fetched fresh per view; the pulse is the only announcement */
+.dotfield-live {
+  animation: live-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Suspense placeholder while the calendars stream in */
+.dotfield-skeleton {
+  height: 7.5rem;
+  background-image: radial-gradient(circle, var(--dot-0) 1.6px, transparent 2px);
+  background-size: 10px 10px;
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    STACK LINES
    ═══════════════════════════════════════════════════════════════════════════ */

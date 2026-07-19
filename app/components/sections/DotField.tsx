@@ -60,6 +60,7 @@ export function DotField({ calendar }: { calendar: ContributionCalendar }) {
             </a>
           </span>
         ))}
+        <span className="dotfield-live"> · live</span>
       </p>
     </div>
   )

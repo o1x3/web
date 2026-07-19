@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Hero } from './components/sections/Hero'
 import { FeaturedBuildsSection } from './components/sections/Builds'
 import { ExperienceSection } from './components/sections/Experience'
@@ -43,11 +44,35 @@ const structuredData = {
   ],
 }
 
-export default async function Home() {
+// Streams in behind Suspense with a live GitHub fetch on every view
+async function DotsPane() {
   const contributions = await fetchMergedContributions(
     PERSONAL_INFO.githubAccounts
   )
+  if (!contributions) return null
 
+  return (
+    <section className="section-row" aria-label="GitHub activity" data-pane="dots">
+      <h2 className="section-label">a year in dots</h2>
+      <div className="section-content">
+        <DotField calendar={contributions} />
+      </div>
+    </section>
+  )
+}
+
+function DotsPaneFallback() {
+  return (
+    <section className="section-row" aria-label="GitHub activity" data-pane="dots">
+      <h2 className="section-label">a year in dots</h2>
+      <div className="section-content">
+        <div className="dotfield-skeleton" aria-hidden="true" />
+      </div>
+    </section>
+  )
+}
+
+export default function Home() {
   return (
     <>
       <script
@@ -61,14 +86,9 @@ export default async function Home() {
           <ExperienceSection />
         </div>
         <div className="bento-col">
-          {contributions && (
-            <section className="section-row" aria-label="GitHub activity" data-pane="dots">
-              <h2 className="section-label">a year in dots</h2>
-              <div className="section-content">
-                <DotField calendar={contributions} />
-              </div>
-            </section>
-          )}
+          <Suspense fallback={<DotsPaneFallback />}>
+            <DotsPane />
+          </Suspense>
           <FeaturedBuildsSection />
           <div className="bento-duo">
             <SkillsSection />

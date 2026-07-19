@@ -25,7 +25,8 @@ function attr(tag: string, name: string): string | null {
 async function fetchCalendar(user: string): Promise<Map<string, number> | null> {
   try {
     const res = await fetch(`https://github.com/users/${user}/contributions`, {
-      next: { revalidate: 3600 },
+      // Fresh on every request; the dots pane streams in behind Suspense
+      cache: 'no-store',
       headers: { 'user-agent': 'o1x3.com' },
     })
     if (!res.ok) return null
