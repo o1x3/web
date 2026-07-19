@@ -3,7 +3,7 @@ import { Hero } from './components/sections/Hero'
 import { FeaturedBuildsSection } from './components/sections/Builds'
 import { ExperienceSection } from './components/sections/Experience'
 import { SkillsSection } from './components/sections/Skills'
-import { DotField } from './components/sections/DotField'
+import { LiveDotField } from './components/sections/LiveDotField'
 import { ContactSection } from './components/sections/Contact'
 import { PERSONAL_INFO, EDUCATION, SKILLS } from './data'
 import { fetchMergedContributions } from './lib/contributions'
@@ -55,7 +55,7 @@ async function DotsPane() {
     <section className="section-row" aria-label="GitHub activity" data-pane="dots">
       <h2 className="section-label">a year in dots</h2>
       <div className="section-content">
-        <DotField calendar={contributions} />
+        <LiveDotField initial={contributions} />
       </div>
     </section>
   )
