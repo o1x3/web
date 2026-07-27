@@ -1,14 +1,12 @@
-import { Suspense } from 'react'
-import { Hero } from './components/sections/Hero'
-import { FeaturedBuildsSection } from './components/sections/Builds'
-import { ExperienceSection } from './components/sections/Experience'
-import { SkillsSection } from './components/sections/Skills'
-import { LiveDotField } from './components/sections/LiveDotField'
-import { ContactSection } from './components/sections/Contact'
+import {
+  AboutSection,
+  NotesSection,
+  BuildsTableSection,
+  ExperienceTableSection,
+  SkillsTableSection,
+} from './components/sections/DocumentHome'
 import { PERSONAL_INFO, EDUCATION, SKILLS } from './data'
-import { fetchMergedContributions } from './lib/contributions'
 
-// Structured data for SEO
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -44,34 +42,6 @@ const structuredData = {
   ],
 }
 
-// Streams in behind Suspense with a live GitHub fetch on every view
-async function DotsPane() {
-  const contributions = await fetchMergedContributions(
-    PERSONAL_INFO.githubAccounts
-  )
-  if (!contributions) return null
-
-  return (
-    <section className="section-row" aria-label="GitHub activity" data-pane="dots">
-      <h2 className="section-label">a year in dots</h2>
-      <div className="section-content">
-        <LiveDotField initial={contributions} />
-      </div>
-    </section>
-  )
-}
-
-function DotsPaneFallback() {
-  return (
-    <section className="section-row" aria-label="GitHub activity" data-pane="dots">
-      <h2 className="section-label">a year in dots</h2>
-      <div className="section-content">
-        <div className="dotfield-skeleton" aria-hidden="true" />
-      </div>
-    </section>
-  )
-}
-
 export default function Home() {
   return (
     <>
@@ -80,22 +50,11 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="bento">
-        <div className="bento-col">
-          <Hero />
-          <ExperienceSection />
-        </div>
-        <div className="bento-col">
-          <Suspense fallback={<DotsPaneFallback />}>
-            <DotsPane />
-          </Suspense>
-          <FeaturedBuildsSection />
-          <div className="bento-duo">
-            <SkillsSection />
-            <ContactSection />
-          </div>
-        </div>
-      </div>
+      <AboutSection />
+      <NotesSection limit={10} />
+      <BuildsTableSection />
+      <ExperienceTableSection />
+      <SkillsTableSection />
     </>
   )
 }

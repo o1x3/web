@@ -2,53 +2,66 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { PERSONAL_INFO } from '../../data'
-import { ThemeToggle } from '../ui/ThemeToggle'
+import { getNote } from '../../lib/notes'
 
-const LINKS = [
-  { href: '/', label: 'index' },
-  { href: '/stuff', label: 'stuff' },
-  { href: '/story', label: 'story' },
-] as const
+const CRUMBS: Record<string, string> = {
+  '/': 'Home',
+  '/stuff': 'Stuff',
+  '/story': 'Story',
+  '/notes': 'Notes',
+}
+
+function crumbFor(pathname: string): { href: string; label: string }[] {
+  if (pathname === '/') return [{ href: '/', label: 'Home' }]
+
+  const parts: { href: string; label: string }[] = [
+    { href: '/', label: 'Home' },
+  ]
+
+  if (pathname.startsWith('/notes/')) {
+    parts.push({ href: '/notes', label: 'Notes' })
+    const slug = decodeURIComponent(pathname.slice('/notes/'.length))
+    const note = getNote(slug)
+    parts.push({
+      href: pathname,
+      label: note?.title ?? slug.replace(/-/g, ' '),
+    })
+    return parts
+  }
+
+  const label = CRUMBS[pathname]
+  if (label) {
+    parts.push({ href: pathname, label })
+  }
+
+  return parts
+}
 
 export function Nav() {
   const pathname = usePathname()
+  const crumbs = crumbFor(pathname)
 
   return (
-    <nav className="nav" aria-label="Main">
-      <div className="nav-left">
-        <Link href="/" className="nav-brand">
-          <span className="nav-spinner" aria-hidden="true">
-            ⠶
+    <header className="nav" aria-label="Navigation">
+      <h2 className="nav-label">Navigation</h2>
+      <h2 className="nav-crumb">
+        <span aria-hidden="true">~</span>
+        {crumbs.map((crumb, i) => (
+          <span key={crumb.href}>
+            <span className="nav-sep" aria-hidden="true">
+              {' '}
+              /{' '}
+            </span>
+            {i === crumbs.length - 1 ? (
+              <span aria-current="page">{crumb.label}</span>
+            ) : (
+              <Link href={crumb.href} title={crumb.label}>
+                {crumb.label}
+              </Link>
+            )}
           </span>
-          o1x3
-        </Link>
-        <div className="nav-say-hi">
-          say hi:{' '}
-          <a href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>
-          {' · '}
-          <a href={PERSONAL_INFO.x.url} target="_blank" rel="noopener noreferrer">
-            dm {PERSONAL_INFO.x.display}
-          </a>
-          {' · '}
-          <a href={PERSONAL_INFO.github.url} target="_blank" rel="noopener noreferrer">
-            github/o1x3
-          </a>
-        </div>
-      </div>
-      <div className="nav-links">
-        {LINKS.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            className="nav-link"
-            aria-current={pathname === href ? 'page' : undefined}
-          >
-            {label}
-          </Link>
         ))}
-        <ThemeToggle />
-      </div>
-    </nav>
+      </h2>
+    </header>
   )
 }

@@ -34,7 +34,6 @@ function BuildEntry({ build }: { build: Build }) {
             )
           )}
         </span>
-        <span className="entry-leader" aria-hidden="true" />
         <span className="entry-date">{build.year}</span>
       </div>
       <p className="entry-hook">{build.description}</p>
@@ -47,14 +46,15 @@ export function FeaturedBuildsSection() {
   const featured = BUILDS.filter((b) => b.featured)
 
   return (
-    <section className="section-row" aria-label="Featured builds" data-pane="builds">
-      <div>
-        <h2 className="section-label">Builds</h2>
-        <Link href="/stuff" className="section-label-btn">
-          everything →
+    <section className="section" aria-label="Featured builds">
+      <h2 className="section-heading">
+        Builds
+        <span aria-hidden="true">/</span>
+        <Link href="/stuff" className="section-heading-link">
+          Everything →
         </Link>
-      </div>
-      <div className="section-content">
+      </h2>
+      <div>
         {featured.map((build) => (
           <BuildEntry key={build.id} build={build} />
         ))}
@@ -71,12 +71,12 @@ export function AllBuildsSections() {
       {GROUPS.map((group) => {
         const builds = BUILDS.filter((b) => b.group === group)
         return (
-          <section key={group} className="section-row" aria-label={group}>
-            <h2 className="section-label">
+          <section key={group} className="section" aria-label={group}>
+            <h2 className="section-heading">
               {group}{' '}
-              <span className="section-count">⠿ {builds.length}</span>
+              <span className="section-count">({builds.length})</span>
             </h2>
-            <div className="section-content">
+            <div>
               {builds.map((build) => (
                 <BuildEntry key={build.id} build={build} />
               ))}
