@@ -9,9 +9,9 @@ export function UpstreamSection({
   if (contributions.length === 0) return null
 
   return (
-    <section className="section-row" aria-label="Upstream contributions">
-      <h2 className="section-label">upstream</h2>
-      <div className="section-content">
+    <section className="section" aria-label="Upstream contributions">
+      <h2 className="section-heading">Upstream</h2>
+      <div>
         {contributions.map((c) => (
           <div key={c.id} className="entry">
             <div className="entry-header">
@@ -29,7 +29,6 @@ export function UpstreamSection({
                 </a>
                 <span className="badge star-badge">★ {c.stars}</span>
               </span>
-              <span className="entry-leader" aria-hidden="true" />
               <span className="entry-date">{c.date}</span>
             </div>
             <p className="entry-subtitle">{c.description}</p>

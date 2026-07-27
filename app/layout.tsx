@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { headers } from 'next/headers'
-import { JetBrains_Mono } from 'next/font/google'
+import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ErrorBoundary } from './error-boundary'
@@ -9,22 +8,49 @@ import { Nav } from './components/layout/Nav'
 import { Footer } from './components/layout/Footer'
 import './globals.css'
 
-// Force dynamic rendering for CSP nonces
 export const dynamic = 'force-dynamic'
 
-const jetbrainsMono = JetBrains_Mono({
+const newsreader = Newsreader({
   subsets: ['latin'],
-  variable: '--font-mono',
+  weight: ['400', '500', '600'],
+  variable: '--font-display-loaded',
   display: 'swap',
   preload: true,
-  fallback: ['Monaco', 'Consolas', 'monospace'],
-  adjustFontFallback: true,
+})
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans-loaded',
+  display: 'swap',
+  preload: true,
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono-loaded',
+  display: 'swap',
+  preload: true,
 })
 
 export const metadata: Metadata = {
   title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
-  description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory. Python, Go, Rust.',
-  keywords: ['Applied AI Engineer', 'Clueso', 'LLM Agents', 'Knowledge Graphs', 'MCP Protocol', 'Multi-Agent Systems', 'Python', 'Go', 'Rust', 'FalkorDB', 'FastAPI'],
+  description:
+    'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory. Python, Go, Rust.',
+  keywords: [
+    'Applied AI Engineer',
+    'Clueso',
+    'LLM Agents',
+    'Knowledge Graphs',
+    'MCP Protocol',
+    'Multi-Agent Systems',
+    'Python',
+    'Go',
+    'Rust',
+    'FalkorDB',
+    'FastAPI',
+  ],
   authors: [{ name: 'Karthik Vinayan' }],
   creator: 'Karthik Vinayan',
   publisher: 'Karthik Vinayan',
@@ -37,15 +63,17 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://o1x3.com',
     title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
-    description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
-    siteName: 'Karthik Vinayan Portfolio',
+    description:
+      'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
+    siteName: 'Karthik Vinayan',
   },
   twitter: {
     card: 'summary',
     site: '@pawnsloth',
     creator: '@pawnsloth',
     title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
-    description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
+    description:
+      'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA, where I built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
   },
   robots: {
     index: true,
@@ -65,40 +93,28 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#fafafa' },
-    { media: '(prefers-color-scheme: dark)', color: '#2d2d2d' },
-  ],
+  themeColor: '#f3f2ee',
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const nonce = (await headers()).get('x-nonce') ?? ''
-
   return (
-    <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
-      <head>
-        <script
-          nonce={nonce}
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}})()`,
-          }}
-        />
-      </head>
-      <body className="font-mono">
+    <html
+      lang="en"
+      className={`${newsreader.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
         <FaviconInit />
         <ErrorBoundary>
-          <main className="container">
+          <div className="site">
             <Nav />
-            <div className="content">
-              {children}
-              <Footer />
-            </div>
-          </main>
+            <main>{children}</main>
+            <Footer />
+          </div>
         </ErrorBoundary>
         <Analytics />
         <SpeedInsights />

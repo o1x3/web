@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,7 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['var(--font-mono)', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'monospace'],
+        sans: ['var(--font-sans-loaded)', 'Helvetica Neue', 'sans-serif'],
+        display: ['var(--font-display-loaded)', 'Georgia', 'serif'],
+        mono: ['var(--font-mono-loaded)', 'ui-monospace', 'monospace'],
       },
     },
   },

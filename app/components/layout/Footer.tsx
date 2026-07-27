@@ -1,58 +1,22 @@
+import Link from 'next/link'
 import { PERSONAL_INFO } from '../../data'
 
 export function Footer() {
+  const year = new Date().getFullYear()
+
   return (
     <footer className="footer">
-      <div className="footer-links">
-        <a href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>
-        <span aria-hidden="true">·</span>
-        <a
-          href={PERSONAL_INFO.linkedin.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${PERSONAL_INFO.linkedin.display} (opens in new window)`}
-        >
-          {PERSONAL_INFO.linkedin.display}
-        </a>
-        <span aria-hidden="true">·</span>
-        <a
-          href={PERSONAL_INFO.github.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${PERSONAL_INFO.github.display} (opens in new window)`}
-        >
-          {PERSONAL_INFO.github.display}
-        </a>
-        <span aria-hidden="true">·</span>
-        <a
-          href={PERSONAL_INFO.x.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${PERSONAL_INFO.x.display} on X (opens in new window)`}
-        >
-          {PERSONAL_INFO.x.display}
-        </a>
-        <span aria-hidden="true">·</span>
-        <a
-          href={PERSONAL_INFO.website.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${PERSONAL_INFO.website.display} (opens in new window)`}
-        >
-          {PERSONAL_INFO.website.display}
-        </a>
-      </div>
-      <div className="footer-location">{PERSONAL_INFO.location}</div>
-      <div className="footer-security">
-        <a
-          href="https://securityheaders.com/?q=https%3A%2F%2Fwww.o1x3.com%2F&followRedirects=on"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Security headers rated A+ (opens in new window)"
-        >
-          A+ Security
-        </a>
-      </div>
+      <span>
+        © {year} {PERSONAL_INFO.name}
+      </span>
+      <span aria-hidden="true">·</span>
+      <a href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>
+      <span aria-hidden="true">·</span>
+      <a href={PERSONAL_INFO.github.url} target="_blank" rel="noopener noreferrer">
+        github
+      </a>
+      <span aria-hidden="true">·</span>
+      <Link href="/notes">notes</Link>
     </footer>
   )
 }
