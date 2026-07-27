@@ -13,9 +13,8 @@ export default function NotesIndexPage() {
     <>
       <h1 className="page-title">Notes Index</h1>
       <p className="page-intro">
-        Writing goes here. The archive is wired up — add a post in{' '}
-        <code>app/lib/notes.ts</code> and it will show on the homepage and
-        below.
+        Writing goes here. Posts will appear in the table below and on the
+        homepage Notes section.
       </p>
       <NotesSection />
       <p className="back-row">

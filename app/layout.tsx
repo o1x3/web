@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { headers } from 'next/headers'
 import { IBM_Plex_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -83,16 +82,14 @@ export const viewport = {
   themeColor: '#ffffff',
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const nonce = (await headers()).get('x-nonce') ?? ''
-
   return (
     <html lang="en" className={ibmPlexSans.variable} suppressHydrationWarning>
-      <body data-nonce={nonce || undefined}>
+      <body>
         <FaviconInit />
         <ErrorBoundary>
           <div className="site">

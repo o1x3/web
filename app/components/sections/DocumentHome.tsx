@@ -214,8 +214,7 @@ export function NotesSection({ limit }: { limit?: number }) {
           {visible.length === 0 ? (
             <tr>
               <td colSpan={3} className="empty-cell">
-                No notes yet. This table is ready for posts — add entries in{' '}
-                <code>app/lib/notes.ts</code>.
+                Nothing published yet — this space is reserved for notes.
               </td>
             </tr>
           ) : (
