@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { AppChrome } from '../components/layout/AppChrome'
 import { PERSONAL_INFO, PUBLICATION, EDUCATION } from '../data'
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function StoryPage() {
   return (
-    <>
+    <AppChrome>
       <header className="page-header">
         <h1 className="page-title">story</h1>
       </header>
@@ -94,6 +95,6 @@ export default function StoryPage() {
           </p>
         </div>
       </section>
-    </>
+    </AppChrome>
   )
 }

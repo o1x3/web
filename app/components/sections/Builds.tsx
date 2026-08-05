@@ -47,13 +47,11 @@ export function FeaturedBuildsSection() {
   const featured = BUILDS.filter((b) => b.featured)
 
   return (
-    <section className="section-row" aria-label="Featured builds" data-pane="builds">
-      <div>
-        <h2 className="section-label">Builds</h2>
-        <Link href="/stuff" className="section-label-btn">
-          everything →
-        </Link>
-      </div>
+    <section className="section-row" aria-label="Featured builds">
+      <h2 className="section-label">builds</h2>
+      <Link href="/stuff" className="section-label-btn">
+        everything →
+      </Link>
       <div className="section-content">
         {featured.map((build) => (
           <BuildEntry key={build.id} build={build} />
@@ -74,7 +72,7 @@ export function AllBuildsSections() {
           <section key={group} className="section-row" aria-label={group}>
             <h2 className="section-label">
               {group}{' '}
-              <span className="section-count">⠿ {builds.length}</span>
+              <span className="section-count">({builds.length})</span>
             </h2>
             <div className="section-content">
               {builds.map((build) => (

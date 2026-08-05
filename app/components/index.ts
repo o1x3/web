@@ -2,7 +2,7 @@
 export { ThemeToggle } from './ui'
 
 // Layout Components
-export { Nav, Footer } from './layout'
+export { Nav, Footer, AppChrome } from './layout'
 
 // Section Components
 export {

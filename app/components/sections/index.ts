@@ -5,3 +5,13 @@ export { FeaturedBuildsSection, AllBuildsSections } from './Builds'
 export { DotField } from './DotField'
 export { ContactSection } from './Contact'
 export { UpstreamSection } from './Upstream'
+export {
+  Intro,
+  BuildsSection,
+  ExperienceSectionHome,
+  SkillsMarquee,
+  ContactBlock,
+  NotesRail,
+  NotesSectionMobile,
+  NotesIndex,
+} from './HomeSections'
