@@ -15,7 +15,7 @@
   --rail-bg: #fafafa;
   --font-sans: var(--font-sans-loaded), 'Instrument Sans', ui-sans-serif, sans-serif;
   --font-mono: var(--font-mono-loaded), 'JetBrains Mono', ui-monospace, monospace;
-  --col-main: 34rem; /* wider primary column on desktop */
+  --col-main: 38rem; /* primary column — wider than a narrow left strip */
 }
 
 .dark {

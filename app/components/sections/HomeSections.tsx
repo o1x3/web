@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import {
   PERSONAL_INFO,
-  SUMMARY,
   EXPERIENCE,
   BUILDS,
   SKILLS,
@@ -21,10 +20,10 @@ export function Intro() {
           {PERSONAL_INFO.currentCompany}
         </a>{' '}
         (yc w23) in {PERSONAL_INFO.location.toLowerCase()}. previously founding
-        ai engineer at omni rpa — multi-agent orchestrator, knowledge graph
-        infra, mcp, semantic memory, all from zero.
+        ai engineer at omni rpa, where i built the backend for a production ai
+        cloud automation platform: multi-agent orchestrator, knowledge graph
+        infra, mcp, semantic memory — all from zero.
       </p>
-      <p className="intro-bio muted">{SUMMARY.toLowerCase()}</p>
       <div className="intro-meta">
         <a href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>
         <a href={PERSONAL_INFO.github.url} target="_blank" rel="noopener noreferrer">
