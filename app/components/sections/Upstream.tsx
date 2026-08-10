@@ -30,7 +30,7 @@ export function UpstreamSection({
                 <span className="badge star-badge">★ {c.stars}</span>
               </span>
               <span className="entry-leader" aria-hidden="true" />
-              <span className="entry-date">{c.date.toLowerCase()}</span>
+              <time className="entry-date">{c.date.toLowerCase()}</time>
             </div>
             <p className="entry-subtitle">{c.description.toLowerCase()}</p>
           </div>

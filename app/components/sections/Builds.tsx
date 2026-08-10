@@ -35,7 +35,9 @@ function BuildEntry({ build }: { build: Build }) {
           )}
         </span>
         <span className="entry-leader" aria-hidden="true" />
-        <span className="entry-date">{build.year}</span>
+        <time className="entry-date" dateTime={build.year}>
+          {build.year}
+        </time>
       </div>
       <p className="entry-hook">{build.description.toLowerCase()}</p>
       {build.detail && (
@@ -52,7 +54,7 @@ export function FeaturedBuildsSection() {
     <section className="section-row" aria-label="Featured builds">
       <h2 className="section-label">builds</h2>
       <Link href="/stuff" className="section-label-btn">
-        everything →
+        see all projects →
       </Link>
       <div className="section-content">
         {featured.map((build) => (

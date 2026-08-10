@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AppChrome } from '../components/layout/AppChrome'
-import { NotesIndex } from '../components/sections/HomeSections'
+import { NotesIndex, NotesRail } from '../components/sections/HomeSections'
 
 export const metadata: Metadata = {
-  title: 'notes | Karthik Vinayan',
-  description: 'Notes and writing by Karthik Vinayan.',
+  title: 'notes | karthik vinayan',
+  description: 'notes and writing by karthik vinayan.',
   alternates: { canonical: '/notes' },
 }
 
 export default function NotesIndexPage() {
   return (
-    <AppChrome>
+    <AppChrome rail={<NotesRail />}>
       <header className="page-header">
         <h1 className="page-title">notes</h1>
         <p className="page-intro">
@@ -21,7 +21,7 @@ export default function NotesIndexPage() {
       <NotesIndex />
       <p className="back-row">
         <Link href="/" className="back-link">
-          ← back
+          ← home
         </Link>
       </p>
     </AppChrome>

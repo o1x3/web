@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { AppChrome } from '../components/layout/AppChrome'
+import { NotesRail } from '../components/sections/HomeSections'
 import { PERSONAL_INFO, PUBLICATION, EDUCATION } from '../data'
 
 export const metadata: Metadata = {
-  title: 'story | Karthik Vinayan',
+  title: 'story | karthik vinayan',
   description:
     'who i am now and how i got here, from a college robot to ai at clueso.',
   alternates: { canonical: '/story' },
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function StoryPage() {
   return (
-    <AppChrome>
+    <AppChrome rail={<NotesRail />}>
       <header className="page-header">
         <h1 className="page-title">story</h1>
       </header>

@@ -7,6 +7,7 @@ import {
 } from '../../data'
 import { getAllNotes } from '../../lib/notes'
 import { ExperienceBullets } from './ExperienceBullets'
+import { MotionTicker } from '../ui/MotionTicker'
 
 export function Intro() {
   return (
@@ -52,7 +53,7 @@ export function BuildsSection() {
       <h2 className="section-title">builds</h2>
       <p className="section-lead">
         side projects that stuck around.{' '}
-        <Link href="/stuff">see everything</Link>
+        <Link href="/stuff">see all projects →</Link>
       </p>
       <ul className="pair-list">
         {featured.map((build) => (
@@ -145,15 +146,11 @@ export function SkillsMarquee() {
       <p className="section-lead">
         the tools that show up most often when something needs to ship.
       </p>
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee-track">
-          {[...items, ...items].map((item, i) => (
-            <span key={`${item}-${i}`} className="marquee-item">
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
+      <MotionTicker
+        items={items}
+        className="marquee"
+        ariaLabel="scrolling stack"
+      />
       <ul className="sr-only">
         {items.map((item) => (
           <li key={item}>{item}</li>
@@ -245,16 +242,11 @@ export function NotesRail() {
         </div>
 
         {notes.length > 0 && (
-          <div className="rail-ticker" aria-hidden="true">
-            <div className="rail-ticker-track">
-              {[...notes, ...notes].map((note, i) => (
-                <span key={`${note.slug}-t-${i}`} className="rail-ticker-item">
-                  {note.title}
-                  <span className="rail-ticker-dot">·</span>
-                </span>
-              ))}
-            </div>
-          </div>
+          <MotionTicker
+            items={notes.map((note) => note.title)}
+            className="rail-ticker"
+            ariaLabel="scrolling notes"
+          />
         )}
       </div>
     </aside>
@@ -263,6 +255,8 @@ export function NotesRail() {
 
 /** Mobile-only notes block (desktop uses the rail) */
 export function NotesSectionMobile() {
+  const notes = getAllNotes()
+
   return (
     <section className="section notes-mobile" aria-label="Notes">
       <h2 className="section-title">notes</h2>
@@ -271,6 +265,13 @@ export function NotesSectionMobile() {
         <Link href="/notes">archive →</Link>
       </p>
       <NotesIndex limit={5} />
+      {notes.length > 0 && (
+        <MotionTicker
+          items={notes.map((note) => note.title)}
+          className="marquee notes-mobile-ticker"
+          ariaLabel="scrolling notes"
+        />
+      )}
     </section>
   )
 }

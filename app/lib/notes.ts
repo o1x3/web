@@ -58,6 +58,50 @@ export const NOTES: readonly Note[] = [
     ],
   },
   {
+    slug: 'model-routing',
+    title: 'not every task needs the expensive model',
+    date: '2026-02-14',
+    teaser: 'route by task complexity, not by habit.',
+    body: [
+      'title generation, context summaries, and graph manipulation do not need the same model as a constraint-heavy recommendation.',
+      'routing by task complexity made the expensive path legible. the cheap path got faster, and the benchmark stopped being a single number nobody trusted.',
+      'the best model is the one that clears the task, the latency budget, and the invoice at the same time.',
+    ],
+  },
+  {
+    slug: 'local-first-by-default',
+    title: 'local first is a product decision',
+    date: '2026-01-19',
+    teaser: 'privacy, latency, and cost are all part of the interface.',
+    body: [
+      'a local model is not only a cost optimization. it changes what can be shipped, what can be debugged, and what happens when the network is having a bad day.',
+      'the useful pattern is not local versus cloud. it is local for the common path, cloud for the hard cases, and a clear reason for every escalation.',
+      'users do not care which model answered. they care that the answer arrived and their data stayed where they expected.',
+    ],
+  },
+  {
+    slug: 'debugging-the-dag',
+    title: 'make the graph visible',
+    date: '2025-12-08',
+    teaser: 'observability is part of the agent experience.',
+    body: [
+      'when an orchestrator runs eight agents in parallel, a final answer is not enough to explain what happened.',
+      'pending, running, completed, and failed are product states. streaming them to the ui turns a black box into something a user can reason about.',
+      'the graph is not decoration. it is the shortest path from a surprising result to a useful bug report.',
+    ],
+  },
+  {
+    slug: 'small-tools',
+    title: 'small tools are still serious work',
+    date: '2025-10-26',
+    teaser: 'a tiny surface area makes bad decisions obvious.',
+    body: [
+      'a one-binary cli has nowhere to hide. installation, defaults, error messages, and help text are the whole product.',
+      'that constraint is useful. it forces the first run to teach the user what matters without a tour, a dashboard, or a second service.',
+      'small does not mean casual. it means every decision is closer to the surface.',
+    ],
+  },
+  {
     slug: 'year-in-dots',
     title: 'a year measured in dots',
     date: '2026-03-08',
