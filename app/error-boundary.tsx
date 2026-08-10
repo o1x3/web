@@ -34,37 +34,17 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
       return (
         <div
-          style={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontFamily: 'monospace',
-            padding: '1rem',
-          }}
+          className="error-state"
           role="alert"
           aria-live="assertive"
         >
-          <div style={{ textAlign: 'center' }}>
-            <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-              Something went wrong
-            </h1>
-            <p style={{ opacity: 0.7, marginBottom: '1rem' }}>
+          <div className="error-state-inner">
+            <h1>something went wrong</h1>
+            <p>
               {this.state.error?.message || 'An unexpected error occurred'}
             </p>
-            <button
-              onClick={() => window.location.reload()}
-              style={{
-                padding: '0.5rem 1rem',
-                background: '#1a1a1a',
-                color: '#e5e5e5',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                fontFamily: 'monospace',
-              }}
-            >
-              Reload page
+            <button onClick={() => window.location.reload()}>
+              reload page
             </button>
           </div>
         </div>

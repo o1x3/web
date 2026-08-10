@@ -20,13 +20,13 @@ Building AI at Clueso (YC W23). Previously built the backend for a production AI
 
 ## Experience
 
-### Clueso — Applied AI Engineer
+### Clueso  -  Applied AI Engineer
 
 Bengaluru. May 2026 – Present.
 
 - Building AI at Clueso (YC W23): an AI video and docs platform. Agents study your product, draft the script, drive a browser through the flow to capture it, edit the result, and re-render when the code ships.
 
-### Omni RPA Inc (San Jose) / Agentic Solutions Pvt Ltd (Hyderabad) — Founding AI Engineer, AI & Backend Systems
+### Omni RPA Inc (San Jose) / Agentic Solutions Pvt Ltd (Hyderabad)  -  Founding AI Engineer, AI & Backend Systems
 
 Jun 2024 – Apr 2026.
 
@@ -41,7 +41,7 @@ Jun 2024 – Apr 2026.
 - Onboarded first enterprise client pre-launch. Hands-on usage, bug filing, iterated on agent behavior and UX across 32 deployment workflows (multi-region DR, HIPAA/PCI-DSS, EKS, ML platforms).
 - Own 3–5 repos end-to-end, primary on-call. 2hr worst-case recovery. Lead work across frontend, data, Java backend, and DevOps in a 10-person remote team.
 
-### Digital University of Kerala — Research Intern, Computer Vision
+### Digital University of Kerala  -  Research Intern, Computer Vision
 
 Kerala. Oct 2023 – Dec 2023.
 
@@ -51,7 +51,7 @@ Kerala. Oct 2023 – Dec 2023.
 
 ### podspawn
 
-Go, AGPL-3.0. Docs: https://podspawn.dev — Source: https://github.com/podspawn/podspawn
+Go, AGPL-3.0. Docs: https://podspawn.dev  -  Source: https://github.com/podspawn/podspawn
 
 One-command dev environments, locally or over SSH. Single binary, Docker-backed with composable Podfile config, branch-isolated workspaces, native sshd integration, gVisor sandboxing, and a session control plane with actor-scoped audit.
 
@@ -69,7 +69,7 @@ Drop-in docker CLI for macOS backed by Apple's container runtime. Speak docker, 
 
 ### furl
 
-Rust. Source: https://github.com/o1x3/furl — crates.io: https://crates.io/crates/furl-http
+Rust. Source: https://github.com/o1x3/furl  -  crates.io: https://crates.io/crates/furl-http
 
 HTTP client with human syntax: name=value builds JSON, \`:\` sets headers, \`@\` uploads files. Three binaries (furl, furls for HTTPS-default, furl-manager).
 
@@ -135,7 +135,7 @@ Hacker News client. Next.js 15 + RSC, encrypted iron-session cookies, writes pro
 
 ### ctoken
 
-MIT. Source: https://github.com/o1x3/ctoken — PyPI: https://pypi.org/project/ctoken
+MIT. Source: https://github.com/o1x3/ctoken  -  PyPI: https://pypi.org/project/ctoken
 
 OpenAI API cost estimation library. Supports all models, streaming, caching breakdown.
 
@@ -153,7 +153,7 @@ Python, YOLOv8, Research. Real-time detection fine-tuned on agricultural dataset
 
 ### Automated Medicine Delivery System for Hospitals
 
-Springer LNNS, 2025. DOI: 10.1007/978-981-96-3652-5_40 — https://doi.org/10.1007/978-981-96-3652-5_40
+Springer LNNS, 2025. DOI: 10.1007/978-981-96-3652-5_40  -  https://doi.org/10.1007/978-981-96-3652-5_40
 
 Led team building Raspberry Pi autonomous robot with obstacle detection, path following, and RFID room ID.
 

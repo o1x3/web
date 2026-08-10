@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['var(--font-mono)', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'monospace'],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
     },
   },

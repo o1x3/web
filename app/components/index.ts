@@ -1,17 +1,19 @@
 // UI Components
-export { ThemeToggle } from './ui'
+export { MotionTicker, ThemeToggle } from './ui'
 
 // Layout Components
-export { Nav, Footer } from './layout'
+export { Nav, Footer, AppChrome } from './layout'
 
 // Section Components
 export {
-  ExperienceSection,
-  SkillsSection,
-  Hero,
-  FeaturedBuildsSection,
   AllBuildsSections,
-  DotField,
-  ContactSection,
   UpstreamSection,
+  Intro,
+  BuildsSection,
+  ExperienceSectionHome,
+  SkillsMarquee,
+  ContactBlock,
+  NotesRail,
+  NotesSectionMobile,
+  NotesIndex,
 } from './sections'

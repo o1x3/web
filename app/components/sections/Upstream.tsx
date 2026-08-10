@@ -25,14 +25,14 @@ export function UpstreamSection({
                   className="contrib-avatar"
                 />
                 <a href={c.prUrl} target="_blank" rel="noopener noreferrer">
-                  {c.repo}#{c.prNumber}
+                  {c.repo.toLowerCase()}#{c.prNumber}
                 </a>
                 <span className="badge star-badge">★ {c.stars}</span>
               </span>
               <span className="entry-leader" aria-hidden="true" />
-              <span className="entry-date">{c.date}</span>
+              <time className="entry-date">{c.date.toLowerCase()}</time>
             </div>
-            <p className="entry-subtitle">{c.description}</p>
+            <p className="entry-subtitle">{c.description.toLowerCase()}</p>
           </div>
         ))}
       </div>

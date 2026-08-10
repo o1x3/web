@@ -2,27 +2,49 @@
 
 import { memo, useEffect, useState } from 'react'
 
+type Theme = 'dark' | 'light'
+const THEME_KEY = 'theme'
+
 export const ThemeToggle = memo(function ThemeToggle() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('light')
+  const [theme, setTheme] = useState<Theme>('light')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
-    // Check localStorage first, then system preference
-    const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null
-    if (savedTheme) {
-      setTheme(savedTheme)
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark')
-      document.documentElement.classList.add('dark')
+    const root = document.documentElement
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const savedTheme = localStorage.getItem(THEME_KEY)
+    const hasExplicitTheme = savedTheme === 'dark' || savedTheme === 'light'
+
+    const applyTheme = (nextTheme: Theme) => {
+      setTheme(nextTheme)
+      root.classList.toggle('dark', nextTheme === 'dark')
     }
+
+    applyTheme(
+      hasExplicitTheme
+        ? (savedTheme as Theme)
+        : media.matches
+          ? 'dark'
+          : 'light'
+    )
+    setMounted(true)
+
+    if (hasExplicitTheme) return
+
+    const handleSystemThemeChange = (event: MediaQueryListEvent) => {
+      if (!localStorage.getItem(THEME_KEY)) {
+        applyTheme(event.matches ? 'dark' : 'light')
+      }
+    }
+
+    media.addEventListener('change', handleSystemThemeChange)
+    return () => media.removeEventListener('change', handleSystemThemeChange)
   }, [])
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark'
     setTheme(newTheme)
-    localStorage.setItem('theme', newTheme)
+    localStorage.setItem(THEME_KEY, newTheme)
     document.documentElement.classList.toggle('dark', newTheme === 'dark')
   }
 
@@ -42,7 +64,8 @@ export const ThemeToggle = memo(function ThemeToggle() {
     <button
       className="theme-toggle"
       onClick={toggleTheme}
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      aria-label={`switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      title={`switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
       {theme === 'light' ? (
         // Moon icon for switching to dark

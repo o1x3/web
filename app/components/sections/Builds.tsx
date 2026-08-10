@@ -8,10 +8,10 @@ function BuildEntry({ build }: { build: Build }) {
         <span className="entry-title">
           {build.url ? (
             <a href={build.url} target="_blank" rel="noopener noreferrer">
-              {build.title}
+              {build.title.toLowerCase()}
             </a>
           ) : (
-            build.title
+            build.title.toLowerCase()
           )}
           {build.badges.map((badge) =>
             badge.url ? (
@@ -22,23 +22,27 @@ function BuildEntry({ build }: { build: Build }) {
                 rel="noopener noreferrer"
                 className="badge"
               >
-                {badge.label}
+                {badge.label.toLowerCase()}
               </a>
             ) : (
               <span
                 key={badge.label}
                 className={`badge${badge.label === 'WIP' ? ' wip-badge' : ''}`}
               >
-                {badge.label}
+                {badge.label.toLowerCase()}
               </span>
             )
           )}
         </span>
         <span className="entry-leader" aria-hidden="true" />
-        <span className="entry-date">{build.year}</span>
+        <time className="entry-date" dateTime={build.year}>
+          {build.year}
+        </time>
       </div>
-      <p className="entry-hook">{build.description}</p>
-      {build.detail && <p className="entry-detail">{build.detail}</p>}
+      <p className="entry-hook">{build.description.toLowerCase()}</p>
+      {build.detail && (
+        <p className="entry-detail">{build.detail.toLowerCase()}</p>
+      )}
     </div>
   )
 }
@@ -47,13 +51,11 @@ export function FeaturedBuildsSection() {
   const featured = BUILDS.filter((b) => b.featured)
 
   return (
-    <section className="section-row" aria-label="Featured builds" data-pane="builds">
-      <div>
-        <h2 className="section-label">Builds</h2>
-        <Link href="/stuff" className="section-label-btn">
-          everything →
-        </Link>
-      </div>
+    <section className="section-row" aria-label="Featured builds">
+      <h2 className="section-label">builds</h2>
+      <Link href="/stuff" className="section-label-btn">
+        see all projects →
+      </Link>
       <div className="section-content">
         {featured.map((build) => (
           <BuildEntry key={build.id} build={build} />
@@ -74,7 +76,7 @@ export function AllBuildsSections() {
           <section key={group} className="section-row" aria-label={group}>
             <h2 className="section-label">
               {group}{' '}
-              <span className="section-count">⠿ {builds.length}</span>
+              <span className="section-count">({builds.length})</span>
             </h2>
             <div className="section-content">
               {builds.map((build) => (
