@@ -584,6 +584,7 @@ a.pair-name:hover {
 
 .notes-mobile-ticker {
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
