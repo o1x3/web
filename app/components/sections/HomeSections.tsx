@@ -12,17 +12,17 @@ export function Intro() {
   return (
     <header className="intro">
       <h1 className="intro-headline">
-        {PERSONAL_INFO.name} builds agents and infra that ship.
+        {PERSONAL_INFO.name.toLowerCase()} builds agents and infra that ship.
       </h1>
       <p className="intro-bio">
         applied ai engineer at{' '}
         <a href="https://clueso.io" target="_blank" rel="noopener noreferrer">
-          {PERSONAL_INFO.currentCompany}
+          {PERSONAL_INFO.currentCompany.toLowerCase()}
         </a>{' '}
         (yc w23) in {PERSONAL_INFO.location.toLowerCase()}. previously founding
         ai engineer at omni rpa, where i built the backend for a production ai
         cloud automation platform: multi-agent orchestrator, knowledge graph
-        infra, mcp, semantic memory — all from zero.
+        infra, mcp, semantic memory, all from zero.
       </p>
       <div className="intro-meta">
         <a href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>
@@ -65,10 +65,10 @@ export function BuildsSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {build.title}
+                  {build.title.toLowerCase()}
                 </a>
               ) : (
-                <span className="pair-name">{build.title}</span>
+                <span className="pair-name">{build.title.toLowerCase()}</span>
               )}
               <p className="pair-blurb">{build.description.toLowerCase()}</p>
             </div>
@@ -112,10 +112,17 @@ export function ExperienceSectionHome() {
                   })}
                 </div>
               </div>
-              <div className="exp-when">{exp.period.toLowerCase()}</div>
+              <div className="exp-when">
+                {exp.period.toLowerCase().replaceAll('–', '-')}
+              </div>
             </div>
             {exp.description.length > 0 && (
-              <ExperienceBullets items={exp.description} />
+              <ExperienceBullets
+                items={exp.description.map((item) => ({
+                  short: item.short.toLowerCase(),
+                  full: item.full.toLowerCase(),
+                }))}
+              />
             )}
           </article>
         ))}
@@ -130,7 +137,7 @@ export function SkillsMarquee() {
     ...SKILLS.aiml.items.slice(0, 4),
     ...SKILLS.backend.items,
     ...SKILLS.cloud.items.slice(0, 3),
-  ]
+  ].map((item) => item.toLowerCase())
 
   return (
     <section className="section" aria-label="Stack">
@@ -180,7 +187,7 @@ export function NotesIndex({ limit }: { limit?: number }) {
 
   if (visible.length === 0) {
     return (
-      <p className="empty-hint">nothing published yet — space reserved.</p>
+      <p className="empty-hint">nothing published yet. space reserved.</p>
     )
   }
 
