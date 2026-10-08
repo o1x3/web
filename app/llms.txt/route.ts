@@ -8,7 +8,8 @@ I work across AI systems and backend infrastructure: LLM agents, multi-agent orc
 
 ## Profile
 
-- [Portfolio](https://o1x3.com): Single-page site with full experience, projects, publication, and skills.
+- [Portfolio](https://o1x3.com): Selected projects and engineering experience.
+- [Writing and RSS](https://o1x3.com/writing): No published articles yet. The feed is at https://o1x3.com/writing/rss.xml.
 - [GitHub (@o1x3)](https://github.com/o1x3): Personal repos — juno, hn, ctoken, and more.
 - [LinkedIn](https://linkedin.com/in/karthik-vinayan): Professional history.
 - Email: karthik@o1x3.com
