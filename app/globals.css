@@ -36,6 +36,7 @@ img, video { max-width: 100%; height: auto; }
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+html, body { overscroll-behavior: none; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-mono), ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; font-size: 14px; line-height: 20px; font-synthesis: none; }
 button, input, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
@@ -81,6 +82,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .visitor-copy-desktop { display: none; }
   .footer-socials { font-size: 13px; white-space: normal; }
   .site-header--error .writing-link { display: none; }
+}
+@media (pointer: coarse) {
+  html, body { overscroll-behavior: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
