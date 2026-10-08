@@ -47,7 +47,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .error-page { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
 .error-page h1 { font-size: 24px; font-weight: 800; }
 .error-page button { text-decoration: underline; text-decoration-color: var(--accent); }
-.home-page { min-height: max(980px, 100svh); display: flex; flex-direction: column; justify-content: space-between; gap: 48px; }
+.home-page { min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between; gap: 48px; }
 .site-header { display: flex; justify-content: space-between; align-items: center; font-size: 14px; line-height: 20px; min-height: 23px; }
 .site-name { font-weight: 700; text-decoration: none; }
 .site-header-center a { text-decoration: none; }
