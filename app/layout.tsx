@@ -40,7 +40,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'Karthik Vinayan — i build agents, infra & dev tools.' }],
     title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
     description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
   },

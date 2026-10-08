@@ -48,9 +48,15 @@ test('RSS, CV, and brand artwork are available', async () => {
 
 test('social metadata points to the real share cards', async () => {
   const { body } = await html('/')
-  assert.match(body, /property="og:image" content="https:\/\/o1x3.com\/opengraph-image.png/)
   assert.match(body, /name="twitter:card" content="summary_large_image"/)
-  assert.match(body, /name="twitter:image" content="https:\/\/o1x3.com\/opengraph-image.png/)
+  const imageOrigin = process.env.SOCIAL_IMAGE_ORIGIN || 'https://o1x3.com'
+  for (const key of ['og:image', 'twitter:image']) {
+    const value = body.match(new RegExp(`(?:property|name)="${key}" content="([^"]+)"`))?.[1]
+    assert.ok(value, `${key} is present`)
+    const image = new URL(value)
+    assert.equal(image.origin, imageOrigin, `${key} uses the current deployment`)
+    assert.equal(image.pathname, '/opengraph-image.png')
+  }
   for (const path of ['/opengraph-image.png']) {
     const response = await fetch(`${origin}${path}`)
     const png = Buffer.from(await response.arrayBuffer())
