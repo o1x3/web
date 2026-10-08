@@ -1,0 +1,87 @@
+.not-found-page {
+  min-height: 100svh;
+  padding-top: 44px;
+  padding-bottom: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.not-found-page .site-footer { padding-top: 0; }
+.dark .not-found-page .visitor-copy { color: var(--text); }
+
+.not-found-digits {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.not-found-digit {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.not-found-number {
+  font-size: 300px;
+  line-height: 280px;
+  letter-spacing: -0.05em;
+  font-weight: 100;
+}
+
+.not-found-zero .not-found-number { color: #d6d6d6; }
+.not-found-heavy .not-found-number { font-weight: 800; }
+.dark .not-found-zero .not-found-number { color: #2e2e2e; }
+.dark .not-found-heavy .not-found-number { color: #ff8fc7; }
+
+.not-found-weight {
+  border-top: 1px solid #d0d0d0;
+  padding-top: 4px;
+  color: #8c8c8c;
+  font-size: 11px;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.dark .not-found-weight { border-color: #333; }
+.not-found-zero .not-found-weight {
+  border-top: 4px solid #ff8fc7;
+  color: var(--text);
+}
+
+.not-found-links {
+  display: flex;
+  gap: 28px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.not-found-links a {
+  text-decoration: underline;
+  text-decoration-color: #ff8fc7;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+  .not-found-page { padding-top: 56px; padding-bottom: 32px; }
+  .not-found-content { gap: 24px; }
+  .not-found-digits { gap: 10px; }
+  .not-found-digit { gap: 4px; }
+  .not-found-number {
+    font-size: clamp(120px, 38.4615vw, 150px);
+    line-height: 0.933333;
+  }
+  .not-found-weight { padding-top: 3px; font-size: 10px; line-height: 12px; }
+  .not-found-desktop-copy { display: none; }
+  .not-found-links { flex-direction: column; gap: 12px; font-size: 15px; line-height: 22px; }
+  .not-found-page .footer-socials { display: none; }
+}

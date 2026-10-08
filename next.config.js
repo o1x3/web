@@ -1,11 +1,14 @@
+const withMDX = require('@next/mdx')({
+  options: { remarkPlugins: ['remark-gfm'] },
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
+  turbopack: { root: __dirname },
+  outputFileTracingRoot: __dirname,
+  devIndicators: false,
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   poweredByHeader: false,
-  compress: true,
 }
 
-module.exports = nextConfig
+module.exports = withMDX(nextConfig)
