@@ -70,7 +70,6 @@ pids
 claude.md
 *claude*/
 
-public/
 
 *.tex
 .serena/

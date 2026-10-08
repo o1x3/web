@@ -1,12 +1,7 @@
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
-import { ExperienceSection } from './components/sections/Experience'
-import { ProjectsSection } from './components/sections/Projects'
-import { PublicationSection } from './components/sections/Publication'
-import { SkillsSection } from './components/sections/Skills'
-import { EducationSection } from './components/sections/Education'
+import { HomeContent } from './components/home/HomeContent'
 import { PERSONAL_INFO, EDUCATION, SKILLS } from './data'
-import { fetchOSSContributions } from './lib/github'
 
 // Structured data for SEO
 const structuredData = {
@@ -40,9 +35,7 @@ const structuredData = {
   ],
 }
 
-export default async function Home() {
-  const contributions = await fetchOSSContributions()
-
+export default function Home() {
   return (
     <>
       <script
@@ -50,13 +43,9 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <main className="container">
+      <main className="site-page home-page" id="main-content">
         <Header />
-        <ExperienceSection />
-        <ProjectsSection contributions={contributions} />
-        <PublicationSection />
-        <SkillsSection />
-        <EducationSection />
+        <HomeContent />
         <Footer />
       </main>
     </>

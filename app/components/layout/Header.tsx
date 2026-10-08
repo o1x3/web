@@ -1,11 +1,18 @@
-import { PERSONAL_INFO, SUMMARY } from '../../data'
+import Link from 'next/link'
+import { ThemeToggle } from '../ui/ThemeToggle'
 
-export function Header() {
+export function Header({ variant = 'home' }: { variant?: 'home' | 'writing' | 'post' | 'error' }) {
+  const isIndex = variant === 'home' || variant === 'writing'
   return (
-    <header className="header">
-      <h1 className="header-name">{PERSONAL_INFO.name}</h1>
-      <p className="header-title">{PERSONAL_INFO.title}</p>
-      <p className="header-bio">{SUMMARY}</p>
+    <header className={`site-header site-header--${variant}`}>
+      <Link className="site-name" href="/">karthik vinayan</Link>
+      {variant !== 'error' && <div className="site-header-center">
+        {isIndex ? 'applied ai engineer · bengaluru' : <Link href={variant === 'post' ? '/writing' : '/'}>{variant === 'post' ? '← writing' : '← home'}</Link>}
+      </div>}
+      <div className="site-header-actions">
+        {(isIndex || variant === 'error') && <Link className={`writing-link${variant === 'writing' ? ' writing-link--active' : ''}`} href="/writing" aria-current={variant === 'writing' ? 'page' : undefined}>{variant === 'writing' ? 'writing' : 'writing →'}</Link>}
+        <ThemeToggle />
+      </div>
     </header>
   )
 }
