@@ -24,28 +24,12 @@ const projects: Record<Category, Project[]> = {
   ],
 }
 
-const omniWork = [
-  'mcp server + client, protocol 5 weeks old',
-  'dag multi-agent orchestrator, 8 agent types',
-  '8 ambient agents on their own scheduler',
-  'knowledge graph + rag on a nats pipeline',
-  'fine-tuned gguf for constraint extraction',
-  'model routing by task complexity',
-  'semantic memory on postgres + pgvector',
-  'otel tracing, per-agent cost attribution',
-  'first enterprise client, pre-launch',
-  '3–5 repos end to end, primary on-call',
-]
-
 export function HomeContent() {
   const [active, setActive] = useState<Category | null>(null)
   const [mobile, setMobile] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 700px)').matches)
-  const [omniOpen, setOmniOpen] = useState(false)
-  const [omniPinned, setOmniPinned] = useState(false)
   const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 })
   const triggers = useRef<Partial<Record<Category, HTMLButtonElement | null>>>({})
   const panel = useRef<HTMLDivElement>(null)
-  const omni = useRef<HTMLButtonElement>(null)
   const dismissTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const swipeStart = useRef<number | null>(null)
   const activeCategory = useRef<Category | null>(null)
@@ -70,12 +54,6 @@ export function HomeContent() {
     media.addEventListener('change', update)
     return () => media.removeEventListener('change', update)
   }, [])
-
-  useEffect(() => {
-    const page = document.querySelector('.home-page')
-    page?.classList.toggle('home-omni-expanded', omniOpen)
-    return () => page?.classList.remove('home-omni-expanded')
-  }, [omniOpen])
 
   useEffect(() => {
     if (!active) return
@@ -146,13 +124,6 @@ export function HomeContent() {
       if (!panel.current?.contains(focused) && !(category && triggers.current[category]?.contains(focused))) closePanel()
     }, 180)
   }
-  const expandOmni = () => {
-    closePanel()
-    setOmniOpen(true)
-    setOmniPinned(true)
-    requestAnimationFrame(() => omni.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }))
-  }
-
   const word = (text: string, weight: number, category?: Category) => {
     const label = category === 'tools' ? '6 things' : '2 things'
     const className = `hero-word${category ? ' hero-word-interactive' : ''}${category && active === category ? ' hero-word-active' : ''}`
@@ -163,7 +134,7 @@ export function HomeContent() {
   const title = active === 'agents' ? 'agents · 2' : active === 'infra' ? 'infra · 2' : 'dev tools · 3 built · 3 upstream'
   const projectLink = (project: Project, column = false) => <a key={project.name} href={project.url} target="_blank" rel="noopener noreferrer" className={column ? 'project-column-link' : 'project-row'}><span className="project-info"><span className="project-name">{project.name}{column && ' ↗'}</span><span className="project-description">{mobile && project.name === 'juno' ? 'terminal coding agent · wip' : project.description}</span></span>{!column && <span className="project-arrow" aria-hidden="true">↗</span>}</a>
 
-  return <div className={`home-content${active ? ` home-project-active home-project-active-${active}` : ''}${omniOpen ? ' home-omni-active' : ''}`}>
+  return <div className={`home-content${active ? ` home-project-active home-project-active-${active}` : ''}`}>
     <h1 className="home-hero" aria-label="i build agents, infra & dev tools.">
       <span className="hero-first-line"><span className="hero-intro">{word('i', 100)}{word('build', 200)}</span>{word('agents,', 300, 'agents')}</span>
       <span className="hero-line">{word('infra', 400, 'infra')}{word('&', 500)}</span>
@@ -171,17 +142,16 @@ export function HomeContent() {
     </h1>
     <section className="home-experience" aria-label="Experience">
       <article className="home-job home-job-current"><h2 className="job-title"><a href="https://clueso.io" target="_blank" rel="noopener noreferrer">clueso</a></h2><p className="job-caption">800 · applied ai engineer · yc w23</p><p className="job-description">ai that turns screen recordings into product videos and step-by-step docs.</p></article>
-      <article className={`home-job home-job-omni${omniOpen ? ' home-job-expanded' : ''}`} onPointerEnter={event => { if (!mobile && event.pointerType !== 'touch') { setOmniOpen(true); closePanel() } }} onPointerLeave={() => { if (!mobile && !omniPinned && !omni.current?.contains(document.activeElement)) setOmniOpen(false) }}>
-        <h2 className="job-title"><button type="button" ref={omni} aria-expanded={omniOpen} aria-controls="omni-work" onClick={() => { setOmniOpen(!omniOpen); setOmniPinned(!omniOpen) }} onFocus={() => { if (!mobile) setOmniOpen(true) }} onBlur={event => { if (!mobile && !omniPinned && !event.currentTarget.parentElement?.parentElement?.contains(event.relatedTarget)) setOmniOpen(false) }} onKeyDown={event => { if (event.key === 'Escape') { setOmniOpen(false); setOmniPinned(false) } }}>omni rpa</button></h2>
-        <p className="job-caption">{omniOpen ? '500 → 800' : '500'} · founding ai engineer · &apos;24–&apos;26</p>
-        {omniOpen ? <div className="job-description omni-work" id="omni-work"><ul>{omniWork.map(item => <li key={item}>— {item}</li>)}</ul><p className="omni-companies">omni rpa inc ↳ agentic solutions</p></div> : <p className="job-description" id="omni-work">mcp server + client from scratch, a dag multi-agent orchestrator, knowledge graph + rag, semantic memory on pgvector.</p>}
-        <button type="button" className="omni-mobile-toggle" aria-expanded={omniOpen} aria-controls="omni-work" onClick={() => { setOmniOpen(!omniOpen); setOmniPinned(!omniOpen) }}>{omniOpen ? 'tap to fold ↑' : 'tap for all 10 ↓'}</button>
+      <article className="home-job home-job-omni" id="omni-rpa">
+        <h2 className="job-title">omni rpa</h2>
+        <p className="job-caption">500 · founding ai engineer · &apos;24–&apos;26</p>
+        <p className="job-description">mcp server + client from scratch, a dag multi-agent orchestrator, knowledge graph + rag, semantic memory on pgvector.</p>
       </article>
       <article className="home-job home-job-old"><h2 className="job-title">duk kerala</h2><p className="job-caption">200 · research intern · &apos;23</p><p className="job-description">real-time crop ripeness detection, yolov8 fine-tuned on an agricultural dataset.</p></article>
     </section>
     {active && <><div className="project-sheet-dismiss" onClick={() => closePanel(true)} aria-hidden="true" /><div ref={panel} id="home-project-panel" role="dialog" aria-modal={mobile ? true : undefined} aria-label={title} style={mobile ? undefined : panelPosition} className={`home-project-panel home-project-panel-${active}`} onPointerEnter={keepPanel} onPointerLeave={leave} onTouchStart={event => { swipeStart.current = event.touches[0].clientY }} onTouchEnd={event => { if (swipeStart.current !== null && event.changedTouches[0].clientY - swipeStart.current > 60) closePanel(true); swipeStart.current = null }}>
       <div className="project-panel-heading"><span>{title}</span><button type="button" onClick={() => closePanel(true)} className="project-panel-close"><span className="desktop-panel-close">esc to close</span><span className="mobile-panel-close">swipe down ↓</span></button></div>
-      {active === 'tools' ? <div className="project-columns">{['built', 'upstream'].map((label, index) => <div className="project-column" key={label}><span className="project-column-label">{label}</span>{projects.tools.slice(index * 3, index * 3 + 3).map(project => projectLink(project, true))}</div>)}</div> : <>{projects[active].map(project => projectLink(project))}<button type="button" className="project-panel-note" onClick={expandOmni}>{active === 'agents' ? '+ the agent work at omni rpa ↓' : '+ mcp, knowledge graphs at omni rpa ↓'}</button></>}
+      {active === 'tools' ? <div className="project-columns">{['built', 'upstream'].map((label, index) => <div className="project-column" key={label}><span className="project-column-label">{label}</span>{projects.tools.slice(index * 3, index * 3 + 3).map(project => projectLink(project, true))}</div>)}</div> : <>{projects[active].map(project => projectLink(project))}<a href="#omni-rpa" className="project-panel-note" onClick={() => closePanel()}>{active === 'agents' ? '+ the agent work at omni rpa ↓' : '+ mcp, knowledge graphs at omni rpa ↓'}</a></>}
     </div></>}
   </div>
 }
