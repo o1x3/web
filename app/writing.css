@@ -3,5 +3,6 @@
 .writing-title h1{font-size:inherit;font-weight:400;line-height:1;letter-spacing:-.05em}
 .writing-mark{display:block;flex:none;width:66px;height:66px;margin-top:37px;background:center/100% 100% no-repeat url('/design/writing-mark-light.svg')}
 .dark .writing-mark{background-image:url('/design/writing-mark-dark.svg')}
+.writing-soon{color:var(--text-muted);font-size:13px;line-height:20px;text-align:center}
 .writing-posts{width:min(680px,100%)}.writing-posts a{display:flex;gap:24px;padding:16px 0;border-bottom:1px solid var(--line)}.writing-posts span{color:var(--text-muted);font-size:12px}.writing-posts strong{font-weight:600}
 @media(max-width:700px){.writing-title{gap:12px;font-size:clamp(48px,18vw,64px)}.writing-title h1{line-height:1.03125}.writing-mark{width:36px;height:36px;margin-top:.328125em}}

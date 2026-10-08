@@ -39,8 +39,8 @@ bun run test:smoke
 TEST_ORIGIN=https://your-preview.vercel.app bun run test:smoke
 ```
 
-Smoke checks cover CSP nonces, the empty writing page/feed, removed article routes, share metadata/artwork, résumé, and 404 responses. Layout and interaction checks also run in a browser.
+Smoke checks cover CSP nonces, the empty writing page/feed, removed article routes, share metadata/artwork, and 404 responses. Layout and interaction checks also run in a browser.
 
 ## Résumé
 
-`public/cv.pdf` is generated from `app/data.ts`. Rebuild with `node scripts/build-cv.mjs` after changing content. The optional command needs a local `pdflatex`; deployments use the checked-in PDF and need no TeX installation.
+The local résumé generator in `scripts/build-cv.mjs` can create a PDF from `app/data.ts` when needed. It requires a local `pdflatex`; the generated PDF is not committed or served by the site.

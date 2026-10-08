@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 export default function WritingPage() {
   return <main id="main-content" className="site-page writing-page">
     <div className="writing-title"><span className="writing-mark" aria-hidden="true" /><h1>writing</h1></div>
+    {posts.length === 0 && <span className="writing-soon">soon</span>}
     {posts.length > 0 && <ul className="writing-posts">{posts.map(post => <li key={post.slug}><Link href={`/writing/${post.slug}`}><span>{post.date}</span><strong>{post.title}</strong></Link></li>)}</ul>}
   </main>
 }

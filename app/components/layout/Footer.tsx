@@ -16,7 +16,6 @@ export function Footer({ variant = 'home' }: { variant?: 'home' | 'post' | 'erro
         <a href={PERSONAL_INFO.github.url} target="_blank" rel="noopener noreferrer">github</a>
         <span aria-hidden="true">{' // '}</span>
         <a href={PERSONAL_INFO.linkedin.url} target="_blank" rel="noopener noreferrer">linkedin</a>
-        {variant !== 'post' && <><span aria-hidden="true">{' // '}</span><a href="/cv.pdf">cv</a></>}
         <span aria-hidden="true">{' // '}</span>
         <a href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>
       </nav>

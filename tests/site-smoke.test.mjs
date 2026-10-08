@@ -32,7 +32,7 @@ test('empty writing renders only its title and remains out of search', async () 
 })
 
 test('RSS, CV, and brand artwork are available', async () => {
-  const expected = [['/writing/rss.xml', 'application/rss+xml'], ['/cv.pdf', 'application/pdf'], ['/brand/favicon-light.svg', 'image/svg+xml'], ['/brand/favicon-dark.svg', 'image/svg+xml'], ['/opengraph-image.png', 'image/png']]
+  const expected = [['/writing/rss.xml', 'application/rss+xml'], ['/brand/favicon-light.svg', 'image/svg+xml'], ['/brand/favicon-dark.svg', 'image/svg+xml'], ['/opengraph-image.png', 'image/png']]
   await Promise.all(expected.map(async ([path, type]) => {
     const response = await fetch(`${origin}${path}`)
     assert.equal(response.status, 200, path)
@@ -67,7 +67,7 @@ test('social metadata points to the real share cards', async () => {
 })
 
 test('unknown posts and unknown routes return the designed 404', async () => {
-  for (const path of ['/writing/this-post-does-not-exist', '/this-page-does-not-exist', '/writing/five-weeks-into-mcp', '/writing/entity-extraction-without-an-llm-call', '/writing/everything-this-page-can-render', '/story', '/stuff']) {
+  for (const path of ['/writing/this-post-does-not-exist', '/this-page-does-not-exist', '/writing/five-weeks-into-mcp', '/writing/entity-extraction-without-an-llm-call', '/writing/everything-this-page-can-render', '/story', '/stuff', '/cv.pdf']) {
     const { response, body } = await html(path)
     assert.equal(response.status, 404)
     assert.match(body, /404 — page not found/)
