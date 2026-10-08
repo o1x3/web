@@ -1,14 +1,8 @@
 import type { ReactNode } from 'react'
-import Image from 'next/image'
 
 export function PullQuote({ children }: { children: ReactNode }) { return <blockquote className="pull-quote">{children}</blockquote> }
 export function Callout({ kind = 'note', children }: { kind?: 'note' | 'warning'; children: ReactNode }) { return <aside className={`article-callout article-callout-${kind}`}><span className="article-chip">{kind}</span><div>{children}</div></aside> }
-export function Disclosure({ title, children, open = false, lines = 3 }: { title: string; children: ReactNode; open?: boolean; lines?: number }) {
+export function Disclosure({ title, open, lines = 3, children }: { title: string; open?: boolean; lines?: number; children: ReactNode }) {
   return <details className="article-disclosure" open={open}><summary><span className="disclosure-box" aria-hidden="true" /><span>{title}</span><span className="disclosure-closed">░░░ {lines} lines</span><span className="disclosure-open">███ open</span></summary><div className="disclosure-content">{children}</div></details>
 }
 export function ArticleDivider() { return <div className="article-divider" role="separator"><span>░▒▓█</span></div> }
-export function FootnoteRef({ number }: { number: number }) { return <sup><a className="footnote-chip" id={`ref-${number}`} href={`#note-${number}`} aria-label={`Read note ${number}`}>{number}</a></sup> }
-export function ArticleNotes() { return <section className="article-notes" aria-label="Notes"><h2>NOTES</h2><ol><li id="note-1"><span className="footnote-chip footnote-chip-preview">1</span><p>on wide screens a footnote also sits in the margin, next to the line that calls it. on phones it only lives down here.</p><a href="#ref-1" aria-label="Return to reference 1">↩</a></li><li id="note-2"><span className="footnote-chip">2</span><p>a footnote with a link, <a href="https://github.com/o1x3" target="_blank" rel="noopener noreferrer">github.com/o1x3 ↗</a>, and a return arrow.</p><a href="#ref-2" aria-label="Return to reference 2">↩</a></li></ol><p className="notes-caption">1 is shown as just-jumped-to (pink). 2 is at rest.</p></section> }
-export function ReferenceImage() { return <figure className="article-image"><Image src="/design/writing-reference-image.svg" alt="A colour halftone image of large wavy letterforms" width={680} height={300} unoptimized /><figcaption><span>fig 4 · images sit full column, no rounding</span><span>alt text shows here</span></figcaption></figure> }
-export function Pipeline() { return <pre className="article-pipeline"><code className="pipeline-desktop">{'ingest → chunk → extract → link → embed → index\n                 └─ conf < 0.65 → escalate'}</code><code className="pipeline-mobile">{'chunk → extract → link\n        └─ conf < 0.65 → llm'}</code></pre> }
-export function MarginNote({ children, number = 1 }: { children: ReactNode; number?: number }) { return <aside className="article-margin-note"><span className="footnote-chip">{number}</span><p>{children}</p></aside> }

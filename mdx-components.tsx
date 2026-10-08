@@ -1,8 +1,7 @@
 import type { MDXComponents } from 'mdx/types'
 import { isValidElement, type ComponentPropsWithoutRef } from 'react'
-import { Callout, PullQuote, Disclosure, ArticleDivider, FootnoteRef, ArticleNotes, ReferenceImage, Pipeline, MarginNote } from './app/components/writing/ArticleElements'
+import { Callout, PullQuote, Disclosure, ArticleDivider } from './app/components/writing/ArticleElements'
 import { CodeBlock } from './app/components/writing/CodeBlock'
-import { FlowDiagram, SequenceDiagram, StateDiagram } from './app/components/writing/Diagrams'
 
 const Heading2 = ({ children, ...props }: ComponentPropsWithoutRef<'h2'>) => <h2 {...props}><span className="heading-marker" aria-hidden="true">##</span>{children}</h2>
 const Heading3 = ({ children, ...props }: ComponentPropsWithoutRef<'h3'>) => <h3 {...props}><span className="heading-marker" aria-hidden="true">###</span>{children}</h3>
@@ -16,5 +15,5 @@ const FencedCode = ({ children, ...props }: ComponentPropsWithoutRef<'pre'>) => 
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return { h2: Heading2, h3: Heading3, h4: Heading4, pre: FencedCode, Callout, PullQuote, Disclosure, ArticleDivider, FootnoteRef, ArticleNotes, ReferenceImage, Pipeline, MarginNote, CodeBlock, FlowDiagram, SequenceDiagram, StateDiagram, ...components }
+  return { h2: Heading2, h3: Heading3, h4: Heading4, pre: FencedCode, Callout, PullQuote, Disclosure, ArticleDivider, CodeBlock, ...components }
 }

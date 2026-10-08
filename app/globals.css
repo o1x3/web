@@ -1,6 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Small native reset; the site uses authored CSS rather than utilities. */
+*, ::before, ::after { box-sizing: border-box; border: 0 solid #e5e5e5; }
+html { line-height: 1.5; -webkit-text-size-adjust: 100%; tab-size: 4; }
+h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
+a { text-decoration: inherit; }
+code, kbd, samp, pre { font-family: var(--font-mono), monospace; font-size: 1em; }
+small { font-size: 80%; }
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sub { bottom: -.25em; } sup { top: -.5em; }
+table { text-indent: 0; border-color: inherit; border-collapse: collapse; }
+button, input, select, textarea { font: inherit; font-feature-settings: inherit; font-variation-settings: inherit; letter-spacing: inherit; color: inherit; padding: 0; }
+button, select { text-transform: none; }
+button { appearance: button; background: transparent; }
+ol, ul, menu { list-style: none; padding: 0; }
+fieldset, legend, dialog { padding: 0; }
+img, svg, video, canvas { display: block; vertical-align: middle; }
+img, video { max-width: 100%; height: auto; }
+[hidden]:not([hidden=until-found]) { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
 :root {
   color-scheme: light;
@@ -28,13 +44,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 ::selection { background: var(--accent); color: #141414; }
 .site-page { width: 100%; padding: 44px 56px; }
+.error-page { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
+.error-page h1 { font-size: 24px; font-weight: 800; }
+.error-page button { text-decoration: underline; text-decoration-color: var(--accent); }
 .home-page { min-height: max(980px, 100svh); display: flex; flex-direction: column; justify-content: space-between; gap: 48px; }
 .site-header { display: flex; justify-content: space-between; align-items: center; font-size: 14px; line-height: 20px; min-height: 23px; }
 .site-name { font-weight: 700; text-decoration: none; }
 .site-header-center a { text-decoration: none; }
 .site-header-actions { display: flex; align-items: center; gap: 20px; }
 .writing-link { text-decoration: underline; }
-.writing-link--active { font-weight: 800; text-decoration: none; border-bottom: 3px solid var(--accent); }
 .theme-switch { display: flex; align-items: start; gap: 6px; }
 .theme-switch > span { color: #8c8c8c; }
 .theme-choice { padding: 0; background: none; border: 0; border-bottom: 3px solid transparent; font-weight: 200; color: #6e6e6e; line-height: 20px; }
@@ -61,7 +79,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .site-header--post .site-header-center, .site-header--error .site-header-center { grid-column: 2; justify-self: end; color: var(--text); }
   .site-footer { flex-direction: column; align-items: start; padding-top: 8px; gap: 12px; }
   .visitor-copy-desktop { display: none; }
-  .footer-home { display: none; }
   .footer-socials { font-size: 13px; white-space: normal; }
   .site-header--error .writing-link { display: none; }
 }

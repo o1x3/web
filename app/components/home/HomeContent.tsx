@@ -39,7 +39,7 @@ const omniWork = [
 
 export function HomeContent() {
   const [active, setActive] = useState<Category | null>(null)
-  const [mobile, setMobile] = useState(false)
+  const [mobile, setMobile] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 700px)').matches)
   const [omniOpen, setOmniOpen] = useState(false)
   const [omniPinned, setOmniPinned] = useState(false)
   const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 })
@@ -50,7 +50,7 @@ export function HomeContent() {
   const swipeStart = useRef<number | null>(null)
   const activeCategory = useRef<Category | null>(null)
   const suppressFocus = useRef(false)
-  activeCategory.current = active
+  useLayoutEffect(() => { activeCategory.current = active }, [active])
 
   const keepPanel = useCallback(() => clearTimeout(dismissTimer.current), [])
   const closePanel = useCallback((restore = false) => {
@@ -67,7 +67,6 @@ export function HomeContent() {
   useEffect(() => {
     const media = window.matchMedia('(max-width: 700px)')
     const update = () => { setMobile(media.matches); setActive(null) }
-    setMobile(media.matches)
     media.addEventListener('change', update)
     return () => media.removeEventListener('change', update)
   }, [])

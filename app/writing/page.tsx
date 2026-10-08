@@ -1,19 +1,18 @@
 import type { Metadata } from 'next'
-import { Header, Footer } from '../components/layout'
-import { WritingIndex } from '../components/writing/WritingIndex'
+import Link from 'next/link'
 import { posts } from '../lib/posts'
 import '../writing.css'
 
-const hasPublishedPosts = posts.some(post => !post.sample)
-
 export const metadata: Metadata = {
-  title: 'Writing — Karthik Vinayan', description: 'Notes on agents, infrastructure, and developer tools.',
-  robots: { index: hasPublishedPosts, follow: true, googleBot: { index: hasPublishedPosts, follow: true } },
+  title: 'Writing — Karthik Vinayan',
+  description: 'Notes on agents, infrastructure, and developer tools.',
+  robots: { index: posts.length > 0, follow: true, googleBot: { index: posts.length > 0, follow: true } },
   alternates: { canonical: '/writing', types: { 'application/rss+xml': '/writing/rss.xml' } },
-  openGraph: { title: 'Writing — Karthik Vinayan', description: 'Notes on agents, infrastructure, and developer tools.', url: '/writing', type: 'website' },
-  twitter: { title: 'Writing — Karthik Vinayan', description: 'Notes on agents, infrastructure, and developer tools.' },
 }
 
 export default function WritingPage() {
-  return <div className="site-page writing-page"><Header variant="writing" /><main id="main-content"><WritingIndex posts={posts} /></main><Footer variant="writing" /></div>
+  return <main id="main-content" className="site-page writing-page">
+    <div className="writing-title"><span className="writing-mark" aria-hidden="true" /><h1>writing</h1></div>
+    {posts.length > 0 && <ul className="writing-posts">{posts.map(post => <li key={post.slug}><Link href={`/writing/${post.slug}`}><span>{post.date}</span><strong>{post.title}</strong></Link></li>)}</ul>}
+  </main>
 }

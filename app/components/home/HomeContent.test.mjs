@@ -28,7 +28,7 @@ const effect = (fn, deps) => {
   }
 }
 const react = {
-  useState(initial) { const index = cursor++; if (!(index in hooks)) hooks[index] = initial; return [hooks[index], next => { const value = typeof next === 'function' ? next(hooks[index]) : next; if (value !== hooks[index]) { hooks[index] = value; dirty = true } }] },
+  useState(initial) { const index = cursor++; if (!(index in hooks)) hooks[index] = typeof initial === 'function' ? initial() : initial; return [hooks[index], next => { const value = typeof next === 'function' ? next(hooks[index]) : next; if (value !== hooks[index]) { hooks[index] = value; dirty = true } }] },
   useRef(initial) { const index = cursor++; return hooks[index] ??= { current: initial } },
   useCallback(fn) { cursor++; return fn }, useEffect: effect, useLayoutEffect: effect,
 }

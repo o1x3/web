@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { headers } from 'next/headers'
 import localFont from 'next/font/local'
-import { ErrorBoundary } from './error-boundary'
 import { FaviconInit } from './components/FaviconInit'
-import { VisitorDrawer } from './components/home/VisitorDrawer'
 import './globals.css'
 import './home.css'
 
@@ -11,7 +9,7 @@ import './home.css'
 export const dynamic = 'force-dynamic'
 
 const paperMono = localFont({
-  src: './fonts/PaperMonoVF.ttf',
+  src: './fonts/PaperMonoVF.woff2',
   weight: '100 800',
   variable: '--font-mono',
   display: 'swap',
@@ -30,6 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://o1x3.com'),
   alternates: {
     canonical: '/',
+    types: { 'application/rss+xml': '/writing/rss.xml' },
   },
   openGraph: {
     type: 'website',
@@ -41,6 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
+    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'Karthik Vinayan — i build agents, infra & dev tools.' }],
     title: 'Karthik Vinayan | Applied AI Engineer at Clueso',
     description: 'Applied AI Engineer at Clueso (YC W23). Previously Founding AI Engineer at Omni RPA — built the backend for a production AI cloud automation platform: multi-agent orchestrator, knowledge graph infra, MCP tooling, semantic memory.',
   },
@@ -89,10 +89,7 @@ export default async function RootLayout({
       <body>
         <a className="skip-link" href="#main-content">skip to content</a>
         <FaviconInit />
-        <ErrorBoundary>
-          {children}
-        </ErrorBoundary>
-        <VisitorDrawer />
+        {children}
       </body>
     </html>
   )

@@ -9,7 +9,7 @@ async function html(path) {
 }
 
 test('CSP gives every executable script the response nonce', async () => {
-  for (const path of ['/', '/writing', '/writing/everything-this-page-can-render']) {
+  for (const path of ['/', '/writing']) {
     const { response, body } = await html(path)
     assert.equal(response.status, 200)
     const nonce = response.headers.get('content-security-policy')?.match(/'nonce-([^']+)'/)?.[1]
@@ -20,11 +20,15 @@ test('CSP gives every executable script the response nonce', async () => {
   }
 })
 
-test('MDX compiles semantic article content and review metadata', async () => {
-  const { response, body } = await html('/writing/everything-this-page-can-render')
+test('empty writing renders only its title and remains out of search', async () => {
+  const { response, body } = await html('/writing')
   assert.equal(response.status, 200)
-  for (const pattern of [/<table/, /<blockquote/, /type="checkbox"/, /<details/, /<svg/, /id="note-1"/, /id="note-2"/, /name="robots" content="noindex/]) assert.match(body, pattern)
-  assert.match(body, /rel="canonical" href="https:\/\/o1x3.com\/writing\/everything-this-page-can-render"/)
+  assert.match(body, /<h1>writing<\/h1>/)
+  assert.match(body, /name="robots" content="noindex/)
+  assert.match(body, /name="googlebot" content="noindex/)
+  assert.match(body, /rel="canonical" href="https:\/\/o1x3.com\/writing"/)
+  const markup = body.split(/<body\b[^>]*>/)[1].split('</body>')[0]
+  assert.doesNotMatch(markup, /<header\b|<footer\b|<nav\b|<ul\b|writing-filters|writing-row|no posts yet/)
 })
 
 test('RSS, CV, and brand artwork are available', async () => {
@@ -35,11 +39,29 @@ test('RSS, CV, and brand artwork are available', async () => {
     assert.ok(response.headers.get('content-type')?.includes(type), path)
   }))
   const { body } = await html('/writing/rss.xml')
-  assert.equal([...body.matchAll(/<item>/g)].length, 6)
+  assert.match(body, /<rss version="2.0"/)
+  assert.match(body, /<channel><title>Karthik Vinayan · writing<\/title>/)
+  assert.match(body, /<atom:link href="https:\/\/o1x3.com\/writing\/rss.xml" rel="self"/)
+  assert.equal([...body.matchAll(/<item>/g)].length, 0)
+  assert.doesNotMatch(body, /sample|placeholder|five weeks into mcp/i)
+})
+
+test('social metadata points to the real share cards', async () => {
+  const { body } = await html('/')
+  assert.match(body, /property="og:image" content="https:\/\/o1x3.com\/opengraph-image.png/)
+  assert.match(body, /name="twitter:card" content="summary_large_image"/)
+  assert.match(body, /name="twitter:image" content="https:\/\/o1x3.com\/opengraph-image.png/)
+  for (const path of ['/opengraph-image.png']) {
+    const response = await fetch(`${origin}${path}`)
+    const png = Buffer.from(await response.arrayBuffer())
+    assert.equal(png.toString('ascii', 1, 4), 'PNG')
+    assert.equal(png.readUInt32BE(16), 1200)
+    assert.equal(png.readUInt32BE(20), 630)
+  }
 })
 
 test('unknown posts and unknown routes return the designed 404', async () => {
-  for (const path of ['/writing/this-post-does-not-exist', '/this-page-does-not-exist']) {
+  for (const path of ['/writing/this-post-does-not-exist', '/this-page-does-not-exist', '/writing/five-weeks-into-mcp', '/writing/entity-extraction-without-an-llm-call', '/writing/everything-this-page-can-render', '/story', '/stuff']) {
     const { response, body } = await html(path)
     assert.equal(response.status, 404)
     assert.match(body, /404 — page not found/)

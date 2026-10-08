@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
   const isDev = process.env.NODE_ENV === 'development'
 
@@ -43,6 +43,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    { source: '/((?!api|_next/static|_next/image|favicon.ico|icon.png).*)' },
+    { source: '/((?!api|_next/static|_next/image|brand/|design/|favicon.ico|icon.png|apple-icon.png|opengraph-image.png|twitter-image.png|cv.pdf|llms.txt|llms-full.txt|sitemap.xml|robots.txt|writing/rss.xml).*)' },
   ],
 }
