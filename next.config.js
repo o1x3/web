@@ -8,12 +8,7 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   devIndicators: false,
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  reactStrictMode: true,
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
   poweredByHeader: false,
-  compress: true,
 }
 
 module.exports = withMDX(nextConfig)
